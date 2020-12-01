@@ -1,0 +1,370 @@
+﻿<div class="page-content page-main--right-content" ng-controller="ApplyJobsController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">APPLY JOBS</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- BEGIN PAGE TITLE-->
+    <!-- END PAGE TITLE-->
+    <!-- END PAGE HEADER-->
+    <div class="row" ng-hide="ViewMode == 'JD'">
+        <div class="col-md-12">
+            <div class="portlet light bordered gridFilter">
+                <div class="portlet-body">
+                    <button data-toggle="collapse" data-target="#demo" class="btn green btn-sm btn-outline dropdown-toggle filter-button">
+                        Filter Jobs
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <div id="demo" class="collapse">
+                        <div role="form" class="searchblock">
+                            <div class="form-group col-md-3 col-lg-3">
+                                <div class="controls full">
+                                    <label class="FilterLabel">Company</label>
+                                    <select name="" id="Company" class="form-control" ng-model="Company">
+                                        <option value="">-Select-</option>
+                                        <option value="{{company.CompanyId}}" ng-repeat="company in RelatedRequirements.Companies">{{company.CompanyName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3 col-lg-3">
+                                <div class="controls full">
+                                    <label class="FilterLabel">Secondary Skill 1</label>
+                                    <select name="SecondarySkill" id="SecondarySkill" class="form-control" ng-model="SecondarySkill">
+                                        <option value="">-Select-</option>
+                                        <option value="{{skill.SkillId}}" ng-repeat="skill in SecondarySkills">{{skill.SkillName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3 col-lg-3">
+                                <div class="controls full">
+                                    <label class="FilterLabel">Role</label>
+                                    <select name="Role" id="Role" class="form-control" ng-model="Role">
+                                        <option value="">-Select-</option>
+                                        <option value="{{company.JobTitleId}}" ng-repeat="company in RelatedRequirements.Roles">{{company.JobTitle}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-1 col-lg-1">
+                                <div class="form-actions">
+                                    <button class="btn btn-primary" type="button" ng-click="loadCandidateRelatedRequirements()">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row" ng-hide="ViewMode == 'JD'">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li class="tab active">
+                    <a href="#tab_1_1" data-toggle="tab"> NEW JOBS </a>
+                </li>
+                <li class="tab">
+                    <a href="#tab_1_2" data-toggle="tab"> APPLIED JOBS </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active in" id="tab_1_1">
+                    <div class="table-scrollable">
+                        <div class="portlet light bordered">
+                            <div class="portlet-body dashboard">
+                                <div class="resultPanel" ng-repeat="requirement in RelatedRequirements.Requirements">
+                                    <div class="resultBlock">
+                                        <div class="row">
+                                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                                <p class="jobNumber">
+                                                    <a href="#">
+                                                        <span id="ReqId">{{requirement.JobCode}}</span>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                                <p class="portfolioDetails">
+                                                    <span class="labelText">Role :</span>
+                                                    <span class="valueText">
+                                                        <span id="Designation">{{requirement.JobTitle}}</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                                <p class="portfolioDetails">
+                                                    <span class="valueText">
+                                                        <span class="PostedByLeft">Company :</span>
+                                                        <span id="Copmpany">{{requirement.CompanyName}}</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row haspadding">
+                                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                                <span class="PostedByLeft">
+                                                    Exp :
+                                                    <span id="minExp">{{requirement.MinExp}}</span>
+                                                    -
+                                                    <span id="maxExp">{{requirement.MaxExp}}</span>
+                                                </span>
+                                            </div>
+                                            <div class="col-sm-7 col-md-7 col-lg-7">
+                                                <p class="skillSet">
+                                                    <span class="PostedByLeft">Skills : </span>
+                                                    <span id="PrimarySkill">{{requirement.PrimarySKillName}}</span>
+                                                    <span class="PostedByLeft">(<span id="SecSkills" class="PostedByLeft">{{requirement.SecSkillName1}},{{requirement.SecSKillName2}},{{requirement.SecSkillName3}},{{requirement.SecSkillName4}},{{requirement.SecSkillName5}} </span>)</span>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                                <p class="portfolioDetails">
+                                                    <span class="valueText">
+                                                        <span class="PostedByLeft">Location :</span>
+                                                        <span id="Location">{{requirement.Location}}</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row profileSelection">
+                                            <div class="col-md-12 padding-5">
+                                                <div class="gridactions">
+                                                    <div class="col-md-3">
+                                                        <a id="0" ng-click="viewJD('RelatedReq', requirement)"><i class="fa fa-eye-slash"></i> View JD</a>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <a id="1" ng-click="ApplyToJob(requirement)"><i class="fa fa-search-plus"></i>Apply</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab_1_2">
+                    <div class="table-scrollable">
+                        <div class="portlet light bordered">
+                            <div class="portlet-body dashboard">
+                                <div class="resultPanel" ng-repeat="requirement in AppliedRequirements">
+                                    <div class="resultBlock">
+                                        <div class="row">
+                                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                                <p class="jobNumber">
+                                                    <a href="#">
+                                                        <span id="ReqId">{{requirement.JobCode}}</span>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                                <p class="portfolioDetails">
+                                                    <span class="labelText">Role :</span>
+                                                    <span class="valueText">
+                                                        <span id="Designation">{{requirement.JobTitle}}</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-5 col-md-5 col-lg-5">
+                                                <p class="portfolioDetails">
+                                                    <span class="valueText">
+                                                        <span class="PostedByLeft">Company :</span>
+                                                        <span id="Copmpany">{{requirement.CompanyName}}</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row haspadding">
+                                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                                <span class="PostedByLeft">
+                                                    Exp :
+                                                    <span id="minExp">{{requirement.MinExp}}</span>
+                                                    -
+                                                    <span id="maxExp">{{requirement.MaxExp}}</span>
+                                                </span>
+                                            </div>
+                                            <div class="col-sm-7 col-md-7 col-lg-7">
+                                                <p class="skillSet">
+                                                    <span class="PostedByLeft">Skills : </span>
+                                                    <span id="PrimarySkill">{{requirement.PrimarySKillName}}</span>
+                                                    <span class="PostedByLeft">(<span id="SecSkills" class="PostedByLeft">{{requirement.SecSkillName1}},{{requirement.SecSKillName2}},{{requirement.SecSkillName3}},{{requirement.SecSkillName4}},{{requirement.SecSkillName5}} </span>)</span>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                                <p class="portfolioDetails">
+                                                    <span class="valueText">
+                                                        <span class="PostedByLeft">Location :</span>
+                                                        <span id="Location">{{requirement.Location}}</span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row profileSelection">
+                                            <div class="col-md-12 padding-5">
+                                                <div class="gridactions">
+                                                    <div class="col-md-3">
+                                                        <a id="0" ng-click="viewJD('AppliedReq', requirement)"><i class="fa fa-eye-slash"></i> View JD</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row" ng-hide="ViewMode == 'Requirements'">
+        <div class="col=md=12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panelnew minimal panel-defaultnew" style="width: 99%;">
+                                <div class="panel-headingnew clearfix">
+                                    <div class="row" style="border-bottom: 1px solid #ddd;">
+                                        <div class="panel-titlenew JobTitlejd">
+                                            <span id="jobTitle">{{objRequirement.Designation}}</span>
+                                            @
+                                            <span id="company" class="CompanyStyle">{{objRequirement.CompanyName}}</span>
+                                        </div>
+                                        <input type="submit" name="btnApply" value="Apply Now" id="btnApply" class="btn btn-success" ng-hide="viewType == 'AppliedReq'" ng-click="ApplyToJob(objRequirement)">
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <a href="#">
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                <span id="location" class="FontSubHeading">{{objRequirement.Location}}</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href="#">
+                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                <span id="JobType" class="FontSubHeading">{{objRequirement.JobType}}</span>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <a href="#">
+                                                <i class="fa fa-key" aria-hidden="true"></i>
+                                                <span id="JobCode" class="FontSubHeading">{{objRequirement.JobTitle}}</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="#">
+                                                <i class="fa fa-hourglass-start" aria-hidden="true"></i>
+                                                Last Date :
+                                                <span id="LastDat" class="FontSubHeading">{{objRequirement.DisplayJobEndDate}}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="panelnew panel-defaultnew" style="width: 100%;">
+                                <div class="panel-bodynew">
+                                    <ul class="comments-listnew removeable-listnew">
+                                        <li>
+                                            <div class="comment-headnew">
+                                                <label id="description" class="SubHeadingJD">Description</label>
+                                            </div>
+                                            <div class="comment-textnew">
+                                                <p>
+                                                    <span id="des">{{objRequirement.JobDesc}}</span>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="comment-headnew">
+                                                <label id="mainpagecontainer_ViewJDUserControl_lblskill2" class="SubHeadingJD">Key Responsibilities:</label>
+                                            </div>
+                                            <div class="comment-textnew">
+                                                <p>
+                                                    <span id="KeyResponsibilities">{{objRequirement.Remarks}}</span>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="comment-headnew">
+                                                <label id="minReqHeader" class="SubHeadingJD">Minimum Requirements</label>
+                                            </div>
+                                            <div class="comment-textnew">
+                                                <p>
+                                                    <span>Should have min <b>{{objRequirement.MinExp}}</b> years experience in <b>{{objRequirement.SecSkillName1}}</b><br>
+                                                    Should have min <b>{{objRequirement.MinExp}}</b> years experience in <b>{{objRequirement.SecSKillName2}}</b><br>
+                                                    Should have min <b>{{objRequirement.MinExp}}</b> years experience in <b>{{objRequirement.SecSkillName3}}</b><br>
+                                                    Should have min <b>{{objRequirement.MinExp}}</b> years experience in <b>{{objRequirement.SecSkillName4}}</b><br>
+                                                    Should have min <b>{{objRequirement.MinExp}}</b> years experience in <b>{{objRequirement.SecSkillName5}}</b></span>
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panelnew panel-defaultnew" style="width: 97%; min-height: 300px;">
+                                <div class="panel-bodynew">
+                                    <ul class="comments-listnew removeable-listnew">
+                                        <li style="border: none;">
+                                            <div class="comment-headnew">
+                                                <label id="mainpagecontainer_ViewJDUserControl_Label1" class="SubHeadingJD">Additional Info</label>
+                                            </div>
+                                            <div class="comment-textnew" style="margin-left: 10px;">
+                                                <div class="row Listrow">
+                                                    <a href="#">
+                                                        <i class="fa fa-calendar" aria-hidden="true" style="font-size: 14px !important;"></i>
+                                                        <span id="PostingDate" class="FontSubHeading"><b>Posted On : </b>{{objRequirement.DisplayJobStartDate}}</span>
+                                                    </a>
+                                                </div>
+                                                <div class="row Listrow">
+                                                    <a href="#">
+                                                        <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 14px !important;"></i>
+                                                        <span id="MInExp" class="FontSubHeading"><b>Min Exp : </b>{{objRequirement.MinExp}}</span>
+                                                    </a>
+                                                </div>
+                                                <div class="row Listrow">
+                                                    <a href="#">
+                                                        <i class="fa fa-line-chart" aria-hidden="true" style="font-size: 14px !important;"></i>
+                                                        <span id="MaxExp" class="FontSubHeading"><b>Max Exp : </b>{{objRequirement.MaxExp}}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label no-padding-right"></label>
+                            <div class="col-sm-6">
+                                <input type="button" name="btnCancelJD" value="Cancel" class="btn btn-danger" ng-click="ViewMode = 'Requirements'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

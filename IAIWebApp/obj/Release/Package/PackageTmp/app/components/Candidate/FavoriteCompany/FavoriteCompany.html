@@ -1,0 +1,85 @@
+﻿<div class="page-content page-main--right-content" ng-controller="FavoriteCompanyController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">Apply To Favorite Company</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <form class="form-horizontal" action="#" id="favoriteCompanyForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Select Favorite Company <span class="required">*</span></label>
+                                        <select name="FavoriteCompany" id="FavoriteCompany" class="form-control" ng-model="FavoriteCompany" ng-change="loadDesignation()">
+                                            <option value="">-Select-</option>
+                                            <option value="{{company.UserId}}" ng-repeat="company in FavoriteCompaniesDDL">{{company.CompanyName}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Designation <span class="required">*</span></label>
+                                        <select name="Designation" id="Designation" class="form-control" ng-model="Designation">
+                                            <option value="">-Select-</option>
+                                            <option value="{{desig.DesignationId}}" ng-repeat="desig in Designations">{{desig.Designation}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn green" ng-disabled="FavoriteCompany == '' || Designation == ''" ng-click="saveFavoriteCompany()">Apply</button>
+                                        <button type="button" class="btn default" ng-click="ClearAll()">Cancel</button>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Sl.No </th>
+                                    <th> Company Name </th>
+                                    <th> Designation </th>
+                                    <th>Applied Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="company in FavoriteCompanies track by $index">
+                                    <td>{{$index}}</td>
+                                    <td> {{company.CompanyName}} </td>
+                                    <td> {{company.Designation}} </td>
+                                    <td> {{company.DisplayScheduleDate}} </td>
+                                    <td>
+                                        <a ng-click="editFavoriteCompany(company)">Edit</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+</div>

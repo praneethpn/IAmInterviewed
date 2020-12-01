@@ -1,0 +1,242 @@
+﻿<div class="page-content page-main--right-content" style="min-height: 360px;" ng-controller="RequirementsDashboardController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">{{RequirementsDashboardStatus}} Requirements</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered gridFilter">
+                <div class="portlet-body">
+                    <button data-toggle="collapse" data-target="#demo" class="btn green btn-sm btn-outline dropdown-toggle"><i class="fa fa-filter"></i>Filters <i class="fa fa-angle-down"></i></button>
+                    <div id="demo" class="collapse">
+                        <div role="form" class="searchblock">
+                            <div class="form-group col-md-2 col-lg-2">
+                                <div class="controls full">
+                                    <label class="form-label">Primary Skill <span class="required" aria-required="true">*</span></label>
+                                    <select name="PrimarySkill" id="PrimarySkill" class="form-control" ng-model="primarySkillSearch">
+                                        <option value="">-Select-</option>
+                                        <option value="{{skill.SkillId}}" ng-repeat="skill in PrimarySkills">{{skill.SkillName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-1 col-lg-1">
+                                <div class="form-actions">
+                                    <button class="btn btn-primary" type="button" ng-click="getRequirements()">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body dashboard">                    
+                    <div class="table-scrollable">
+                        <table class="table table-hover table-no-hover">
+                            <tbody>
+                                <tr ng-repeat="req in requirementsList track by $index">
+                                    <td>
+                                        <div class="resultPanel">
+                                            <div class="resultBlock">
+                                                <div class="row">
+                                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                                        <p class="jobNumber">
+                                                            <a href="#">
+                                                                {{req.Jobcode}}
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-7 col-md-7 col-lg-7">
+                                                        <p class="portfolioDetails">
+                                                            <span class="labelText">Designation :</span>
+                                                            <span class="valueText">
+                                                                {{req.JobTitle}}
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-3 col-md-3 col-lg-3">
+                                                        <p class="portfolioDetails">
+                                                            <span class="valueText">
+                                                                <span class="PostedByLeft">Posted on :</span>
+                                                                {{req.DisplayJobStartDate}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row haspadding">
+                                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                                        <span class="PostedByLeft">
+                                                            Exp :
+                                                            {{req.MinExp}} - {{req.MaxExp}}
+                                                        </span></span>
+                                                    </div>
+                                                    <div class="col-sm-7 col-md-7 col-lg-7">
+                                                        <p class="skillSet">
+                                                            <span class="PostedByLeft">Skills : </span>
+                                                            {{req.PrimarySKillName}}
+                                                            <span class="PostedByLeft">
+                                                                ({{req.SecSkillsList}})
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-3 col-md-3 col-lg-3">
+                                                        <p class="portfolioDetails">
+                                                            <span class="valueText">
+                                                                <span class="PostedByLeft">Posted by :</span>
+                                                                {{req.PostedBy}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row haspadding">
+                                                    <div class="col-md-4 hasBorder">
+                                                        <div class="panelnew minimal panel-defaultnew noBoxShadow" style="min-height: 235px;">
+                                                            <div class="panel-headingnew clearfix">
+                                                                <div class="panel-titlenew">Company Profiles</div>
+                                                            </div>
+                                                            <!-- panel body -->
+                                                            <div class="panel-bodynew">
+                                                                <div class="row col-with-divider text-centernew">
+                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">Profiles Added :</label>
+                                                                        <div class="col-sm-4 leftAllign">
+                                                                            <span class="valueLabel">{{req.TotalProfiles}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">Interviews Scheduled :</label>
+                                                                        <div class="col-sm-4 leftAllign">
+                                                                            <span class="valueLabel">{{req.InterviewedProfiles}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">Selected :</label>
+                                                                        <div class="col-sm-4 leftAllign">
+                                                                            <span class="valueLabel">{{req.SelectedProfiles}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">Joined :</label>
+                                                                        <div class="col-sm-4 leftAllign">
+                                                                            <span class="valueLabel">{{req.JoinedProfiles}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">Rejected :</label>
+                                                                        <div class="col-sm-4 leftAllign">
+                                                                            <span class="valueLabel">{{req.RejectedProfiles}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="panelnew minimal panel-defaultnew noBoxShadow">
+                                                            <div class="panel-headingnew clearfix">
+                                                                <div class="panel-titlenew">Shortlisted Profiles</div>
+                                                            </div>
+                                                            <!-- panel body -->
+                                                            <div class="panel-bodynew nopadding">
+                                                                <div class="row col-with-divider text-centernew">
+                                                                    <div class="col-md-6 hasBorder">
+                                                                        <div class="panelnew minimal panel-defaultnew noBoxShadow">
+                                                                            <div class="panel-headingnew clearfix">
+                                                                                <div class="panel-titlenew">IAmInterviewed Profiles</div>
+                                                                            </div>
+                                                                            <!-- panel body -->
+                                                                            <div class="panel-bodynew">
+                                                                                <div class="row col-with-divider text-centernew">
+                                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">Selected :</label>
+                                                                                        <div class="col-sm-4 leftAllign">
+                                                                                            <span class="valueLabel">{{req.IAISelectedProfiles}}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">Joined :</label>
+                                                                                        <div class="col-sm-4 leftAllign">
+                                                                                            <span class="valueLabel">{{req.IAIJoinedProfiles}}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">In Progress :</label>
+                                                                                        <div class="col-sm-4 leftAllign">
+                                                                                            <span class="valueLabel">{{req.IAIInProgressProfiles}}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">Rejected :</label>
+                                                                                        <div class="col-sm-4 leftAllign">
+                                                                                            <span class="valueLabel">{{req.IAIRejectedProfiles}}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="panelnew minimal panel-defaultnew noBoxShadow">
+                                                                            <div class="panel-headingnew clearfix">
+                                                                                <div class="panel-titlenew">Company Added Profiles</div>
+                                                                            </div>
+                                                                            <!-- panel body -->
+                                                                            <div class="panel-bodynew">
+                                                                                <div class="row col-with-divider text-centernew">
+                                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">Selected :</label>
+                                                                                        <div class="col-sm-4 leftAllign">
+                                                                                            <span class="valueLabel">{{req.InterviewedSelectedProfiles}}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">Joined :</label>
+                                                                                        <div class="col-sm-4 leftAllign">
+                                                                                            <span class="valueLabel">{{req.InterviewedJoinedProfiles}}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">In Progress :</label>
+                                                                                        <div class="col-sm-4 leftAllign">
+                                                                                            <span class="valueLabel">{{req.InterviewedInProgressProfiles}}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4 col-md-6 col-lg-12 hasHeight">
+                                                                                        <label for="txtWebsite" class="col-sm-8 control-label no-padding-right rightAllign">Rejected :</label>
+                                                                                        <div class="col-sm-4 leftAllign">
+                                                                                            <span class="valueLabel">{{req.InterviewedRejectedProfiles}}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

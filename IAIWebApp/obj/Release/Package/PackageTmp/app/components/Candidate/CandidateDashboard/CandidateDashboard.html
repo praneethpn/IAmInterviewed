@@ -1,0 +1,328 @@
+﻿<div class="page-content page-main--right-content" ng-controller="CandidateDashboardController">
+    <div id="divinfo" class="alert alert-info alert-dismissible" role="alert" ng-show="ScheduledInterviews.length < 1">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Info!</strong>
+        <span id="Label1">Please schedule Interview By clicking Schedule Interview link on the Left Side Menu</span>
+    </div>
+    <div id="divRestricted" class="alert alert-warning alert-dismissible" role="alert" style="display:none;">
+        <button type="button" class="close" onclick="$('#divRestricted').hide();"><span aria-hidden="true">&times;</span></button>
+        <strong>Info!</strong>
+        <span id="Label2">You are not Authorized to view this rating as this is done by Company.To have your own Rating,please click on Schedule Interview button on left menu.</span>
+        <a id="lnkFeedback" class="sampleFeedbackLink" data-toggle="modal" data-target="#sampleFeedbackModal">Please click here to view Sample Feedback</a>
+    </div>
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">Dashboard</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="row chart-class">
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <canvas id="chartProgress" width="100%" height="150"></canvas>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-blue bold uppercase">
+                            Interview Schedules
+                        </span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Interviewer </th>
+                                    <th> Interview Date / Time </th>
+                                    <th> Interview Confirmed </th>
+                                    <th> Rating </th>
+                                    <th> Rating Accepted </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="interview in ScheduledInterviews | filter : paginate">
+                                    <td> {{interview.ScheduleId}} </td>
+                                    <td> {{interview.DisplayScheduleDate}} </td>
+                                    <td>
+                                        <div class="iconimage" ng-show="interview.AcceptedByInterviewer == 'Yes'">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                        <div class="iconimage" ng-show="interview.AcceptedByInterviewer != 'Yes'">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="star-rating-box" ng-if="interview.CompanySchedule == 'NO' && interview.TotalRating != null && interview.TotalRating != ''">
+                                            <div class="star-rating" style="width:{{(interview.TotalRating)/5*100}}%;" title="{{interview.TotalRating}}"></div>
+                                        </div>
+                                        <span ng-if="interview.CompanySchedule == 'NO' && (interview.TotalRating == null || interview.TotalRating == '')">---</span>
+                                        <span ng-if="interview.CompanySchedule == 'YES'" class="rating-restricted">R</span>
+                                    </td>
+                                    <td>{{interview.RatingAcceptance}}</td>
+                                    <td>
+                                        <a ng-click="viewRating(interview)">View & Accept</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-blue bold uppercase">
+                            WHO VIEWED YOUR PROFILE
+                        </span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Sl No </th>
+                                    <th> Company Name </th>
+                                    <th> Date Viewed </th>
+                                    <th> Status </th>
+                                    <th>Company Has Access</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="profile in ViewedProfiles track by $index">
+                                    <td> {{$index}} </td>
+                                    <td> {{profile.CompanyName}} </td>
+                                    <td> {{profile.DisplayScheduleDate}} </td>
+                                    <td>
+                                        {{profile.Status}}
+                                    </td>
+                                    <td>
+                                        {{profile.GrantAccess}}
+                                    </td>
+                                    <td>
+                                        <a ng-show="profile.GrantAccess == 'NO'" ng-click="grantAccessToCompany(profile)">Give Access</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="modal fade" id="sampleFeedbackModal" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog modal-full">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Candidate Details</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row" style="margin-bottom: 15px; border-bottom: 1px solid #cac9c9;" id="IAIPDFDownload">
+                                <div class="col-md-4">
+                                    <img id="imgLogoInner" ImageAlign="left" class="innerlogocss" style="width: 200px;" src="../../assets/InnerCSS/layouts/layout/img/IAmInterviewedLogo.png" />
+                                </div>
+                                <div class="col-md-4">
+                                    <span id="lblCandidateNameIAI" class="candidateNameIAI">{{loggedInUserDetails.Username}}</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <span id="lblInterviewIdIAI" class="interviewid-class">Interview Id : {{loggedInUserDetails.UniqueId}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="portlet light bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <span class="caption-subject font-blue bold uppercase">
+                                                    Total Rating
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <canvas id="chartTotalRatingIAIFormat"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="portlet light bordered">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <span class="caption-subject font-blue bold uppercase">
+                                                    Rating By Skill
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <canvas id="chartRatingBySkillIAIFormat"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="portlet light bordered">
+                                        <div class="portlet-body">
+                                            <h2>Technical Rating (3 /5)</h2>
+                                            <ul class="comments-list-rating removeable-list-rating rating-widget-list-rating">
+                                                <li>
+                                                    <div class="comment-head-rating">
+                                                        Java : <span id="Skill1Rating" class="valueLabelRating">3</span>
+                                                    </div>
+                                                    <div class="comment-text-rating">
+                                                        <p>
+                                                            Have the knowledge and can work independently.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="comment-head-rating">
+                                                        Microservices : <span id="Skill2Rating" class="valueLabelRating">3</span>
+                                                    </div>
+                                                    <div class="comment-text-rating">
+                                                        <p>
+                                                            Have the knowledge and can work independently.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="comment-head-rating">
+                                                        SpringBoot : <span id="Skill3Rating" class="valueLabelRating">2</span>
+                                                    </div>
+                                                    <div class="comment-text-rating">
+                                                        <p>
+                                                            Know the subject, have knowledge but no good working exp
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="comment-head-rating">
+                                                        WebService : <span id="Skill4Rating" class="valueLabelRating">4</span>
+                                                    </div>
+                                                    <div class="comment-text-rating">
+                                                        <p>
+                                                            Can work and Guide the team also to work.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="comment-head-rating">
+                                                        Database : <span id="Skill5Rating" class="valueLabelRating">3</span>
+                                                    </div>
+                                                    <div class="comment-text-rating">
+                                                        <p>
+                                                            Have the knowledge and can work independently.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="portlet light bordered">
+                                        <div class="portlet-body">
+                                            <h2>Soft Skill Rating ({{ratingDetailsIAI.SoftSkillRating}} /5)</h2>
+                                            <ul class="comments-list-rating removeable-list-rating rating-widget-list-rating">
+                                                <li>
+                                                    <div class="comment-head-rating">
+                                                        English Communication : <span id="Skill1Rating" class="valueLabelRating">3</span>
+                                                    </div>
+                                                    <div class="comment-text-rating">
+                                                        <p>
+                                                            Interviewers comments goes here..
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="comment-head-rating">
+                                                        Attitude : <span id="Skill2Rating" class="valueLabelRating">4</span>
+                                                    </div>
+                                                    <div class="comment-text-rating">
+                                                        <p>
+                                                            Interviewers comments goes here..
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="comment-head-rating">
+                                                        Interpersonal Skill Communication : <span id="Skill3Rating" class="valueLabelRating">2</span>
+                                                    </div>
+                                                    <div class="comment-text-rating">
+                                                        <p>
+                                                            Interviewers comments goes here..
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="portlet light bordered">
+                                        <div class="portlet-body">
+                                            <h2>Interviewer Comments</h2>
+                                            <ul class="comments-list-rating removeable-list-rating rating-widget-list-rating">
+                                                <li>
+                                                    <div class="comment-text-rating" style="width: 100%;">
+                                                        <p style="font-size: 13px;">
+                                                            Have the knowledge and can work independently.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>

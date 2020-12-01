@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="IAMInterviewed" ng-cloak>
+<head>
+    <meta charset="utf-8" />
+    <title>I AM Interviewed</title>
+    <link rel="icon" href="assets/OuterCSS/img/favicon.png" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link href="assets/InnerCSS/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/InnerCSS/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/InnerCSS/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/InnerCSS/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="assets/InnerCSS/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <link href="assets/InnerCSS/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/InnerCSS/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+    <link href="assets/InnerCSS/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="assets/InnerCSS/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="assets/InnerCSS/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="assets/InnerCSS/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/InnerCSS/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="assets/InnerCSS/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/InnerCSS/global/css/custom.css" rel="stylesheet" />
+    <link href="assets/InnerCSS/global/css/Loader_Notifications.css" rel="stylesheet" />
+    <link href="assets/InnerCSS/global/css/ViewRating.css" rel="stylesheet" />
+    <link href="assets/InnerCSS/global/plugins/datepicker/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="assets/InnerCSS/global/css/candidate-badge.css" rel="stylesheet" />
+    <!-- END THEME LAYOUT STYLES -->
+</head>
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white" ng-controller="CandidateHomeController">
+    <!-- Start: Notifications Section -->
+    <div id="notificationBar" class="notificationPb">
+        <span class="statusImgCntr">
+            <span class="statusImg"></span>
+            <h4 class="status"></h4>
+        </span>
+        <span class="statusText" ng-bind="resultMessage" ng-attr-title="{{resultMessageTooltip}}"></span>
+        <span class="closeNotificationCntr">
+            <!--<a><i class="fa fa-times-circle"></i></a>-->
+
+            <span class="closeNotification" onclick="closeNotication()"><i class="fa fa-times-circle" style="font-size: 25px;"></i></span>
+        </span>
+    </div>
+    <!-- End: Notifications Section -->
+    <div class="page-wrapper">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="Candidate.html">
+                        <img src="assets/InnerCSS/layouts/layout/img/IAmInterviewedLogo.png" alt="logo" class="logo-default" />
+                    </a>
+                    <div class="menu-toggler sidebar-toggler">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="icon-user"></i>
+                                <span class="username username-hide-on-mobile"> {{loggedInUserDetails.Username}} </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a ng-click="RedirectUrl('CandidateProfile')">
+                                        <i class="icon-user"></i> My Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a ng-click="RedirectUrl('ChangePassword')">
+                                        <i class="icon-settings"></i> Change Password?
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-settings"></i> DeActivate Profile
+                                    </a>
+                                </li>
+                                <li class="divider"> </li>
+                                <li>
+                                    <a ng-click="logout()">
+                                        <i class="icon-logout"></i> Log Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                        <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-quick-sidebar-toggler">
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <i class="icon-logout"></i>
+                            </a>
+                        </li>
+                        <!-- END QUICK SIDEBAR TOGGLER -->
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- Start: Loader Section -->
+            <div class="loadingWrapper-custom" style="display:none">
+                <div class="loaderCntr-custom"></div>
+                <div class="loader-custom"></div>
+                <div class="branding-custom">
+                    <span class="brandLogo-custom"></span>
+                    <h3 id="loaderText-custom">Processing please wait...</h3>
+                    <p class="close-custom">Please press ESC key to clear loader</p>
+                </div>
+            </div>
+            <!-- End: Loader Section -->
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <!-- BEGIN SIDEBAR -->
+                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+                    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+                    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+                    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+                    <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px" id="ulMenuBarSide" ng-show="loggedInUserDetails.LoginCount != '0'">
+                        <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        <li class="sidebar-toggler-wrapper hide">
+                            <div class="sidebar-toggler">
+                                <span></span>
+                            </div>
+                        </li>
+                        <!-- END SIDEBAR TOGGLER BUTTON -->
+                        <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                        <li class="nav-item start" id="liScheduleInterview">
+                            <a ng-click="RedirectUrl('ScheduleInterview')" class="nav-link nav-toggle scheduleInterview">
+                                <i class="icon-calendar"></i>
+                                <span class="title">Schedule Interview</span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item start active open" id="liDashboard">
+                            <a ng-click="RedirectUrl('Dashboard')" class="nav-link nav-toggle">
+                                <i class="icon-home"></i>
+                                <span class="title">Dashboard</span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item start" id="liCandidateProfile">
+                            <a ng-click="RedirectUrl('CandidateProfile')" class="nav-link nav-toggle">
+                                <i class="icon-user"></i>
+                                <span class="title">My Profile</span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item start" id="liApplyToJobs">
+                            <a ng-click="RedirectUrl('ApplyToJobs')" class="nav-link nav-toggle">
+                                <i class="icon-home"></i>
+                                <span class="title">Apply Jobs</span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item start" id="liFavoriteCompany">
+                            <a ng-click="RedirectUrl('FavoriteCompany')" class="nav-link nav-toggle">
+                                <i class="icon-home"></i>
+                                <span class="title">Apply to Favorite Company</span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper" data-ng-include="template.url">
+                <!-- BEGIN CONTENT BODY -->
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+            <!-- BEGIN QUICK SIDEBAR -->
+
+            <div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
+                <div class="page-quick-sidebar">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="javascript:;" class="page-quick-sidebar-toggler">
+                                <i class="icon-login"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="media-list list-items side-bar">
+                                <li class="media">
+                                    <div class="media-body">
+                                        <label class="col-md-5 control-label sidepane-info-class nopadding">My Unique Id : </label>
+                                        <div class="col-md-7 nopadding">
+                                            <span class="UniqueId"> {{loggedInUserDetails.UniqueId}} </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-body">
+                                        <label class="col-md-5 control-label sidepane-info-class nopadding">My Rating : </label>
+                                        <div class="col-md-7 nopadding">
+                                            <div class="star-rating-box" ng-if="CandidateDashboardDetails.TotalRating != 'Restricted'">
+                                                <div class="star-rating" style="width:{{(CandidateDashboardDetails.TotalRating)/5*100}}%;" title="{{CandidateDashboardDetails.TotalRating}}"></div>
+                                            </div>
+                                            <span ng-if="CandidateDashboardDetails.TotalRating == 'Restricted'">{{CandidateDashboardDetails.TotalRating}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-body">
+                                        <label class="col-md-5 control-label sidepane-info-class nopadding">Expires On : </label>
+                                        <div class="col-md-7 nopadding">
+                                            <span class="expiry-date"> {{CandidateDashboardDetails.RatingExpiry}} </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-body">
+                                        <label class="col-md-5 control-label sidepane-info-class nopadding">My Interview : </label>
+                                        <div class="col-md-7 nopadding">
+                                            <span class="interview-date"> {{CandidateDashboardDetails.DisplayScheduleDate}} </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-body">
+                                        <label class="col-md-12 control-label sidepane-info-class nopadding">Your Profile Status </label>
+                                        <div class="col-md-12 nopadding">
+                                            <div class="progress progress-striped">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{CandidateDashboardDetails.ProfileCompletionStatus}}" aria-valuemin="0" aria-valuemax="100" style="width: {{CandidateDashboardDetails.ProfileCompletionStatus}}%">
+                                                    <span class="sr-only"> {{CandidateDashboardDetails.ProfileCompletionStatus}}% Complete </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-body">
+                                        <div class="col-md-1 nopadding">
+                                            <label class="mt-checkbox mt-checkbox-outline">
+                                                <input type="checkbox" value="1" name="test">
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-9 nopadding">
+                                            <span class="sidepane-info-class"> Your profile visible to employers </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END QUICK SIDEBAR -->
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="page-footer-inner">
+                2019 &copy; I Am Interviewed
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+    </div>
+    <!--[if lt IE 9]>
+    <script src="assets/InnerCSS/global/plugins/respond.min.js"></script>
+    <script src="assets/InnerCSS/global/plugins/excanvas.min.js"></script>
+    <script src="assets/InnerCSS/global/plugins/ie8.fix.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="assets/InnerCSS/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="assets/InnerCSS/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/TwitterHover/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/horizontal-timeline/horizontal-timeline.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="assets/InnerCSS/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="assets/InnerCSS/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/pages/scripts/form-wizard.min.js" type="text/javascript"></script>
+    <!--<script src="assets/InnerCSS/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>-->
+    <script src="assets/InnerCSS/global/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="assets/InnerCSS/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/global/scripts/custom.js"></script>
+    <!--<script src="assets/InnerCSS/plugins/ChartJS/Chart.min.js"></script>-->
+    <script src="assets/InnerCSS/plugins/Chart.js/Chart.js"></script>
+    <!--<script src="assets/InnerCSS/plugins/ChartJS/CustomChart.js"></script>
+    <script src="assets/InnerCSS/plugins/ChartJS/utility.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+
+    <!-- Start: Hi Chart Reference -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <!-- End: Hi Chart Reference -->
+    <!-- Start: Angular Script Reference -->
+    <script src="assets/InnerCSS/plugins/angular-1.7.8/angular.js" type="text/javascript"></script>
+    <script src="assets/InnerCSS/plugins/angular-1.7.8/angular-messages.min.js"></script>
+    <script src="assets/InnerCSS/plugins/angular-1.7.8/angular-animate.min.js"></script>
+    <script src="assets/InnerCSS/plugins/angular-1.7.8/angular-aria.min.js"></script>
+    <script src="assets/InnerCSS/plugins/angular-1.7.8/angular-material.min.js"></script>
+    <script src="assets/InnerCSS/plugins/angular-1.7.8/angular-idle.js"></script>
+    <script src="app/js/idleLogout/idle/idle.js"></script>
+    <script src="app/js/idleLogout/countdown/countdown.js"></script>
+    <script src="app/js/idleLogout/keepalive/keepalive.js"></script>
+    <script src="app/js/idleLogout/localStorage/localStorage.js"></script>
+    <script src="app/js/idleLogout/title/title.js"></script>
+    <script src="app/directives/NgStorage/ngStorage.min.js"></script>
+    <script src="assets/InnerCSS/global/plugins/Angular-Tags-Input/ng-tags-input.js"></script>
+    <script src="app/js/angular-resource.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+    <!-- End: Angular Script Reference -->
+    <!-- Start: Custom Scripts -->
+    <script src="app/Config.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <!-- End: Custom Scripts -->
+    <!-- Start: Angularjs Services -->
+    <script src="app/services/DataServices.js" type="text/javascript"></script>
+    <!-- End: Angularjs Services -->
+    <!-- Start: Angularjs Controllers -->
+    <script src="app/components/Common/Controllers/CandidateHomeController.js"></script>
+    <script src="app/components/Candidate/CandidateDashboard/CandidateDasshboardController.js"></script>
+    <script src="app/components/Candidate/MyRating/CandidateRatingController.js"></script>
+    <script src="app/components/Candidate/CandidateProfile/CandidateProfileController.js"></script>
+    <script src="app/components/Candidate/ScheduleInterview/ScheduleInterviewController.js"></script>
+    <script src="app/components/Candidate/FavoriteCompany/FavoriteCompanyController.js"></script>
+    <script src="app/components/Candidate/ApplyJobs/ApplyJobsController.js"></script>
+    <script src="app/components/Common/ChangePassword/ChangePasswordControllers.js"></script>
+    <!-- End: Angularjs Controllers -->
+
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="https://developer.vox-cpaas.in/js/protobuf.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.154.0.min.js"></script>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+    <script src="https://developer.vox-cpaas.in/js/sha256.js"></script>
+    <script src="https://developer.vox-cpaas.in/js/calmsdk-001.js"></script>
+    <script src="https://developer.vox-cpaas.in/js/wrtc.js"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+    <script>
+        $(document).ready(function () {
+            $('#clickmewow').click(function () {
+                $('#radio1003').attr('checked', 'checked');
+            });
+        })
+    </script>
+</body>
+</html>

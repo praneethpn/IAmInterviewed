@@ -1,0 +1,202 @@
+﻿<div class="page-content page-main--right-content" ng-controller="ScheduleInterviewController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">SCHEDULE INTERVIEW</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- BEGIN PAGE TITLE-->
+    <!-- END PAGE TITLE-->
+    <!-- END PAGE HEADER-->
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-calendar-check-o font-blue"></i>
+                        <span class="caption-subject font-blue bold uppercase">
+                            Schedule An Interview
+                        </span>
+                    </div>
+                    <div class="actions">
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <form class="form-horizontal" action="#" id="submit_form" novalidate>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Date <span class="required">*</span></label>
+                                        <div class="input-group date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
+                                            <input type="text" class="form-control date-input" readonly="" ng-model="ScheduleDate" ng-change="loadInterviewers()">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-date" type="button">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!--<div class="form-group">
+                                        <label class="form-label">Interviewer <span class="required">*</span></label>
+                                        <select name="Interviewer" id="Interviewer" class="form-control" ng-model="Interviewer" ng-change="loadTimeSlots()">
+                                            <option value="">-Select-</option>
+                                            <option value="{{interviewer.UserId}}" ng-repeat="interviewer in Interviewers">{{interviewer.InterviewerName}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Time Slot <span class="required">*</span></label>
+                                        <select name="TimeSlots" id="TimeSlots" class="form-control" ng-model="TimeSlot">
+                                            <option value="">-Select-</option>
+                                            <option value="{{slot.AvailableTimeId}}" ng-repeat="slot in TimeSlots">{{slot.AvailableTime}}</option>
+                                        </select>
+                                    </div>-->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="form-label">Amount</label>
+                                                    <span class="interview-amount">1490.00</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <label class="form-label">Important Notes</label>
+                                                <ol>
+                                                    <a target="_blank" id="A1" href="../../assets/Important Docs/Terms and ConditionsV2.pdf">
+                                                        <li>Rating is valid for One Year</li>
+                                                    </a>
+                                                    <li>
+                                                        <a target="_blank" id="A1" href="../../assets/Important Docs/Terms and ConditionsV2.pdf">For Re-Interview contact &nbsp; </a>
+                                                        <a href="#" style="color: #08AFB5;">register@iaminterviewed.com</a>
+                                                    </li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="TimeSlot == ''">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <ul class="interviewer-slots">
+                                        <li ng-repeat="interviewer in Interviewers">
+                                            <span>{{interviewer.InterviewerName}}</span> <br />
+                                            <a ng-repeat="slot in interviewer.timeSlotList" ng-click="schedulePopUp(slot, interviewer);">{{slot.TimeSlot}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-hide="TimeSlot == ''">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <label class="form-label">Selected Time Slot</label>
+                                    </div>                                    
+                                    <div class="col-md-10">
+                                        <span class="valueLabelRating">{{objTimeSlot.TimeSlot}}</span>
+                                        <a class="time-slot-change" ng-click="Interviewer = ''; TimeSlot = '';">Choose another slot</a>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="min-height:100px;">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Interview Type</label>
+                                        <div class="mt-radio-inline">
+                                            <label class="mt-radio mt-radio-outline">
+                                                <input type="radio" name="InterviewType" id="optionsRadios4" value="Audio" ng-model="InterviewType"> Audio
+                                                <span></span>
+                                            </label>
+                                            <label class="mt-radio mt-radio-outline">
+                                                <input type="radio" name="InterviewType" id="optionsRadios5" value="Video" ng-model="InterviewType"> Video
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-offset-1 col-md-11">
+                                    <label class="mt-checkbox mt-checkbox-outline">
+                                        <input type="checkbox" ng-model="TermsConditions"> I agree to Terms & Conditions.
+                                        <span></span>
+                                    </label>
+                                    <!--<button type="button" class="btn green" ng-disabled="ScheduleDate == '' || Interviewer == '' || TimeSlot == '' || TermsConditions == false" ng-click="scheduleInterview()">Schedule & Pay</button>-->
+                                    <button type="button" class="btn green" ng-click="paymentGateway()" ng-disabled="ScheduleDate == '' || Interviewer == '' || TimeSlot == '' || TermsConditions == false">Schedule & Pay</button>
+                                    <button type="button" class="btn default" ng-click="ClearAll()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Sl.No </th>
+                                    <th> Date / Time </th>
+                                    <th> Interviewer </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="interview in ScheduledInterviews track by $index">
+                                    <td>{{$index}}</td>
+                                    <td> {{interview.DisplayScheduleDate}} </td>
+                                    <td> {{interview.InterviewerName}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+    <!-- END CONTENT BODY -->
+
+    <div class="modal fade" id="confirmScheduleInterviewPopup" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog modal-half">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="Interviewer = ''; TimeSlot = '';"></button>
+                    <h4 class="modal-title">Confirm Schedule</h4>
+                </div>
+                <div class="modal-body">
+                    <span>are you sure you want to Schedule Interivew at {{objTimeSlot.TimeSlot}}</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn green" ng-click="selectTime()">Ok</button>
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal" ng-click="Interviewer = ''; TimeSlot = '';">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>

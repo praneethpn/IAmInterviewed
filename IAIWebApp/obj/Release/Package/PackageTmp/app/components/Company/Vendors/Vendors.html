@@ -1,0 +1,133 @@
+﻿<div class="page-content page-main--right-content" style="min-height: 361px;" ng-controller="VendorController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">Vendors</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <form class="form-horizontal" action="#" id="submit_form" novalidate="novalidate">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Vendor Name <span class="required" aria-required="true">*</span></label>
+                                        <input type="text" class="form-control" ng-model="vendorName">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Start Date <span class="required" aria-required="true">*</span></label>
+                                        <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
+                                            <input type="text" class="form-control" readonly="" ng-model="startDate">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-date" type="button">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Vendor Email <span class="required" aria-required="true">*</span></label>
+                                        <input type="email" class="form-control" ng-model="vendorEmailId">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">End Date <span class="required" aria-required="true">*</span></label>
+                                        <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
+                                            <input type="text" class="form-control" readonly="" ng-model="endDate">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-date" type="button">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Vendor Phone No <span class="required" aria-required="true">*</span></label>
+                                        <input type="number" class="form-control" ng-model="vendorPhoneNo">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-offset-9 col-md-3">
+                                <button type="submit" class="btn green" ng-click="saveVendor()"><i class="icon-check"></i>Save</button>
+                                <button type="button" class="btn red" ng-click="ClearAll()"><i class="icon-close"></i>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th> S No </th>
+                                    <th> Name </th>
+                                    <th> Email </th>
+                                    <th> Phone No </th>
+                                    <th> Start Date </th>
+                                    <th> End Date </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="vendor in vendorList | filter : paginate">
+                                    <td> {{$index +1}} </td>
+                                    <td> {{vendor.VendorName}} </td>
+                                    <td> {{vendor.VendorEmail}} </td>
+                                    <td>{{vendor.VendorMobile}}</td>
+                                    <td>{{vendor.DisplayStartDate}}</td>
+                                    <td>{{vendor.DisplayEndDate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+</div>

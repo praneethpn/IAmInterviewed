@@ -1,0 +1,272 @@
+﻿<div class="page-content page-main--right-content" ng-controller="CandidateRatingController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">MY RATING</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <label style="float:left;">Interview Id :</label><div style="font-weight: 600 !important; color: #20af2c;">{{loggedInUserDetails.UniqueId}}{{ScheduleIdForRating}}</div>
+            </div>
+            <div class="col-md-3">
+                <label style="float:left;">Rating :</label><div style="font-weight: 600 !important; color: #20af2c;">{{RatingDetails.TotalRating}}/5</div>
+            </div>
+            <div class="col-md-3">
+                <div class="iconimage" ng-if="RatingDetails.RatingAccepted !='No Action' && RatingDetails.RatingAccepted == 'Yes'">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="iconimage" ng-show="interview.AcceptedByInterviewer != 'Yes' && RatingDetails.RatingAccepted == 'No'">
+                    <i class="fa fa-times" style="color: red;"></i>
+                </div>
+                <div class="name" ng-if="RatingDetails.RatingAccepted !='No Action'"> Accepted </div>
+                <button id="btnAccept" class="btn blue" ng-if="RatingDetails.RatingAccepted == 'No Action'" ng-click="acceptRating('Yes')">Accept</button>
+                <button id="btnReject" class="btn btn-warning" ng-if="RatingDetails.RatingAccepted == 'No Action'" ng-click="acceptRating('No')">Reject</button>
+            </div>
+            <div class="col-md-2">
+                <button id="btnAccept" class="btn blue" data-toggle="modal" data-target="#badgeDetailsPopUp">View Badge</button>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="display: none;">
+        <div class="col-md-12">
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="tile image">
+                    <div class="tile-body">
+                        <div class="name">
+                            <label style="float:left;">Interview Id :</label><div style="font-weight: 600 !important; color: #20af2c;">{{loggedInUserDetails.UniqueId}}{{ScheduleIdForRating}}</div>
+                        </div>
+                        <div class="rating">
+                            {{RatingDetails.TotalRating}}/5
+                        </div>
+                    </div>
+                    <div class="tile-object">
+                        <div class="name"> Rating </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="tile image">
+                    <div class="tile-body">
+                        <div class="rating">
+                            {{RatingDetails.SoftSkillRating}}/5
+                        </div>
+                    </div>
+                    <div class="tile-object">
+                        <div class="name"> Soft Skill Rating </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="tile image">
+                    <div class="tile-body">
+                        <div class="audiofile">
+                            <a href="../../assets/InterviewRecordings/{{RatingDetails.AudioFile}}"><i class="fa fa-download"></i> {{RatingDetails.AudioFile}}</a>
+                        </div>
+                    </div>
+                    <div class="tile-object">
+                        <div class="name"> Audio/Video Recording </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="tile image">
+                    <div class="tile-body">
+                        <div class="iconimage" ng-if="RatingDetails.RatingAccepted !='No Action' && RatingDetails.RatingAccepted == 'Yes'">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <div class="iconimage" ng-show="interview.AcceptedByInterviewer != 'Yes' && RatingDetails.RatingAccepted == 'No'">
+                            <i class="fa fa-times" style="color: red;"></i>
+                        </div>
+                        <button id="btnAccept" class="btn blue" ng-if="RatingDetails.RatingAccepted == 'No Action'" ng-click="acceptRating('Yes')">Accept</button>
+                        <button id="btnReject" class="btn btn-warning" ng-if="RatingDetails.RatingAccepted == 'No Action'" ng-click="acceptRating('No')">Reject</button>
+                    </div>
+                    <div class="tile-object">
+                        <div class="name" ng-if="RatingDetails.RatingAccepted !='No Action'"> Accepted </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panelnew minimal panel-defaultnew">
+                <div class="panel-headingnew clearfix">
+                    <div class="panel-titlenew HeaderTitle">Total Rating</div>
+                </div>
+                <!-- panel body -->
+                <div class="panel-bodynew no-padding">
+                    <div class="progressDiv">
+                        <div class="progress-pie-chart" data-percent="67">
+                            <!--Pie Chart -->
+                            <div class="ppc-progress">
+                                <div class="ppc-progress-fill"></div>
+                            </div>
+                            <div class="ppc-percents">
+                                <div class="pcc-percents-wrapper">
+                                    <span id="percentage" class="donutPercentage"></span>
+                                    <p class="perIndicator">%</p>
+                                </div>
+                            </div>
+                            <!--End Chart -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panelnew panel-defaultnew">
+                <div class="panel-headingnew clearfix">
+                    <div class="panel-titlenew HeaderTitle">Rating By Skill</div>
+                </div>
+                <!-- panel body -->
+                <div class="panel-bodynew">
+                    <div class="col-md-12">
+                        <div id="divRatingBarChart" style="height: 195px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered has-top-margin10">
+                <div class="portlet-body dashboard nomargin">
+                    <div class="resultPanel">
+                        <div class="resultBlock tech-rating">
+                            <h4 class="dashboard-skill-header">Technical Rating</h4>
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <label class="sidepane-info-class nopadding">{{RatingDetails.SecondarySkill1}}</label><br>
+                                    <div class="star-rating-box">
+                                        <div class="star-rating" style="width:{{(RatingDetails.SecondarySkill1Rating)/5*100}}%;" title="{{RatingDetails.SecondarySkill1Rating}}"></div>
+                                    </div>
+                                    <p class="sidepane-info-class nopadding nomargin">{{RatingDetails.SecondarySkill1Remarks}}</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <label class="sidepane-info-class nopadding">{{RatingDetails.SecondarySkill2}}</label><br>
+                                    <div class="star-rating-box">
+                                        <div class="star-rating" style="width:{{(RatingDetails.SecondarySkill2Rating)/5*100}}%;" title="{{RatingDetails.SecondarySkill2Rating}}"></div>
+                                    </div>
+                                    <p class="sidepane-info-class nopadding nomargin">{{RatingDetails.SecondarySkill2Remarks}}</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <label class="sidepane-info-class nopadding">{{RatingDetails.SecondarySkill3}}</label><br>
+                                    <div class="star-rating-box">
+                                        <div class="star-rating" style="width:{{(RatingDetails.SecondarySkill3Rating)/5*100}}%;" title="{{RatingDetails.SecondarySkill3Rating}}"></div>
+                                    </div>
+                                    <p class="sidepane-info-class nopadding nomargin">{{RatingDetails.SecondarySkill3Remarks}}</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <label class="sidepane-info-class nopadding">{{RatingDetails.SecondarySkill4}}</label><br>
+                                    <div class="star-rating-box">
+                                        <div class="star-rating" style="width:{{(RatingDetails.SecondarySkill4Rating)/5*100}}%;" title="{{RatingDetails.SecondarySkill4Rating}}"></div>
+                                    </div>
+                                    <p class="sidepane-info-class nopadding nomargin">{{RatingDetails.SecondarySkill4Remarks}}</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <label class="sidepane-info-class nopadding">{{RatingDetails.SecondarySkill5}}</label><br>
+                                    <div class="star-rating-box">
+                                        <div class="star-rating" style="width:{{(RatingDetails.SecondarySkill5Rating)/5*100}}%;" title="{{RatingDetails.SecondarySkill5Rating}}"></div>
+                                    </div>
+                                    <p class="sidepane-info-class nopadding nomargin">{{RatingDetails.SecondarySkill5Remarks}}</p>
+                                </div>
+                            </div>
+                            <h4 class="dashboard-soft-skill-header">Soft Skill Rating ({{RatingDetails.SoftSkillRating}}/5)</h4>
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3 col-lg-3">
+                                    <label class="sidepane-info-class nopadding">English Communication</label><br>
+                                    <div class="star-rating-box">
+                                        <div class="star-rating" style="width:{{(RatingDetails.EnglishCommunication)/5*100}}%;" title="{{RatingDetails.EnglishCommunication}}"></div>
+                                    </div>
+                                    <p class="sidepane-info-class nopadding nomargin">{{RatingDetails.EnglishCommunicationRemarks}}</p>
+                                </div>
+                                <div class="col-sm-3 col-md-3 col-lg-3">
+                                    <label class="sidepane-info-class nopadding">Attitude</label><br>
+                                    <div class="star-rating-box">
+                                        <div class="star-rating" style="width:{{(RatingDetails.Attitude)/5*100}}%;" title="{{RatingDetails.Attitude}}"></div>
+                                    </div>
+                                    <p class="sidepane-info-class nopadding nomargin">{{RatingDetails.AttitudeRemarks}}</p>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                    <label class="sidepane-info-class nopadding">Inter Personal Skill Communication</label><br>
+                                    <div class="star-rating-box">
+                                        <div class="star-rating" style="width:{{(RatingDetails.InterpersonalSkillCommunication)/5*100}}%;" title="{{RatingDetails.InterpersonalSkillCommunication}}"></div>
+                                    </div>
+                                    <p class="sidepane-info-class nopadding nomargin">{{RatingDetails.InterpersonalSkillCommunicationRemarks}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resultPanel">
+                        <div class="resultBlock tech-rating">
+                            <h4 class="dashboard-skill-header">Interviewer Comments</h4>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 interviewer-comments-dashboard">
+                                    {{RatingDetails.InterviewerRemarks}}
+                                </div>
+                            </div>
+                            <h4 class="dashboard-soft-skill-header">Recording</h4>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="audiofile">
+                                        <a href="../../assets/InterviewRecordings/{{RatingDetails.AudioFile}}"><i class="fa fa-download"></i> {{RatingDetails.AudioFile}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="badgeDetailsPopUp" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">
+                        <a class="model-header-buttons" title="Download Rating as Pdf" id="btnGeneratePdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                        <a class="model-header-buttons" title="Load Preview" id="btnImageDownload"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
+                        <a class="model-header-buttons" title="Download Rating as Image" id="btn-Convert-Html2Image" style="display: none;"><i class="fa fa-download" aria-hidden="true"></i></a>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="badgeContainer" id="badgeContainerForDownload">
+                            <h2></h2>
+                            <h1>{{loggedInUserDetails.Username}} ({{loggedInUserDetails.UniqueId}}{{ScheduleIdForRating}})</h1>
+                            <h3>{{RatingDetails.TotalRating}}/<span>5</span></h3>
+                            <h4>{{RatingDetails.SecondarySkill1}}, {{RatingDetails.SecondarySkill2}}, {{RatingDetails.SecondarySkill3}}, {{RatingDetails.SecondarySkill4}}, {{RatingDetails.SecondarySkill5}}</h4>
+                            <p>Visit to verify at <br />www.iaminterviewed com</p>
+                        </div>
+                        <div id="editor"></div>
+                        <div id="previewImage" style="display:none;"></div>
+                        <input id="btn-Preview-Image" type="button" value="Preview" style="display:none;" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>

@@ -1,0 +1,448 @@
+﻿<div class="page-content page-main--right-content" style="min-height: 361px;" ng-controller="PostJobController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">POST JOB</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered" id="form_wizard_1">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-user font-blue"></i>
+                        <span class="caption-subject font-blue bold uppercase">
+                            Post Job
+                        </span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <form class="form-horizontal" action="#" id="submit_form" name="post_Job_form" novalidate="novalidate">
+                        <div class="form-wizard">
+                            <div class="form-body">
+                                <ul class="nav nav-pills nav-justified steps">
+                                    <li class="active">
+                                        <a href="#tab1" data-toggle="tab" class="step" aria-expanded="true">
+                                            <!--<span class="number"> 1 </span>-->
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> JOB INFORMATION
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab2" data-toggle="tab" class="step">
+                                            <!--<span class="number"> 2 </span>-->
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> TECHNICAL INFORMATION
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab3" data-toggle="tab" class="step">
+                                            <!--<span class="number"> 3 </span>-->
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> GENERAL INFORMATION
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab1">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Job Type <span class="required" aria-required="true">*</span></label>
+                                                        <select name="JobType" id="JobType" class="form-control" ng-model="jobType" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="Permanent">Permanent</option>
+                                                            <option value="Contract To Hire">Contract To Hire</option>
+                                                            <option value="Contract">Contract</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Job Code <span class="required" aria-required="true">*</span></label>
+                                                        <input type="text" class="form-control" ng-model="jobCode" name="JobCode" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Job Description <span class="required" aria-required="true">*</span></label>
+                                                        <textarea class="form-control" rows="3" ng-model="jobDescription" name="JobDescription" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Key Responsibilities <span class="required" aria-required="true">*</span></label>
+                                                        <textarea class="form-control" rows="3" ng-model="keyResponsibilities" name="KeyResponsibilities" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Primary Skill <span class="required" aria-required="true">*</span></label>
+                                                        <select name="PrimarySkill" id="PrimarySkill" class="form-control" ng-model="primarySkill" ng-change="LoadSecondarySkills()" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in PrimarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Secondary Skill 1 <span class="required" aria-required="true">*</span></label>
+                                                        <select name="SecondarySkill1" id="SecondarySkill1" class="form-control" ng-model="secondarySkill1" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in SecondarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Secondary Skill 2 <span class="required" aria-required="true">*</span></label>
+                                                        <select name="SecondarySkill2" id="SecondarySkill2" class="form-control" ng-model="secondarySkill2" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in SecondarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Secondary Skill 3 <span class="required" aria-required="true">*</span></label>
+                                                        <select name="SecondarySkill3" id="SecondarySkill3" class="form-control" ng-model="secondarySkill3" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in SecondarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Secondary Skill 4</label>
+                                                        <select name="SecondarySkill4" id="SecondarySkill4" class="form-control" ng-model="secondarySkill4">
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in SecondarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Secondary Skill 5</label>
+                                                        <select name="SecondarySkill5" id="SecondarySkill5" class="form-control" ng-model="secondarySkill5">
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in SecondarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Additional Skills</label>
+                                                        <textarea class="form-control" rows="3" ng-model="additionalSkills"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Min. Experience <span class="required" aria-required="true">*</span></label>
+                                                        <select name="minExperience" id="minExperience" class="form-control" ng-model="minExperience" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="1">1+</option>
+                                                            <option value="2">2+</option>
+                                                            <option value="3">3+</option>
+                                                            <option value="4">4+</option>
+                                                            <option value="5">5+</option>
+                                                            <option value="6">6+</option>
+                                                            <option value="7">7+</option>
+                                                            <option value="8">8+</option>
+                                                            <option value="9">9+</option>
+                                                            <option value="10">10+</option>
+                                                            <option value="11">11+</option>
+                                                            <option value="12">12+</option>
+                                                            <option value="13">13+</option>
+                                                            <option value="14">14+</option>
+                                                            <option value="15">15+</option>
+                                                            <option value="16">16+</option>
+                                                            <option value="17">17+</option>
+                                                            <option value="18">18+</option>
+                                                            <option value="19">19+</option>
+                                                            <option value="20">20+</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Max. Experience <span class="required" aria-required="true">*</span></label>
+                                                        <select name="maxExperience" id="maxExperience" class="form-control" ng-model="maxExperience" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="1">1+</option>
+                                                            <option value="2">2+</option>
+                                                            <option value="3">3+</option>
+                                                            <option value="4">4+</option>
+                                                            <option value="5">5+</option>
+                                                            <option value="6">6+</option>
+                                                            <option value="7">7+</option>
+                                                            <option value="8">8+</option>
+                                                            <option value="9">9+</option>
+                                                            <option value="10">10+</option>
+                                                            <option value="11">11+</option>
+                                                            <option value="12">12+</option>
+                                                            <option value="13">13+</option>
+                                                            <option value="14">14+</option>
+                                                            <option value="15">15+</option>
+                                                            <option value="16">16+</option>
+                                                            <option value="17">17+</option>
+                                                            <option value="18">18+</option>
+                                                            <option value="19">19+</option>
+                                                            <option value="20">20+</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Posting Start Date <span class="required" aria-required="true">*</span></label>
+                                                        <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
+                                                            <input type="text" class="form-control" readonly="" ng-model="startDate" required>
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-date" type="button">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Posting End Date <span class="required" aria-required="true">*</span></label>
+                                                        <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
+                                                            <input type="text" class="form-control" readonly="" ng-model="endDate" required>
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-date" type="button">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Current Location <span class="required" aria-required="true">*</span></label>
+                                                        <select name="location" id="location" class="form-control" ng-model="location" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{city.Location}}" ng-repeat="city in Cities">{{city.Location}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Designation <span class="required" aria-required="true">*</span></label>
+                                                        <select name="Designation" id="Designation" class="form-control" ng-model="designation" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{designation.DesignationId}}" ng-repeat="designation in designationList">{{designation.Designation}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Highest Pay <span class="required" aria-required="true">*</span></label>
+                                                        <select name="HighestPay" id="HighestPay" class="form-control" ng-model="highestPay" required>
+                                                            <option value="">-Select-</option>
+                                                            <option Value="1" Text="1 Lakh">1 Lakh</option>
+                                                            <option Value="2" Text="1 Lakh">2 Lakh</option>
+                                                            <option Value="3" Text="1 Lakh">3 Lakh</option>
+                                                            <option Value="4" Text="1 Lakh">4 Lakh</option>
+                                                            <option Value="5" Text="1 Lakh">5 Lakh</option>
+                                                            <option Value="6" Text="1 Lakh">6 Lakh</option>
+                                                            <option Value="7" Text="1 Lakh">7 Lakh</option>
+                                                            <option Value="8" Text="1 Lakh">8 Lakh</option>
+                                                            <option Value="9" Text="1 Lakh">9 Lakh</option>
+                                                            <option Value="10" Text="1 Lakh">10 Lakh</option>
+                                                            <option Value="11" Text="1 Lakh">11 Lakh</option>
+                                                            <option Value="12" Text="1 Lakh">12 Lakh</option>
+                                                            <option Value="13" Text="1 Lakh">13 Lakh</option>
+                                                            <option Value="14" Text="1 Lakh">14 Lakh</option>
+                                                            <option Value="15" Text="1 Lakh">15 Lakh</option>
+                                                            <option Value="16" Text="1 Lakh">16 Lakh</option>
+                                                            <option Value="17" Text="1 Lakh">17 Lakh</option>
+                                                            <option Value="18" Text="1 Lakh">18 Lakh</option>
+                                                            <option Value="19" Text="1 Lakh">19 Lakh</option>
+                                                            <option Value="20" Text="1 Lakh">20 Lakh</option>
+                                                            <option Value="21" Text="1 Lakh">21 Lakh</option>
+                                                            <option Value="22" Text="1 Lakh">22 Lakh</option>
+                                                            <option Value="23" Text="1 Lakh">23 Lakh</option>
+                                                            <option Value="24" Text="1 Lakh">24 Lakh</option>
+                                                            <option Value="25" Text="1 Lakh">25 Lakh</option>
+                                                            <option Value="26" Text="1 Lakh">26 Lakh</option>
+                                                            <option Value="27" Text="1 Lakh">27 Lakh</option>
+                                                            <option Value="28" Text="1 Lakh">28 Lakh</option>
+                                                            <option Value="29" Text="1 Lakh">29 Lakh</option>
+                                                            <option Value="30" Text="1 Lakh">30 Lakh</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions fluid text-right">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="javascript:;" class="btn btn-danger" ng-click="ClearAll()">
+                                            <i class="fa fa-times"></i> Clear
+                                        </a>
+                                        <a href="javascript:;" class="btn blue button-previous disabled" style="display: none;">
+                                            <i class="m-icon-swapleft m-icon-white"></i> Back
+                                        </a>
+                                        <a href="javascript:;" class="btn blue button-next">
+                                            Continue
+                                            <i class="m-icon-swapright m-icon-white"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn blue button-submit" style="display: none;" ng-click="post_Job_form.$invalid ? angular.noop() : saveCompanyRequirements()"
+                                           ng-disabled="post_Job_form.$invalid">
+                                            Submit
+                                            <i class="fa fa-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <button data-toggle="collapse" data-target="#demo" class="btn green btn-sm btn-outline dropdown-toggle">Filters <i class="fa fa-angle-down"></i></button>
+                    <div id="demo" class="collapse">
+                        <div role="form" class="searchblock">
+                            <div class="form-group col-md-4 col-lg-4">
+                                <div class="controls full">
+                                    <label class="FilterLabel">Primary Skill</label>
+                                    <select name="PrimarySkillSearch" id="PrimarySkillSearch" class="form-control" ng-model="primarySkillSearch">
+                                        <option value="">All</option>
+                                        <option value="{{skill.SkillId}}" ng-repeat="skill in PrimarySkills">{{skill.SkillName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4 col-lg-4">
+                                <div class="controls full">
+                                    <label class="FilterLabel">Job Code</label>
+                                    <select name="JobCodeSearch" id="JobCodeSearch" class="form-control" ng-model="jobCodeSearch">
+                                        <option value="">All</option>
+                                        <option value="{{code.JobCode}}" ng-repeat="code in companyRequirementsAll">{{code.JobCode}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-1 col-lg-1">
+                                <div class="form-actions">
+                                    <button class="btn btn-primary" type="button" ng-click="getCompanyRequirementsFiltered()">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>S No</th>
+                                    <th>JobCode</th>
+                                    <th>Job Title</th>
+                                    <th>JobType</th>
+                                    <th>Min Exp</th>
+                                    <th>Max Exp</th>
+                                    <th>Highest Pay</th>
+                                    <th>Primary Skill</th>
+                                    <th>Posting Start Date</th>
+                                    <th>Posting End Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="req in companyRequirements | filter : paginate">
+                                    <td>{{$index}}</td>
+                                    <td>{{req.JobCode}}</td>
+                                    <td>{{req.JobTitle}}</td>
+                                    <td>{{req.JobType}}</td>
+                                    <td>{{req.MinExp}}</td>
+                                    <td>{{req.MaxExp}}</td>
+                                    <td>{{req.HighestPay}}</td>
+                                    <td>{{req.PrimarySKillName}}</td>
+                                    <td>{{req.DisplayJobStartDate}}</td>
+                                    <td>{{req.DisplayJobEndDate}}</td>
+                                    <td>
+                                        <a id="lnkEdit" ng-click="editRequirement(req)">Edit</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,295 @@
+﻿.progressDiv {
+    width: 97%;
+    /*background: #fcfcfc;*/
+    min-height: 200px;
+    /*border: 1px solid #ccc;*/
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+    left: 13px;
+    /*box-shadow: 0px 1px 1px 1px #ccc;*/
+}
+
+.statChartHolder {
+    width: 35%;
+    height: 90%;
+    position: relative;
+    border-right: 1px solid #ccc;
+    display: inline-block;
+    top: 10px;
+}
+
+.statRightHolder {
+    display: inline-block;
+    height: 90%;
+    width: 64%;
+    position: relative;
+    margin: 0;
+    top: -25px;
+}
+
+    .statRightHolder ul {
+        list-style: none;
+        margin: 0;
+    }
+
+    .statRightHolder li {
+        border-bottom: 1px solid #ccc;
+        height: 70px;
+        width: 95%;
+        position: relative;
+    }
+
+    .statRightHolder h3 {
+        display: inline-block;
+        margin-right: 15px;
+        color: #B6B5B5;
+        font-weight: 300;
+        font-size: 38px;
+    }
+
+    .statRightHolder span {
+        display: inline-block;
+        color: #147fb7;
+        font-size: 21px;
+        font-weight: 300;
+    }
+
+        .statRightHolder span a {
+            display: inline-block;
+            color: #147fb7;
+            font-size: 21px;
+            font-weight: 300;
+        }
+
+            .statRightHolder span a:hover {
+                display: inline-block;
+                color: #f9c31f;
+                font-weight: 300;
+                /*border-bottom: 1px dashed #f9c31f;*/
+            }
+
+.statsLeft {
+    list-style: none;
+    display: inline-block;
+    width: 45%;
+    padding-bottom: 15px;
+}
+
+    .statsLeft li {
+        width: 100%;
+        height: 14px;
+        border: none;
+        margin-bottom: 25px;
+    }
+
+    .statsLeft h3 {
+        font-size: 17px;
+        display: inline-block;
+    }
+
+    .statsLeft span {
+        font-size: 17px;
+        display: inline-block;
+    }
+
+        .statsLeft span a {
+            font-size: 17px;
+            display: inline-block;
+        }
+
+.statsRight {
+    width: 45%;
+    display: inline-block;
+    position: absolute;
+    padding-bottom: 15px;
+}
+
+    .statsRight li {
+        width: 100%;
+        height: 14px;
+        border: none;
+        margin-bottom: 20px;
+    }
+
+    .statsRight h3 {
+        font-size: 17px;
+        display: inline-block;
+        margin: 10px 0 0 0 !important;
+    }
+
+    .statsRight span {
+        font-size: 17px;
+        display: inline-block;
+    }
+
+        .statsRight span a {
+            font-size: 17px;
+            display: inline-block;
+        }
+/* Pie Chart */
+.progress-pie-chart {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background-color: #E5E5E5;
+    position: relative;
+}
+
+    .progress-pie-chart.gt-50 {
+        background-color: #81CE97;
+    }
+
+.ppc-progress {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - 105px);
+    top: calc(50% - 105px);
+    width: 210px;
+    height: 210px;
+    clip: rect(0, 210px, 210px, 110px);
+}
+
+    .ppc-progress .ppc-progress-fill {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        left: calc(50% - 105px);
+        top: calc(50% - 105px);
+        width: 210px;
+        height: 210px;
+        clip: rect(0, 110px, 210px, 0);
+        background: #1e8cd6;
+        transform: rotate(60deg);
+    }
+
+.gt-50 .ppc-progress {
+    clip: rect(0, 100px, 200px, 0);
+}
+
+    .gt-50 .ppc-progress .ppc-progress-fill {
+        clip: rect(0, 200px, 200px, 100px);
+        background: #E5E5E5;
+    }
+
+.ppc-percents {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - 173.91304px/2);
+    top: calc(50% - 173.91304px/2);
+    width: 173.91304px;
+    height: 173.91304px;
+    background: #fff;
+    text-align: center;
+    display: table;
+}
+
+    .ppc-percents .donutPercentage {
+        display: inline;
+        font-size: 4em;
+        color: #1e8cd6;
+    }
+
+    .ppc-percents .perIndicator {
+        display: inline;
+        font-size: 2em;
+        color: #1e8cd6;
+    }
+
+.pcc-percents-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.progress-pie-chart {
+    margin: 0px auto 0px;
+}
+
+.headerLabel {
+    /*color: #949292 !important;*/
+    color: #00950c !important;
+    font-weight: 400 !important;
+    font-size: 38px !important;
+}
+
+.headerLabelsmall {
+    /*color: #949292 !important;*/
+    color: #00950c !important;
+    font-weight: 400 !important;
+    font-size: 21px !important;
+}
+
+.equalwidthleft {
+    width: 49% !important;
+}
+
+.equalwidthright {
+    width: 49% !important;
+    /*top: -100px !important;*/
+}
+
+.Panel-title-ValueLabel {
+    font-size: 16px !important;
+    color: #1e8cd6;
+}
+
+.hasScroll {
+    overflow-x: scroll;
+}
+
+.CandidateDetails {
+    min-height: 40px;
+}
+
+.InterviewDate {
+    color: #999999;
+}
+
+.hasBackground {
+    background-color: #eee;
+}
+.candidateName .exp {
+    font-size: 11px;
+    color: #999999;
+}
+.candidateName .NameLabel {
+    color: #1faf2c;
+    font-weight: 700;
+}
+
+.resultBlock .form-control, .resultBlock .btn, .table .form-control, .table .btn {
+    height: 30px;
+    font-size: 13px;
+    padding: 7px;
+}
+.headerNavigationLink {
+    color: #147fb7;
+    float: right;
+    font-size: 12px;
+    padding: 9px;
+    text-decoration: underline;
+}
+.hasBorder {
+    border-right: 1px solid #ddd;
+}
+.noBoxShadow {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    width: 100% !important;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+.rightAllign {
+    text-align: right !important;
+    font-weight: 500;
+}
+.leftAllign {
+    text-align: left !important;
+    font-weight: 500;
+}
+.search-rating-logo {
+    max-width: 300px !important;
+    margin: 5px 0 0 !important;
+}

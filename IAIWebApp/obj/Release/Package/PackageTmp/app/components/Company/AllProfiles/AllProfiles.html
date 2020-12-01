@@ -1,0 +1,128 @@
+﻿<div class="page-content page-main--right-content" style="min-height: 361px;" ng-controller="AllProfilesController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">All Profiles</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered gridFilter">
+                <div class="portlet-body">
+                    <div role="form" class="searchblock">
+                        <div class="form-group col-md-3 col-lg-3">
+                            <div class="controls full">
+                                <label class="FilterLabel">Start Date</label>
+                                <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
+                                    <input type="text" class="form-control" readonly="" ng-model="startDateSearch">
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button">
+                                            <i class="fa fa-calendar"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 col-lg-3">
+                            <div class="controls full">
+                                <label class="FilterLabel">End Date</label>
+                                <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
+                                    <input type="text" class="form-control" readonly="" ng-model="endDateSearch">
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button">
+                                            <i class="fa fa-calendar"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 col-lg-3">
+                            <div class="controls full">
+                                <label class="FilterLabel">Primary Skill</label>
+                                <select name="ddlSkill" id="ddlSkill" class="form-control" ng-model="primarySkillSearch">
+                                    <option value="">-Select-</option>
+                                    <option value="{{skill.SkillId}}" ng-repeat="skill in PrimarySkills">{{skill.SkillName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-1 col-lg-1">
+                            <div class="form-actions">
+                                <button class="btn btn-primary" type="button" ng-click="getCompanyAddedProfiles()" ng-disabled="startDateSearch == '' || endDateSearch == ''">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body dashboard">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th> 
+                                        Name 
+                                        <!--<input type="text" class="form-control header-search" ng-keyup="searchFilterHeader();" autocomplete="off" ng-model="nameSearch" />-->
+                                    </th>
+                                    <th> Email </th>
+                                    <th> MobileNo </th>
+                                    <th> Primary Skill </th>
+                                    <th> Designation </th>
+                                    <th>
+                                        Recruiter
+                                        <!--<input type="text" class="form-control header-search" ng-keyup="searchFilterHeader();" autocomplete="off" ng-model="recruiterSearch" />-->
+                                    </th>
+                                    <th> Created Date </th>
+                                    <th> Interview Date </th>
+                                    <th> Interview Type </th>
+                                    <th> Rating </th>
+                                    <!--<th> ScreenStatus </th>-->
+                                    <th> SelectStatus </th>
+                                    <th> Status Comments </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="candidate in companyAddedProfilesList | filter : paginate">
+                                    <td>{{candidate.CandidateName}}</td>
+                                    <td>{{candidate.Email}}</td>
+                                    <td>{{candidate.MobileNumber}}</td>
+                                    <td>{{candidate.PrimarySKillName}}</td>
+                                    <td>{{candidate.Designation}}</td>
+                                    <td>{{candidate.RecruiterName}}</td>
+                                    <td>{{candidate.DisplayDate}}</td>
+                                    <td>{{candidate.InterviewDateNew}}</td>
+                                    <td>{{candidate.InterviewType}}</td>
+                                    <td>{{candidate.OveralRating}}</td>
+                                    <!--<td>{{candidate.ScreenSelect}}</td>-->
+                                    <td>{{candidate.SelectStetus}}</td>
+                                    <td>{{candidate.StatusRemarks}}</td>
+                                    <td><a ng-click="viewRatingDetails(candidate)">Details</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-include src="'app/components/Common/ViewRating/ViewRating.html'"></ng-include>
+</div>

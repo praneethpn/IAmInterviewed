@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutCCAV.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="divsuccess" runat="server" class="alert alert-success alert-dismissible" role="alert" style="@(@ViewBag.orderStatus == "Success" ? "display:block" : "display:none")">
+            <strong>Success!</strong>
+            @ViewBag.successMessage
+        </div>
+        <div id="divError" runat="server" class="alert alert-danger alert-dismissible" role="alert" style="@(@ViewBag.orderStatus != "Success" ? "display:block" : "display:none")">
+            <strong>Warning!</strong>
+            @ViewBag.errorMessage
+        </div>
+    </div>  
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a href="~/Candidate.html">Please click here to go back to dashboard</a>
+    </div>
+</div>
+

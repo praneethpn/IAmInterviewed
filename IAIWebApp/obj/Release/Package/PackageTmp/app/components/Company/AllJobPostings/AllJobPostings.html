@@ -1,0 +1,217 @@
+﻿<div class="page-content page-main--right-content" style="min-height: 361px;" ng-controller="AllJobPostingsController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">All Postings</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered gridFilter">
+                <div class="portlet-body">
+                    <button data-toggle="collapse" data-target="#demo" class="btn green btn-sm btn-outline dropdown-toggle">Filters <i class="fa fa-angle-down"></i></button>
+                    <div id="demo" class="collapse">
+                        <div role="form" class="searchblock">
+                            <div class="form-group col-md-3 col-lg-3">
+                                <div class="controls full">
+                                    <label class="FilterLabel">Primary Skill</label>
+                                    <select name="ddlSkill" id="ddlSkill" class="form-control" ng-model="primarySkillSearch">
+                                        <option value="">All</option>
+                                        <option value="{{skill.SkillId}}" ng-repeat="skill in PrimarySkills">{{skill.SkillName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3 col-lg-3">
+                                <div class="controls full">
+                                    <label class="FilterLabel">Job Code</label>
+                                    <select name="ddlJobCode" id="ddlJobCode" class="form-control" ng-model="jobCodeSearch">
+                                        <option value="">All</option>
+                                        <option value="{{jobCode.JobCode}}" ng-repeat="jobCode in requirementsForSearch.JobcodeList">{{jobCode.JobCode}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3 col-lg-3">
+                                <div class="controls full">
+                                    <label class="FilterLabel">Posted By</label>
+                                    <select name="ddlPostedBY" id="ddlPostedBY" class="form-control" ng-model="postedBySearch">
+                                        <option value="">All</option>
+                                        <option value="{{postedBy.PostedById}}" ng-repeat="postedBy in requirementsForSearch.PostedByList">{{postedBy.PostedBy}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-2 col-lg-2">
+                                <div class="controls full">
+                                    <label class="FilterLabel">Status</label>
+                                    <select name="ddlStatus" id="ddlStatus" class="form-control" ng-model="statusSearch">
+                                        <option value="Open">Open</option>
+                                        <option value="Closed">Closed</option>
+                                        <option value="OnHold">OnHold</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-1 col-lg-1">
+                                <div class="form-actions">
+                                    <button class="btn btn-primary" type="button" ng-click="searchRequirements()">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body dashboard">
+                    <div class="table-scrollable">
+                        <table class="table table-hover table-no-hover">
+                            <tbody>
+                                <tr ng-repeat="requirement in allRequirements | filter : paginate">
+                                    <td>
+                                        <div class="resultPanel">
+                                            <div class="resultBlock">
+                                                <div class="row">
+                                                    <div class="col-md-9" style="border-right: 1px solid #ccc;">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <p class="jobNumber">
+                                                                    <a href="#">
+                                                                        <span id="lblJobCode">{{requirement.JobCode}}</span>
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <p class="portfolioDetails">
+                                                                    <span class="labelText">Designation :</span>
+                                                                    <span class="valueText">
+                                                                        <span id="lblDesignation">{{requirement.JobTitle}}</span>
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row haspadding">
+                                                            <div class="col-md-4">
+                                                                <span class="PostedByLeft">
+                                                                    Exp :
+                                                                    <span id="lblMinExp">{{requirement.MinExp}}</span>
+                                                                    -
+                                                                    <span id="lblMaxExp">{{requirement.MaxExp}}</span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <p class="skillSet">
+                                                                    <span class="PostedByLeft">Skills : </span>
+                                                                    <span id="lblSkil">{{requirement.PrimarySKillName}}</span>
+                                                                    <span class="PostedByLeft">(<span id="lblSecSkill" class="PostedByLeft">{{requirement.SecSkillsList}} </span>)</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row haspadding">
+                                                            <div class="col-md-4">
+                                                                <p class="portfolioDetails">
+                                                                    <span class="labelText">Posted on :</span>
+                                                                    <span class="valueText">{{requirement.DisplayJobStartDate}}</span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <p class="portfolioDetails">
+                                                                    <span class="valueText">
+                                                                        <span class="PostedByLeft">Posted by :</span>
+                                                                        <span id="lblPostedBy">{{requirement.PostedBy}}</span>
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row profileSelection">
+                                                            <div class="col-md-12 padding-5">
+                                                                <div class="gridactions">
+                                                                    <div class="col-md-2">
+                                                                        <a id="0" ng-click="redirectToReqRelatedProfiles(requirement)">Related Profiles</a>
+                                                                    </div>
+                                                                    <div class="col-md-3" style="border-right: 1px solid #000;">
+                                                                        <a id="2" ng-click="redirectToPreAppliedProfiles(requirement)">Applied Candidates ({{requirement.PreAppliedCandidatesCount}})</a>
+                                                                    </div>
+                                                                    <div class="col-md-2" style="border-right: 1px solid #000;">
+                                                                        <a id="3" ng-click="redirectToAddProfiles(requirement)" ng-hide="CompanyHomeDetails.CompanyUserType == 'Admin'" class="add-profile-button">Add Profiles ({{requirement.CompanyProfilesCount}})</a>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <a id="1" ng-click="redirectToSelectedProfiles(requirement)" class="selected-profile-button">Shortlisted Profiles ({{requirement.SelectedProfilesCount}})</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="row interaction" ng-hide="CompanyHomeDetails.CompanyUserType != 'Admin'">
+                                                            <div class="col-md-12">
+                                                                Assign To :
+                                                                <select name="ddlAssignTo" id="ddlAssignTo" class="form-control" ng-model="requirement.AssignToDisplay">
+                                                                    <option value="">-Select-</option>
+                                                                    <option value="{{req.AssignTo}}" ng-repeat="req in Recruiters">{{req.AssignToName}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row interaction" ng-hide="CompanyHomeDetails.CompanyUserType != 'Admin'">
+                                                            <div class="col-md-12">
+                                                                PM :
+                                                                <select name="ddlPM" id="ddlPM" class="form-control" ng-model="requirement.PMDisplay">
+                                                                    <option value="">-Select-</option>
+                                                                    <option value="{{pm.PM}}" ng-repeat="pm in PMs">{{pm.PMName}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row interaction">
+                                                            <div class="col-md-12">
+                                                                Status :
+                                                                <select name="ddlStatus" id="ddlStatus" class="form-control" ng-model="requirement.Status">
+                                                                    <option value="0">-Select-</option>
+                                                                    <option value="Open">Open</option>
+                                                                    <option value="Closed">Closed</option>
+                                                                    <option value="OnHold">OnHold</option>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row interaction">
+                                                            <div class="col-md-12">
+                                                                <input type="text" class="form-control descriptionText" placeholder="Enter Remarks" style="width: 100%;" ng-model="requirement.StatusRemarks">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row interaction">
+                                                            <div class="col-md-12">
+                                                                <button class="btn btn-update" type="button" ng-click="updateStatus(requirement)">Update</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

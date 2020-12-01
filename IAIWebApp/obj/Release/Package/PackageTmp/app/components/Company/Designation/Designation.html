@@ -1,0 +1,84 @@
+﻿<div class="page-content page-main--right-content" style="min-height: 361px;" ng-controller="DesignationController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">ADD DESIGNATION</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <form class="form-horizontal" action="#" id="submit_form" novalidate="novalidate">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Designation <span class="required" aria-required="true">*</span></label>
+                                        <input type="text" class="form-control" ng-model="designationName">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Description <span class="required" aria-required="true">*</span></label>
+                                        <textarea class="form-control" rows="3" ng-model="description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-offset-9 col-md-3">
+                                <button type="submit" class="btn green" ng-click="saveDesignation()" ng-disabled="designationName == '' || description == ''"><i class="icon-check"></i>Save</button>
+                                <button type="button" class="btn red" ng-click="ClearAll()"><i class="icon-close"></i>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Designation </th>
+                                    <th> Description </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="designation in designationList | filter : paginate">
+                                    <td> {{designation.Designation}} </td>
+                                    <td> {{designation.Description}} </td>
+                                    <td><a ng-click="editDesignation(designation)">Edit</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿.badgeContainer {
+    font-family: "Georgia", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 500px;
+    height: 428px;
+    background: url('../img/badge.png') no-repeat top center;
+    /*background-size: contain;*/
+    margin: 0 auto;
+}
+
+    .badgeContainer h1 {
+        text-align: center;
+        margin: 25px 0 2px 0;
+        color: #fff;
+        text-shadow: 1px 1px 1px #000;
+        font-size: 20px;
+    }
+
+    .badgeContainer h2 {
+        margin: 10px auto 0 auto;
+        text-align: center;
+        padding-top: 45px;
+        color: #000;
+        font-size: 16px;
+    }
+
+    .badgeContainer h3 {
+        text-align: center;
+        width: 140px;
+        margin: 0 auto;
+        border-radius: 50%;
+        line-height: 100px;
+        font-size: 30px;
+        background: url(../img/rating.png) no-repeat center center;
+        /*background-size: cover;*/
+    }
+
+        .badgeContainer h3 span {
+            font-size: 16px;
+        }
+
+    .badgeContainer h4 {
+        color: #fff;
+        text-align: center;
+        font-size: 14px;
+        margin: 2px 10px 0 10px;
+        font-weight: normal;
+    }
+
+    .badgeContainer p {
+        margin: 34px 70px 25px 70px;
+        color: #fff;
+        text-align: center;
+        line-height: 26px;
+    }

@@ -1,0 +1,282 @@
+﻿<div class="page-content page-main--right-content" style="min-height: 361px;" ng-controller="TodaysFollowupsController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">Todays Follow Ups</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered gridFilter">
+                <div class="portlet-body">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Date <span class="required">*</span></label>
+                            <div class="input-group date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
+                                <input type="text" class="form-control date-input" readonly="" ng-model="startDateSearch">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-date" type="button">
+                                        <i class="fa fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Date <span class="required">*</span></label>
+                            <div class="input-group date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
+                                <input type="text" class="form-control date-input" readonly="" ng-model="endDateSearch">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-date" type="button">
+                                        <i class="fa fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-actions">
+                            <button class="btn btn-primary" type="button" ng-click="getFollowUpProfiles()">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body dashboard">
+                    <div class="table-scrollable">
+                        <table class="table table-hover table-no-hover">
+                            <tbody>
+                                <tr ng-repeat="candidate in followUpProfilesList | filter : paginate">
+                                    <td>
+                                        <div class="resultPanel">
+                                            <div class="resultBlock">
+                                                <div class="row">
+                                                    <div class="col-md-9" style="border-right: 1px solid #ccc;">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="candidateName">
+                                                                    <a href="#" class="NameLabel">
+                                                                        {{candidate.CandidateName}}
+                                                                    </a>
+                                                                    <span class="exp">
+                                                                        (<span>{{candidate.Experience}}</span>
+                                                                        Years of Experience)
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="col-md-4 no-padding-right">
+                                                                    <div class="InterviewDate">
+                                                                        <span class="InterviewDate">Rating :</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-8 no-padding-left">
+                                                                    <div class="star-rating-box">
+                                                                        <div class="star-rating" title="{{(candidate.OveralRating)/5*100}}" style="width:{{(candidate.OveralRating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                                                <div class="portfolioDetails">
+                                                                    <div>{{candidate.SecSkillName1}}</div>
+                                                                    <div class="star-rating-box green" ng-if="candidate.SecSkill1Rating == 5 || candidate.SecSkill1Rating == 4">
+                                                                        <div class="star-rating green" title="{{candidate.SecSkill1Rating}}" style="width:{{(candidate.SecSkill1Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                    <div class="star-rating-box yellow" ng-if="candidate.SecSkill1Rating == 3">
+                                                                        <div class="star-rating yellow" title="{{candidate.SecSkill1Rating}}" style="width:{{(candidate.SecSkill1Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                    <div class="star-rating-box red" ng-if="candidate.SecSkill1Rating == 2 || candidate.SecSkill1Rating == 1">
+                                                                        <div class="star-rating red" title="{{candidate.SecSkill1Rating}}" style="width:{{(candidate.SecSkill1Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                                                <div class="portfolioDetails">
+                                                                    <div class="labelText">{{candidate.SecSKillName2}}</div><br>
+                                                                    <div class="star-rating-box green" ng-if="candidate.SecSkill2Rating == 5 || candidate.SecSkill2Rating == 4">
+                                                                        <div class="star-rating green" title="{{candidate.SecSkill2Rating}}" style="width:{{(candidate.SecSkill2Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                    <div class="star-rating-box yellow" ng-if="candidate.SecSkill2Rating == 3">
+                                                                        <div class="star-rating yellow" title="{{candidate.SecSkill2Rating}}" style="width:{{(candidate.SecSkill2Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                    <div class="star-rating-box red" ng-if="candidate.SecSkill2Rating == 2 || candidate.SecSkill2Rating == 1">
+                                                                        <div class="star-rating red" title="{{candidate.SecSkill2Rating}}" style="width:{{(candidate.SecSkill2Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                                                <div class="portfolioDetails">
+                                                                    <div>{{candidate.SecSkillName3}}</div>
+                                                                    <div class="star-rating-box green" ng-if="candidate.SecSkill3Rating == 5 || candidate.SecSkill3Rating == 4">
+                                                                        <div class="star-rating green" title="{{candidate.SecSkill3Rating}}" style="width:{{(candidate.SecSkill3Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                    <div class="star-rating-box yellow" ng-if="candidate.SecSkill3Rating == 3">
+                                                                        <div class="star-rating yellow" title="{{candidate.SecSkill3Rating}}" style="width:{{(candidate.SecSkill3Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                    <div class="star-rating-box red" ng-if="candidate.SecSkill3Rating == 2 || candidate.SecSkill3Rating == 1">
+                                                                        <div class="star-rating red" title="{{candidate.SecSkill3Rating}}" style="width:{{(candidate.SecSkill3Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                                                <div class="portfolioDetails">
+                                                                    <div>{{candidate.SecSkillName4}}</div>
+                                                                    <div class="star-rating-box green" ng-if="candidate.SecSkill4Rating == 5 || candidate.SecSkill4Rating == 4">
+                                                                        <div class="star-rating green" title="{{candidate.SecSkill4Rating}}" style="width:{{(candidate.SecSkill4Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                    <div class="star-rating-box yellow" ng-if="candidate.SecSkill4Rating == 3">
+                                                                        <div class="star-rating yellow" title="{{candidate.SecSkill4Rating}}" style="width:{{(candidate.SecSkill4Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                    <div class="star-rating-box red" ng-if="candidate.SecSkill4Rating == 2 || candidate.SecSkill4Rating == 1">
+                                                                        <div class="star-rating red" title="{{candidate.SecSkill4Rating}}" style="width:{{(candidate.SecSkill4Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                                                <div class="portfolioDetails">
+                                                                    <div>{{candidate.SecSkillName5}}</div>
+                                                                    <div class="star-rating-box green" ng-if="candidate.SecSkill5Rating == 5 || candidate.SecSkill5Rating == 4">
+                                                                        <div class="star-rating green" title="{{candidate.SecSkill5Rating}}" style="width:{{(candidate.SecSkill5Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                    <div class="star-rating-box yellow" ng-if="candidate.SecSkill5Rating == 3">
+                                                                        <div class="star-rating yellow" title="{{candidate.SecSkill5Rating}}" style="width:{{(candidate.SecSkill5Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                    <div class="star-rating-box red" ng-if="candidate.SecSkill5Rating == 2 || candidate.SecSkill5Rating == 1">
+                                                                        <div class="star-rating red" title="{{candidate.SecSkill5Rating}}" style="width:{{(candidate.SecSkill5Rating)/5*100}}%;"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row profileSelection">
+                                                            <div class="col-md-12 padding-5">
+                                                                <div class="gridactions">
+                                                                    <div class="col-md-3">
+
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <a id="0" ng-click="viewRatingDetails(candidate)"><i class="fa fa-eye-slash"></i>View Rating</a>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <a id="0" ng-click="getHistory(candidate)"><i class="fa fa-history"></i>History</a>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="row haspadding5">
+                                                            <div class="col-md-4">
+                                                                Status :
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <select name="Status" id="Status" class="form-control" ng-model="candidate.TrackingStatus">
+                                                                    <option value="Didnot Respond">Didn't Respond</option>
+                                                                    <option value="Switch Off">Switch Off</option>
+                                                                    <option value="Drop">Drop</option>
+                                                                    <option value="Not Interested">Not Interested</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row haspadding5">
+                                                            <div class="col-md-4 no-padding-right">
+                                                                Follow up Dt :
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="input-group date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
+                                                                    <input type="text" class="form-control date-input" readonly="" ng-model="candidate.DisplayDate">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn btn-date" type="button">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row haspadding5">
+                                                            <div class="col-md-12">
+                                                                <input type="text" class="form-control descriptionText" placeholder="Enter Remarks" ng-model="candidate.Comments">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row interaction">
+                                                            <div class="col-md-12">
+                                                                <button type="submit" class="btn btn-update" ng-click="updateStatus(candidate)"><i class="icon-check"></i>Update</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+                        </pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-include src="'app/components/Common/ViewRating/ViewRating.html'"></ng-include>
+    <div class="modal fade" id="historyModel" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog modal-half">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Update History</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover table-no-hover">
+                            <thead>
+                                <tr>
+                                    <th> Sl.No </th>
+                                    <th> Update Date </th>
+                                    <th> Comments </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="candidate in candidateHstoryList track by $index">
+                                    <td>{{$index}}</td>
+                                    <td>{{candidate.DisplayDate}}</td>
+                                    <td>{{candidate.Comments}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>

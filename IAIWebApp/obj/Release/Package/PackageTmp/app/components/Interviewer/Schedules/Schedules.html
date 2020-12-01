@@ -1,0 +1,112 @@
+﻿<div class="page-content page-main--right-content" ng-controller="ScheduleController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">SCHEDULES</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- BEGIN PAGE TITLE-->
+    <!-- END PAGE TITLE-->
+    <!-- END PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <form class="form-horizontal" action="#" id="submit_form" novalidate>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Date <span class="required">*</span></label>
+                                        <div class="input-group date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
+                                            <input type="text" class="form-control date-input" readonly ng-model="ScheduleDate" ng-change="loadSchedules()">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-date" type="button">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Time Slots <span class="required">*</span></label>
+                                        <tags-input ng-model="InterviewerSchedules" add-on-paste="true" add-from-autocomplete-only="true" name="Schedules" replace-spaces-with-dashes="false" add-on-enter="true" replace-spaces-with-dashes="flase" add-on-space="false" displayProperty="TimeSlot" placeholder="Add a Schedule">
+                                            <auto-complete source="loadSchedulesTags($query, TimeSlotsAvailable)" load-on-empty="true" load-on-focus="true" displayProperty="TimeSlot" max-results-to-show="30"></auto-complete>
+                                        </tags-input>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-offset-9 col-md-3">
+                                <button type="submit" class="btn green" ng-disabled="ScheduleDate == '' || InterviewerSchedules == '' || InterviewerSchedules.length < 1" ng-click="saveSchedule();"><i class="icon-check"></i>Save</button>
+                                <button type="button" class="btn red"><i class="icon-close"></i>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption" style="width: 50%;">
+                        <div class="col-md-6">
+                            <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
+                                <input type="text" class="form-control date-input" readonly ng-model="ScheduleDateSearch">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-date" type="button">
+                                        <i class="fa fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn green" ng-click="searchSchedule();"><i class="fa fa-search-plus"></i>Search</button>
+                        </div>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th> S No </th>
+                                    <th> Date </th>
+                                    <th> Time Slots </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="schedule in AddedSchedulesByDate track by $index">
+                                    <td> {{$index + 1}} </td>
+                                    <td> {{schedule.DisplayDate}} </td>
+                                    <td> {{schedule.AvailableTime}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+</div>

@@ -1,0 +1,777 @@
+﻿<div class="page-content page-main--right-content" ng-controller="InterviewerDashboardController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">Dashboard</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="row" ng-show="isCallStarted">
+        <div class="col-md-12">
+            <div class="page-call-in-progress">
+                <button type="button" class="btn red call-button" ng-click="endCall()" title="End Call"><i class="fa fa-phone" aria-hidden="true"></i></button>
+                <button type="button" class="btn yellow call-button" ng-click="mute()" title="Mute" ng-hide="is_muted"><i class="fa fa-volume-off" aria-hidden="true"></i></button>
+                <button type="button" class="btn yellow call-button" ng-click="mute()" title="Un Mute" ng-hide="!is_muted"><i class="fa fa-microphone-slash" aria-hidden="true"></i></button>
+                <video id="localVideo" autoplay muted style="display: none;"></video>
+                <video id="remoteVideo" autoplay width="200px" height="180px" style="display: none;"></video>
+                <!--<input type="button" ng-click="endCall()" id="end" value="end call" />-->
+            </div>
+            <!--<input type="button" ng-click="startCall('+919886146841')" id="start" value="Call"></input>
+            <input type="button" ng-click="endCall()" id="end" value="end call"></input>
+            <input type="button" ng-click="mute()" id="mute" value="mute call"></input>
+            -->
+        </div>
+    </div>
+    <div class="row" ng-show="ViewMode == 'Interviews'">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-blue bold uppercase">
+                            INTERVIEWS
+                        </span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="panel-group accordion" id="accordion3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading accordian-header">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle accordion-toggle-styled collapsed todayInterview" id="btnTodaysInterviews" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_1" aria-expanded="true"> Today's Interviews ({{Interviews.TodaysInterviews.length}}) </a>
+                                </h4>
+                            </div>
+                            <div id="collapse_3_1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    <div class="table-scrollable">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th> Schedule Id </th>
+                                                    <th> Interview Date </th>
+                                                    <th> Time Slot </th>
+                                                    <th> Candidate Name </th>
+                                                    <th>Interview Type</th>
+                                                    <th> Confirmed </th>
+                                                    <th>Rating</th>
+                                                    <th>Rating Acceptance</th>
+                                                    <th>Status Update</th>
+                                                    <th>Actions</th>
+                                                    <th>Call</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="todayInterview" ng-repeat="todayInterview in Interviews.TodaysInterviews track by $index">
+                                                    <td> {{todayInterview.ScheduleId}} </td>
+                                                    <td> {{todayInterview.DisplayDate}} </td>
+                                                    <td> {{todayInterview.TimeSlot}} </td>
+                                                    <td> {{todayInterview.CandidateName}} </td>
+                                                    <td>{{todayInterview.InterviewType}}</td>
+                                                    <td>
+                                                        <div class="iconimage" ng-show="todayInterview.IsConfirmed == 'Yes'">
+                                                            <i class="fa fa-check"></i>
+                                                        </div>
+                                                        <div class="iconimage" ng-show="todayInterview.IsConfirmed == 'No' || todayInterview.IsConfirmed == 'No Action'">
+                                                            <i class="fa fa-times"></i>
+                                                        </div>
+                                                    </td>
+                                                    <td> -- </td>
+                                                    <td> -- </td>
+                                                    <td> -- </td>
+                                                    <td>
+                                                        <a ng-click="confirmInterview(todayInterview);" title="View/Confirm" class="icon-button"><i class="fa fa-check-circle" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <button class="call-grid-button" ng-click="startCall(todayInterview);" title="Call" ng-hide="todayInterview.InterviewType == 'Video'" ng-disabled="isCallStarted"><i class="fa fa-phone-square" aria-hidden="true"></i></button>
+                                                        <button class="call-grid-button" ng-click="startVideoCall(todayInterview);" title="Video Call" ng-hide="todayInterview.InterviewType == 'Audio'" ng-disabled="isCallStarted"><i class="fa fa-video-camera" aria-hidden="true"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading accordian-header">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_2" aria-expanded="false"> Confirmed / Un Confirmed & To be Rated Interviews ({{Interviews.InterviewsToBeConfirmed.length}}) </a>
+                                </h4>
+                            </div>
+                            <div id="collapse_3_2" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    <div class="table-scrollable">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th> Schedule Id </th>
+                                                    <th> Interview Date </th>
+                                                    <th> Time Slot </th>
+                                                    <th> Candidate Name </th>
+                                                    <th>Interview Type</th>
+                                                    <th> Confirmed </th>
+                                                    <th>Rating</th>
+                                                    <th>Rating Acceptance</th>
+                                                    <th>Status Update</th>
+                                                    <th>Actions</th>
+                                                    <th>Call</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="interviewtobeconfirmed in Interviews.InterviewsToBeConfirmed | filter : paginate1">
+                                                    <td> {{interviewtobeconfirmed.ScheduleId}} </td>
+                                                    <td> {{interviewtobeconfirmed.DisplayDate}} </td>
+                                                    <td> {{interviewtobeconfirmed.TimeSlot}} </td>
+                                                    <td> {{interviewtobeconfirmed.CandidateName}} </td>
+                                                    <td>{{interviewtobeconfirmed.InterviewType}}</td>
+                                                    <td>
+                                                        <div class="iconimage" ng-show="interviewtobeconfirmed.IsConfirmed == 'Yes'">
+                                                            <i class="fa fa-check"></i>
+                                                        </div>
+                                                        <div class="iconimage" ng-show="interviewtobeconfirmed.IsConfirmed == 'No' || interviewtobeconfirmed.IsConfirmed == 'No Action'">
+                                                            <i class="fa fa-times"></i>
+                                                        </div>
+                                                    </td>
+                                                    <td> -- </td>
+                                                    <td> -- </td>
+                                                    <td> <input type="text" class="form-control" ng-model="interviewtobeconfirmed.InterviewerRemarks"> </td>
+                                                    <td>
+                                                        <a ng-click="updateStatusInterview(interviewtobeconfirmed);" title="Update" class="icon-button"><i class="fa fa-check-circle" aria-hidden="true"></i></a>
+                                                        <a ng-click="confirmInterview(interviewtobeconfirmed);" title="View/Confirm" class="icon-button"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                                                        <a ng-click="rateInterview(interviewtobeconfirmed);" ng-show="interviewtobeconfirmed.IsConfirmed == 'Yes'" title="Rate" class="icon-button"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <button class="call-grid-button" ng-click="startCall(interviewtobeconfirmed);" title="Call" ng-hide="interviewtobeconfirmed.InterviewType == 'Video'" ng-disabled="isCallStarted"><i class="fa fa-phone-square" aria-hidden="true"></i></button>
+                                                        <button class="call-grid-button" ng-click="startVideoCall(interviewtobeconfirmed);" title="Video Call" ng-hide="interviewtobeconfirmed.InterviewType == 'Audio'" ng-disabled="isCallStarted"><i class="fa fa-video-camera" aria-hidden="true"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+                                        </pagination>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading accordian-header">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_3" aria-expanded="false"> Interviews Completed ({{Interviews.InterviewsCompleted.length}}) </a>
+                                </h4>
+                            </div>
+                            <div id="collapse_3_3" class="panel-collapse collapse" aria-expanded="false">
+                                <div class="panel-body">
+                                    <div class="table-scrollable">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th> Schedule Id </th>
+                                                    <th> Interview Date </th>
+                                                    <th> Time Slot </th>
+                                                    <th> Candidate Name </th>
+                                                    <th>Interview Type</th>
+                                                    <!--<th> Confirmed </th>-->
+                                                    <th>Rating</th>
+                                                    <th>Rating Acceptance</th>
+                                                    <th>Status Update</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="interviewcompleted in Interviews.InterviewsCompleted track by $index">
+                                                    <td> {{interviewcompleted.ScheduleId}} </td>
+                                                    <td> {{interviewcompleted.DisplayDate}} </td>
+                                                    <td> {{interviewcompleted.TimeSlot}} </td>
+                                                    <td> {{interviewcompleted.CandidateName}} </td>
+                                                    <td>{{interviewcompleted.InterviewType}}</td>
+                                                    <!--<td>
+                                                        <div class="iconimage" ng-show="interviewcompleted.IsConfirmed == 'Yes'">
+                                                            <i class="fa fa-check"></i>
+                                                        </div>
+                                                        <div class="iconimage" ng-show="interviewcompleted.IsConfirmed == 'No' || interviewcompleted.IsConfirmed == 'No Action'">
+                                                            <i class="fa fa-times"></i>
+                                                        </div>
+                                                    </td>-->
+                                                    <td> {{interviewcompleted.TotalRating}} </td>
+                                                    <td>
+                                                        <div class="iconimage" ng-show="interviewcompleted.RatingAccepted == 'Yes' || interviewcompleted.RatingAccepted == 'True'">
+                                                            <i class="fa fa-check"></i>
+                                                        </div>
+                                                        <div class="iconimage" ng-show="interviewcompleted.RatingAccepted == 'No' || interviewcompleted.RatingAccepted == 'No Action' || interviewcompleted.RatingAccepted == 'False' || interviewcompleted.RatingAccepted == '' || interviewcompleted.RatingAccepted == null">
+                                                            <i class="fa fa-times"></i>
+                                                        </div>
+                                                    </td>
+                                                    <td> -- </td>
+                                                    <td>
+                                                        <!--ng-click="viewRatingDetails(candidate)"-->
+                                                        <a ng-click="viewRatingDetails(interviewcompleted);" title="View" class="icon-button"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                                                        <a ng-click="rateInterview(interviewcompleted);" ng-show="interviewcompleted.RatingAccepted == 'No' || interviewcompleted.RatingAccepted == 'No Action' ||
+                                                           interviewcompleted.RatingAccepted == 'False' || interviewcompleted.RatingAccepted == '' || interviewcompleted.RatingAccepted == null" title="Rate" class="icon-button"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading accordian-header">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_4" aria-expanded="false"> Other Interviews ({{Interviews.OtherInterviews.length}}) </a>
+                                </h4>
+                            </div>
+                            <div id="collapse_3_4" class="panel-collapse collapse" aria-expanded="false">
+                                <div class="panel-body">
+                                    <div class="table-scrollable">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th> Schedule Id </th>
+                                                    <th> Interview Date </th>
+                                                    <th> Time Slot </th>
+                                                    <th> Candidate Name </th>
+                                                    <th>Interview Type</th>
+                                                    <th> Confirmed </th>
+                                                    <th>Rating</th>
+                                                    <th>Rating Acceptance</th>
+                                                    <th>Status Update</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="interviewother in Interviews.OtherInterviews track by $index">
+                                                    <td> {{interviewother.ScheduleId}} </td>
+                                                    <td> {{interviewother.DisplayDate}} </td>
+                                                    <td> {{interviewother.TimeSlot}} </td>
+                                                    <td> {{interviewother.CandidateName}} </td>
+                                                    <td>{{interviewother.InterviewType}}</td>
+                                                    <td>
+                                                        <div class="iconimage" ng-show="interviewother.IsConfirmed == 'Yes'">
+                                                            <i class="fa fa-check"></i>
+                                                        </div>
+                                                        <div class="iconimage" ng-show="interviewother.IsConfirmed == 'No' || interviewother.IsConfirmed == 'No Action'">
+                                                            <i class="fa fa-times"></i>
+                                                        </div>
+                                                    </td>
+                                                    <td> -- </td>
+                                                    <td>--</td>
+                                                    <td> {{interviewother.Status}} </td>
+                                                    <td>
+                                                        <a ng-click="confirmInterview(interviewother);" title="View/Confirm" class="icon-button"><i class="fa fa-check-circle" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row" ng-show="ViewMode == 'ViewConfirmInterview'">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-blue bold uppercase">
+                            INTERVIEW Details
+                        </span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="form-horizontal" style="border: 1px solid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-md-3 control-label no-padding-right">Primary Skill</label>
+                                    <div class="col-md-9">
+                                        <span id="mainpagecontainer_DashboardUserControl_lblPrimarySkill" class="valueLabel">{{viewInterview.PrimarySkill}} </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-md-3 control-label no-padding-right">Secondary Skill1</label>
+                                    <div class="col-md-9">
+                                        <span id="mainpagecontainer_DashboardUserControl_lblsecskill1" class="valueLabel">{{viewInterview.SecondarySkill1}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-md-3 control-label no-padding-right">Secondary Skill2</label>
+                                    <div class="col-md-9">
+                                        <span id="mainpagecontainer_DashboardUserControl_lblsecskill2" class="valueLabel">{{viewInterview.SecondarySkill2}}</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-md-3 control-label no-padding-right">Secondary Skill3</label>
+                                    <div class="col-md-9">
+                                        <span id="mainpagecontainer_DashboardUserControl_lblsecskill3" class="valueLabel">{{viewInterview.SecondarySkill3}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-md-3 control-label no-padding-right">Secondary Skill4</label>
+                                    <div class="col-md-9">
+                                        <span id="mainpagecontainer_DashboardUserControl_lblsecskill4" class="valueLabel">{{viewInterview.SecondarySkill4}}</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-md-3 control-label no-padding-right">Secondary Skill5</label>
+                                    <div class="col-md-9">
+                                        <span id="mainpagecontainer_DashboardUserControl_lblsecskill5" class="valueLabel">{{viewInterview.SecondarySkill5}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-md-2 control-label no-padding-right">Key Responsibilities</label>
+                                    <div class="col-md-10">
+                                        <span class="valueLabel">
+                                            {{viewInterview.KeyResponsibilities}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-md-3 control-label no-padding-right">Experience</label>
+                                    <div class="col-md-9">
+                                        <span id="mainpagecontainer_DashboardUserControl_lblexperience" class="valueLabel">{{viewInterview.Experience}} Years</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-md-3 control-label no-padding-right">Mobile Number</label>
+                                    <div class="col-md-9">
+                                        <span id="mainpagecontainer_DashboardUserControl_lblmobile" class="valueLabel">{{viewInterview.MobileNumber}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"> <!--ng-hide="viewInterview.CompanySchedule == 'YES'"-->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-md-2 control-label no-padding-right">Resume</label>
+                                    <div class="col-md-10">
+                                        <p class="downloadFile">
+                                            <a href="../../../../assets/CandidateResumes/{{viewInterview.Resume}}"><i class="fa fa-download"></i> {{viewInterview.Resume}}</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-md-4 control-label no-padding-right"></label>
+                                    <div class="col-md-8">
+                                        <input type="button" name="confirmInterview" value="Confirm" id="btnConfirm" class="btn btn-sm btn-primary" ng-show="viewInterview.IsConfirmed != 'Yes'" ng-click="updateInterview(viewInterview);">
+                                        <!--<input type="button" name="viewResume" value="View Resume" id="btnviewResume" class="btn btn-sm btn-primary" ng-click="viewResume(viewInterview);">-->
+                                        <input type="button" name="CancelInterview" value="Cancel" id="btnCancel" class="btn btn-danger btn-sm" ng-click="ViewMode = 'Interviews'">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row" ng-show="ViewMode == 'RateInterview'">
+        <div class="col-md-12">
+            <div class="portlet light bordered" id="form_wizard_1">
+                <!--<div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-user font-blue"></i>
+                        <span class="caption-subject font-blue bold uppercase">
+                            Rate Interview
+                        </span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>-->
+                <div class="portlet-body form">
+                    <form class="form-horizontal" action="#" id="submit_form" novalidate>
+                        <div class="form-wizard">
+                            <div class="form-body">
+                                <ul class="nav nav-pills nav-justified steps">
+                                    <li class="active">
+                                        <a href="#tab1" data-toggle="tab" class="step" aria-expanded="false">
+                                            <!--<span class="number"> 1 </span>-->
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> GENERAL INFORMATION
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#tab2" data-toggle="tab" class="step" aria-expanded="true">
+                                            <!--<span class="number"> 1 </span>-->
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> TECHNICAL RATING
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#tab3" data-toggle="tab" class="step" aria-expanded="false">
+                                            <!--<span class="number"> 3 </span>-->
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> SOFT SKILL RATING
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#tab4" data-toggle="tab" class="step" aria-expanded="false">
+                                            <!--<span class="number"> 3 </span>-->
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> COMMENTS &amp; RECORDING
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab1">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <label for="inputEmail3" class="col-sm-4 control-label no-padding-right">Candidate Name :</label>
+                                                    <div class="col-sm-8">
+                                                        <span id="lblCandidateName" class="valueLabel">{{viewRateInterview.CandidateName}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="inputEmail3" class="col-sm-4 control-label no-padding-right">Interview Date</label>
+                                                    <div class="col-sm-8">
+                                                        <span id="lblInterviewDate" class="valueLabel">{{viewRateInterview.DisplayDate}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <label for="inputEmail3" class="col-sm-4 control-label no-padding-right">Primary Skill</label>
+                                                    <div class="col-sm-8">
+                                                        <span id="lblPrimarySkill" class="valueLabel">{{viewRateInterview.PrimarySkill}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="inputEmail3" class="col-sm-4 control-label no-padding-right">Interview Time</label>
+                                                    <div class="col-sm-8">
+                                                        <span id="lblInterviewTime" class="valueLabel">{{viewRateInterview.TimeSlot}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <label for="inputEmail3" class="col-sm-4 control-label no-padding-right">Mobile No</label>
+                                                    <div class="col-sm-8">
+                                                        <span id="lblCandidateNumber" class="valueLabel">{{viewRateInterview.MobileNumber}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="inputEmail3" class="col-sm-4 control-label no-padding-right">Candidate Email</label>
+                                                    <div class="col-sm-8">
+                                                        <span id="lblCandidateEmail" class="valueLabel">{{viewRateInterview.Email}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <h3 class="block ratingtipheader">Rating Tips/Interpretation</h3>
+                                                    <p class="ratingtips">1. Know the subject but no good knowledge, need to learn.</p>
+                                                    <p class="ratingtips">2. Know the subject, have knowledge but no good working exp.</p>
+                                                    <p class="ratingtips">3. Have the knowledge and can work independently.</p>
+                                                    <p class="ratingtips">4. Can work and Guide the team also to work.</p>
+                                                    <p class="ratingtips">5. Exceptionally talented in this and is an asset to the team and to organization.</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h3 class="block ratingtipheader">Key Responsibilities</h3>
+                                                    <ul class="comments-listnew removeable-listnew">
+                                                        <li>
+                                                            <div class="comment-textnew">
+                                                                <span id="lblKeyResponsibilities" class="valueLabel">{{viewRateInterview.KeyResponsibilities}}</span>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.SecondarySkill1}} <span class="required">*</span></label>
+                                                    <div class="col-md-4 nopadding">
+                                                        <select name="ddlskill1rating" id="ddlskill1rating" class="form-control" ng-model="viewRateInterview.SecondarySkill1Rating" required>
+                                                            <option value="">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <textarea name="txtskill1Remarks" rows="2" cols="20" id="txtskill1Remarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.SecondarySkill1Remarks" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.SecondarySkill2}} <span class="required">*</span></label>
+                                                    <div class="col-md-4 nopadding">
+                                                        <select name="ddlskill2rating" id="ddlskill2rating" class="form-control" ng-model="viewRateInterview.SecondarySkill2Rating" required>
+                                                            <option value="">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <textarea name="txtskill2Remarks" rows="2" cols="20" id="txtskill2Remarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.SecondarySkill2Remarks" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.SecondarySkill3}} <span class="required">*</span></label>
+                                                    <div class="col-md-4 nopadding">
+                                                        <select name="ddlskill3rating" id="ddlskill3rating" class="form-control" ng-model="viewRateInterview.SecondarySkill3Rating" required>
+                                                            <option value="">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <textarea name="txtskill3Remarks" rows="2" cols="20" id="txtskill3Remarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.SecondarySkill3Remarks" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.SecondarySkill4}} <span class="required" ng-hide="viewRateInterview.SecondarySkill4 == ''">*</span></label>
+                                                    <div class="col-md-4 nopadding">
+                                                        <select name="ddlskill4rating" id="ddlskill4rating" class="form-control" ng-model="viewRateInterview.SecondarySkill4Rating" ng-disabled="viewRateInterview.SecondarySkill4 == ''" ng-required="viewRateInterview.SecondarySkill4 != ''">
+                                                            <option value="">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <textarea name="txtskill4Remarks" rows="2" cols="20" id="txtskill4Remarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.SecondarySkill4Remarks" ng-disabled="viewRateInterview.SecondarySkill4 == ''" ng-required="viewRateInterview.SecondarySkill4 != ''"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.SecondarySkill5}} <span class="required" ng-hide="viewRateInterview.SecondarySkill5 == ''">*</span></label>
+                                                    <div class="col-md-4 nopadding">
+                                                        <select name="ddlskill5rating" id="ddlskill5rating" class="form-control" ng-model="viewRateInterview.SecondarySkill5Rating" ng-disabled="viewRateInterview.SecondarySkill5 == ''" ng-required="viewRateInterview.SecondarySkill5 != ''">
+                                                            <option value="">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <textarea name="txtskill5Remarks" rows="2" cols="20" id="txtskill5Remarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.SecondarySkill5Remarks" ng-disabled="viewRateInterview.SecondarySkill5 == ''" ng-required="viewRateInterview.SecondarySkill5 != ''"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">English Communication <span class="required">*</span> </label>
+                                                    <div class="col-md-4 nopadding">
+                                                        <select name="EngCommunication" id="EngCommunication" class="form-control" ng-model="viewRateInterview.EnglishCommunication" required>
+                                                            <option value="">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <textarea name="EngCommunicationRemarks" rows="2" cols="20" id="EngCommunicationRemarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.EnglishCommunicationRemarks" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Attitude <span class="required">*</span></label>
+                                                    <div class="col-md-4 nopadding">
+                                                        <select name="attitude" id="attitude" class="form-control" ng-model="viewRateInterview.Attitude" required>
+                                                            <option value="">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <textarea name="attitudeRemarks" rows="2" cols="20" id="attitudeRemarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.AttitudeRemarks" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Interpersonal Skill Communication <span class="required">*</span></label>
+                                                    <div class="col-md-4 nopadding">
+                                                        <select name="interPersonalSkill" id="interPersonalSkill" class="form-control" ng-model="viewRateInterview.InterpersonalSkillCommunication" required>
+                                                            <option value="">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <textarea name="interPersonalSkillRemarks" rows="2" cols="20" id="interPersonalSkillRemarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.InterpersonalSkillCommunicationRemarks" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab4">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Upload Audio Recording</label>
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="input-group input-large">
+                                                                <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                                                    <span class="fileinput-filename"> </span>
+                                                                </div>
+                                                                <span class="input-group-addon btn default btn-file">
+                                                                    <span class="fileinput-new"> Select file </span>
+                                                                    <span class="fileinput-exists"> Change </span>
+                                                                    <input type="file" name="..." ng-model="AudioFile" file-model="myFile">
+                                                                </span>
+                                                                <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput">
+                                                                    <i class="fa fa-trash-o"></i>&nbsp;Remove
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="audiofile">
+                                                        <a href="../../assets/InterviewRecordings/{{AudioFileDownload}}"><i class="fa fa-download"></i> {{AudioFileDownload}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Interviewer Comments <span class="required">*</span></label>
+                                                    <textarea name="interviewerRemarks" id="interviewerRemarks" class="form-control" rows="5" ng-model="viewRateInterview.InterviewerRemarks" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions fluid text-right">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="javascript:;" class="btn btn-danger" style="display: inline-block;" ng-click="ViewMode = 'Interviews'">
+                                            <i class="fa fa-times"></i> Cancel
+                                        </a>
+                                        <a href="javascript:;" class="btn blue button-previous" style="display: inline-block;">
+                                            <i class="m-icon-swapleft m-icon-white"></i> Back
+                                        </a>
+                                        <a href="javascript:;" class="btn blue button-next" style="display: inline-block;">
+                                            Continue
+                                            <i class="m-icon-swapright m-icon-white"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn blue button-submit" style="display: none;" ng-hide="ViewType == 'ViewRatedInterview'" ng-disabled="submit_form.$invalid || viewRateInterview.InterviewerRemarks == ''"
+                                           ng-click="submit_form.$invalid || viewRateInterview.InterviewerRemarks == '' ? angular.noop() : updateRating();">
+                                            Submit
+                                            <i class="fa fa-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-include src="'app/components/Common/ViewRating/ViewRating.html'"></ng-include>
+</div>

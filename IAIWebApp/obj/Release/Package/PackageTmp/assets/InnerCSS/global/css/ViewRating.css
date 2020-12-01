@@ -1,0 +1,232 @@
+﻿.panel-defaultnew {
+    border-color: #fbfbfb;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.panelnew {
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+    -moz-box-shadow: 0 0 2px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 0 2px rgba(0,0,0,.3);
+    box-shadow: 0 0 2px rgba(0,0,0,.3) !important;
+    margin-bottom: 25px;
+    margin-left: 10px;
+    width: 100%;
+}
+.panel-defaultnew > .panel-headingnew {
+    color: #1e8cd6;
+    background-color: #fff;
+    border-color: #ddd !important;
+    border-bottom: 1px solid #ddd !important;
+}
+.minimal .panel-headingnew {
+    padding: 10px 15px;
+}
+.panel-headingnew {
+    padding: 12px 24px;
+}
+.panel-headingnew, .panel-groupnew .panelnew {
+    border-radius: 0;
+}
+.HeaderTitle {
+    text-align: left !important;
+    font-size: 18px !important;
+    color: #26aa30;
+}
+.minimal .panel-bodynew {
+    padding: 15px;
+}
+.no-padding {
+    padding: 0 !important;
+}
+.panel-bodynew {
+    position: relative;
+    /* padding: 15px; */
+    /* padding: 15px 15px; */
+    display: inline;
+    background-color: #fff;
+    min-height: 210px;
+}
+.control-label {
+    text-align: center !important;
+}
+.rating-widget-name {
+    font-size: 18px !important;
+    color: #26aa30;
+    font-weight: 600;
+    border-bottom: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.panel-bodynew h2 {
+    font-size: 20px;
+    color: #00a651;
+}
+.portlet-body h2 {
+    font-size: 20px;
+    color: #00a651;
+    margin-top: 0;
+}
+ul.comments-list-rating {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ul.comments-list-rating li {
+    border-bottom: solid 1px #e5e5e5;
+    padding-bottom: 5px;
+    /* margin-bottom: 20px; */
+    position: relative;
+}
+ul.removeable-list-rating li {
+    position: relative;
+    padding-right: 60px;
+}
+ul.comments-list-rating li .comment-head-rating, .feed-element-rating .feed-head-rating {
+    font-weight: 600;
+    color: #504f4f;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+ul.comments-list-rating li .comment-text-rating, .feed-element-rating .feed-content-rating {
+    color: #000000;
+    font-size: 12px;
+}
+.comment-text-rating p {
+    margin: 0 0 10px;
+}
+.candidateNameIAI {
+    font-size: 25px !important;
+    font-weight: 500;
+    color: #504f4f;
+}
+.interviewid-class {
+    font-size: 12px;
+    float: right;
+}
+.nomargin-right-left {
+    margin-left: 0 !important;
+    margin-right:0 !important;
+}
+
+/* Rating Pie Chart CSS*/
+.progressDiv {
+    width: 100%;
+     background: #fff !important; 
+    min-height: 200px;
+    /* border: 1px solid #ccc; */
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+    /*left: 13px;
+     box-shadow: 0px 1px 1px 1px #ccc; */
+}
+.progress-pie-chart.gt-50 {
+    background-color: #1e8cd6;
+}
+.progress-pie-chart {
+    margin: 0px auto 0px;
+}
+.progress-pie-chart {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background-color: #E5E5E5;
+    position: relative;
+}
+.gt-50 .ppc-progress {
+    clip: rect(0, 100px, 200px, 0);
+}
+.ppc-progress {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - 105px);
+    top: calc(50% - 105px);
+    width: 210px;
+    height: 210px;
+    clip: rect(0, 210px, 210px, 110px);
+}
+.gt-50 .ppc-progress .ppc-progress-fill {
+    clip: rect(0, 210px, 200px, 100px);
+    background: #E5E5E5;
+}
+.ppc-progress .ppc-progress-fill {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - 105px);
+    top: calc(50% - 105px);
+    width: 210px;
+    height: 210px;
+    clip: rect(0, 110px, 210px, 0);
+    background: #1e8cd6;
+    transform: rotate(60deg);
+}
+.ppc-percents {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - 173.91304px/2);
+    top: calc(50% - 173.91304px/2);
+    width: 173.91304px;
+    height: 173.91304px;
+    background: #fff;
+    text-align: center;
+    display: table;
+}
+.pcc-percents-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+.ppc-percents .donutPercentage {
+    display: inline;
+    font-size: 4em;
+    color: #1e8cd6;
+}
+.ppc-percents .perIndicator {
+    display: inline;
+    font-size: 2em;
+    color: #1e8cd6;
+}
+
+/* Chart CSS*/
+#divRatingBarChart {
+    width: 100%;
+    height: 210px;
+    font-family: Lato;
+}
+.candidateNameIAI {
+    font-size: 25px !important;
+    font-weight: 500;
+    color: #504f4f;
+}
+.interviewid-class {
+    font-size: 12px;
+    float: right;
+}
+.valueLabelRating, .valueLabelRating .fa {
+    color: #147fb7 !important;
+    font-size: 13px !important;
+    border-bottom: 1px dashed #147fb7;
+}
+
+.form-label-rating {
+    font-size: 12px;
+}
+
+.portlet-body h2 {
+    font-size: 20px;
+    color: #00a651;
+}
+
+#chartRatingBySkillTechRating, #chartTotalRating, #chartTotalRatingIAIFormat, #chartRatingBySkillIAIFormat {
+    height: 150px !important;
+    width: 100% !important;
+}
+.model-header-buttons {
+    float: right;
+    margin-right: 50px;
+    font-size: 25px;
+}

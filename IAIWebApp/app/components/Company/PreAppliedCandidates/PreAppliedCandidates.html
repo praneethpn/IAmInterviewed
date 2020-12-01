@@ -1,0 +1,256 @@
+﻿<div class="page-content page-main--right-content" style="min-height: 361px;" ng-controller="PreAppliedCandidatesController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a ng-click="RedirectUrl('AllPostingsDashboard')">All Postings</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">PRE APPLIED PROFILE</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered gridFilter">
+                <div class="portlet-body">
+                    <span style="margin-left: 20%;">Jobcode : <span class="job-code-style">{{objRequirement.JobCode}}</span></span>
+                    <a class="headerNavigationLink" ng-click="RedirectUrl('ShortlistedProfiles')">Shortlisted Profiles</a>
+                    <a class="headerNavigationLink" ng-click="RedirectUrl('RequirementRelatedProfiles')">Related Profiles</a>
+                    <a class="headerNavigationLink" ng-click="RedirectUrl('AddProfiles')">Add Profiles</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-body dashboard">                    
+                    <div class="table-scrollable">
+                        <table class="table table-hover table-no-hover">
+                            <tbody>
+                                <tr ng-repeat="candidate in preAppliedCandidatesList | filter : paginate">
+                                    <td>
+                                        <div class="resultPanel">
+                                            <div class="resultBlock">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                                        <div class="candidateName">
+                                                            <a href="#" class="NameLabel">
+                                                                {{candidate.CandidateName}}
+                                                            </a>
+                                                            <span class="exp">
+                                                                (<span>{{candidate.Experience}}</span>
+                                                                Years of Experience)
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3 col-md-3 col-lg-3">
+                                                        <span class="InterviewDate">Interview Date :</span>
+                                                        <span>
+                                                            {{candidate.DisplayDate}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="col-sm-6">
+                                                            <div class="InterviewDate">
+                                                                <span class="InterviewDate">Rating :</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="star-rating-box">
+                                                                <div class="star-rating" title="{{(candidate.OveralRating)/5*100}}" style="width:{{(candidate.OveralRating)/5*100}}%;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="portfolioDetails">
+                                                            <div>{{candidate.SecSkillName1}}</div>
+                                                            <div class="star-rating-box green" ng-if="candidate.SecSkill1Rating == 5 || candidate.SecSkill1Rating == 4">
+                                                                <div class="star-rating green" title="{{candidate.SecSkill1Rating}}" style="width:{{(candidate.SecSkill1Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                            <div class="star-rating-box yellow" ng-if="candidate.SecSkill1Rating == 3">
+                                                                <div class="star-rating yellow" title="{{candidate.SecSkill1Rating}}" style="width:{{(candidate.SecSkill1Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                            <div class="star-rating-box red" ng-if="candidate.SecSkill1Rating == 2 || candidate.SecSkill1Rating == 1">
+                                                                <div class="star-rating red" title="{{candidate.SecSkill1Rating}}" style="width:{{(candidate.SecSkill1Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                                        <div class="portfolioDetails">
+                                                            <div class="labelText">{{candidate.SecSkillName2}}</div><br>
+                                                            <div class="star-rating-box green" ng-if="candidate.SecSkill2Rating == 5 || candidate.SecSkill2Rating == 4">
+                                                                <div class="star-rating green" title="{{candidate.SecSkill2Rating}}" style="width:{{(candidate.SecSkill2Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                            <div class="star-rating-box yellow" ng-if="candidate.SecSkill2Rating == 3">
+                                                                <div class="star-rating yellow" title="{{candidate.SecSkill2Rating}}" style="width:{{(candidate.SecSkill2Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                            <div class="star-rating-box red" ng-if="candidate.SecSkill2Rating == 2 || candidate.SecSkill2Rating == 1">
+                                                                <div class="star-rating red" title="{{candidate.SecSkill2Rating}}" style="width:{{(candidate.SecSkill2Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                                        <div class="portfolioDetails">
+                                                            <div>{{candidate.SecSkillName3}}</div>
+                                                            <div class="star-rating-box green" ng-if="candidate.SecSkill3Rating == 5 || candidate.SecSkill3Rating == 4">
+                                                                <div class="star-rating green" title="{{candidate.SecSkill3Rating}}" style="width:{{(candidate.SecSkill3Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                            <div class="star-rating-box yellow" ng-if="candidate.SecSkill3Rating == 3">
+                                                                <div class="star-rating yellow" title="{{candidate.SecSkill3Rating}}" style="width:{{(candidate.SecSkill3Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                            <div class="star-rating-box red" ng-if="candidate.SecSkill3Rating == 2 || candidate.SecSkill3Rating == 1">
+                                                                <div class="star-rating red" title="{{candidate.SecSkill3Rating}}" style="width:{{(candidate.SecSkill3Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                                        <div class="portfolioDetails">
+                                                            <div>{{candidate.SecSkillName4}}</div>
+                                                            <div class="star-rating-box green" ng-if="candidate.SecSkill4Rating == 5 || candidate.SecSkill4Rating == 4">
+                                                                <div class="star-rating green" title="{{candidate.SecSkill4Rating}}" style="width:{{(candidate.SecSkill4Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                            <div class="star-rating-box yellow" ng-if="candidate.SecSkill4Rating == 3">
+                                                                <div class="star-rating yellow" title="{{candidate.SecSkill4Rating}}" style="width:{{(candidate.SecSkill4Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                            <div class="star-rating-box red" ng-if="candidate.SecSkill4Rating == 2 || candidate.SecSkill4Rating == 1">
+                                                                <div class="star-rating red" title="{{candidate.SecSkill4Rating}}" style="width:{{(candidate.SecSkill4Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                                        <div class="portfolioDetails">
+                                                            <div>{{candidate.SecSkillName5}}</div>
+                                                            <div class="star-rating-box green" ng-if="candidate.SecSkill5Rating == 5 || candidate.SecSkill5Rating == 4">
+                                                                <div class="star-rating green" title="{{candidate.SecSkill5Rating}}" style="width:{{(candidate.SecSkill5Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                            <div class="star-rating-box yellow" ng-if="candidate.SecSkill5Rating == 3">
+                                                                <div class="star-rating yellow" title="{{candidate.SecSkill5Rating}}" style="width:{{(candidate.SecSkill5Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                            <div class="star-rating-box red" ng-if="candidate.SecSkill5Rating == 2 || candidate.SecSkill5Rating == 1">
+                                                                <div class="star-rating red" title="{{candidate.SecSkill5Rating}}" style="width:{{(candidate.SecSkill5Rating)/5*100}}%;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row haspadding">
+                                                    <div class="col-sm-3 col-md-3 col-lg-3">
+                                                        <span class="InterviewDate">Notice Period :</span>
+                                                        <span>
+                                                            {{candidate.NoticePeriod}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                                        <a href="../../assets/CandidateResumes/{{candidate.Resume}}"><i class="fa fa-download"></i> {{candidate.Resume}}</a>
+                                                        <!--<a href="#"><i class="fa fa-download"></i>{{candidate.Resume}}</a>-->
+                                                    </div>
+                                                </div>
+                                                <div class="row profileSelection">
+                                                    <div class="col-md-12 padding-5">
+                                                        <div class="gridactions">
+                                                            <div class="col-md-3">
+                                                                <div class="mt-checkbox-inline" style="padding: 0;">
+                                                                    <label class="mt-checkbox mt-checkbox-outline" style="margin-bottom: 0;">
+                                                                        <input type="checkbox" ng-model="candidate.CanidateShortlisted"> Shortlist Profile
+                                                                        <span style="background-color: #fff; border: 1px solid;"></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <a id="0" ng-click="viewRatingDetails(candidate)"><i class="fa fa-eye-slash"></i>View Rating</a>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <button type="submit" class="btn btn-update" ng-click="shortlistCandidate(candidate)"><i class="icon-check"></i>Shortlist</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+                        </pagination>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-5">
+                                <button type="submit" class="btn green" ng-click="shortlistCandidateMulti()"><i class="icon-check"></i>Shortlist</button>
+                                <button type="button" class="btn red" ng-click="RedirectUrl('AllPostingsDashboard')"><i class="icon-close"></i>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-user font-blue"></i>
+                        <span class="caption-subject font-blue bold uppercase">
+                            Fan Profiles
+                        </span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Schedule Id </th>
+                                    <th> Candidate Id </th>
+                                    <th> Name </th>
+                                    <th> Primary Skill </th>
+                                    <th> Experience </th>
+                                    <th> Technical Rating </th>
+                                    <th> SoftSkill Rating </th>
+                                    <th> Interviewer ID </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="candidate in fanProfilesList track by $index">
+                                    <td> {{candidate.ScheduleId}} </td>
+                                    <td> {{candidate.CandidateId}} </td>
+                                    <td> {{candidate.CandidateName}} </td>
+                                    <td> {{candidate.PrimarySKillName}} </td>
+                                    <td> {{candidate.Experience}} </td>
+                                    <td> {{candidate.OveralRating}} </td>
+                                    <td> {{candidate.SoftSkillRating}} </td>
+                                    <td> {{candidate.interviewerid}} </td>
+                                    <td><a ng-click="viewRatingDetails(candidate)">Details</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+    <ng-include src="'app/components/Common/ViewRating/ViewRating.html'"></ng-include>
+</div>

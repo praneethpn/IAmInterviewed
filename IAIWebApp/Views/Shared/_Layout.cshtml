@@ -1,0 +1,608 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="IAMInterviewed" ng-cloak>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Technical Interviews">
+    <meta name="keywords" content="Technical Interviews,Technical Interview,Get Interviewed,Get Rated, technical skill rating, Interview panel, walk In interview, get visible, Tech Panel, interview Panel,technical interview Panel, skill rating">
+    <meta name="author" content="iaminterviewed">
+    <title>IAmInterviewed</title>
+    <link rel="icon" href="~/assets/OuterCSS/img/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="~/assets/OuterCSS/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/OuterCSS/css/font-awesome.css">
+    <link rel="stylesheet" href="~/assets/OuterCSS/css/materialize.css">
+    <link rel="stylesheet" href="~/assets/OuterCSS/css/style.css">
+    <link rel="stylesheet" href="~/assets/OuterCSS/css/scrollRate.css">
+    <link rel="stylesheet" href="~/assets/OuterCSS/css/template.css">
+    <link rel="stylesheet" href="~/assets/OuterCSS/css/carouselCss.css">
+    <link rel="stylesheet" href="~/assets/OuterCSS/css/animations.css">
+    <link rel="stylesheet" href="~/assets/OuterCSS/css/marquee.css">
+    <link rel="stylesheet" href="~/assets/OuterCSS/css/hover.css">
+    <link href="~/assets/InnerCSS/global/css/Loader_Notifications.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body ng-controller="IndexController">
+    @RenderBody()
+    <!-- Start: Loader Section -->
+    <div class="loadingWrapper-custom" style="display:none">
+        <div class="loaderCntr-custom"></div>
+        <div class="loader-custom"></div>
+        <div class="branding-custom">
+            <span class="brandLogo-custom"></span>
+            <h3 id="loaderText-custom">Processing please wait...</h3>
+            <p class="close-custom">Please press ESC key to clear loader</p>
+        </div>
+    </div>
+    <!-- End: Loader Section -->
+    <!-- Start: Notifications Section -->
+    <div id="notificationBar" class="notificationPb">
+        <span class="statusImgCntr">
+            <span class="statusImg"></span>
+            <h4 class="status"></h4>
+        </span>
+        <span class="statusText" ng-bind="resultMessage" ng-attr-title="{{resultMessageTooltip}}"></span>
+        <span class="closeNotificationCntr">
+            <!--<a><i class="fa fa-times-circle"></i></a>-->
+
+            <span class="closeNotification" onclick="closeNotication()"><i class="fa fa-times-circle" style="font-size: 25px;"></i></span>
+        </span>
+    </div>
+    <!-- End: Notifications Section -->
+    <div class="container-fluid">
+        <div class="logoBar">
+            <img src="assets/OuterCSS/img/IAmInterviewedLogo.png" class="logo">
+            <div class="logoBarCenter">
+                <a href="signUpEmployer.html" class="top-nav-links">Employer</a>
+                <a href="signUpInterviewer.html" class="top-nav-links">Interviewer</a>
+                <a href="signUpCandidate.html" class="top-nav-links">Candidate</a>
+                <a href="searchRating.html" class="top-nav-links">View Rating</a>
+            </div>
+            <div class="logoBarRight">
+                <!-- <a class="waves-effect waves-light btn scheduleInterview">Schedule Interview</a> -->
+                <p class="topSignIn">
+                    <a href="signIn.html">
+                        Sign In <i class="fa fa-sign-in" style="margin-left: 10px;"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <nav></nav>
+        <div class="mainBanner">
+            <div class="catchLine">
+                <h2 class="ml3">TECHNICAL INTERVIEWS - On Demand</h2>
+                <div class="row no-margin-bottom">
+                    @*<div class="col-sm-12 col-md-3 col-lg-3 numberBlock-top">
+                        <p class="number">25000 +</p>
+                        <p>Candidates registered</p>
+                    </div>*@
+                    <div class="col-sm-12 col-md-4 col-lg-4 numberBlock-top">
+                        <p class="number">30000 +</p>
+                        <p>Completed interviews</p>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 numberBlock-top">
+                        <p class="number">160 +</p>
+                        <p>Companies registered</p>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 numberBlock-top">
+                        <p class="number">750 +</p>
+                        <p>Interviewers</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="primaryBanner">
+                    <div class="col-md-4 primaryBannerBlock">
+                        <div class="primaryBannerContent">
+                            <h1>Employer</h1>
+                            <p>
+                                Get the Technical Interviews done from Iaminterviewed super fast.<br />
+                                70 + Technologies, 750+ Techncial Interviewers
+                            </p>
+                            <button class="btn btn-hero btn-lg" role="button" onclick="location.href = 'signUpEmployer.html';">Register Now</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 primaryBannerBlock">
+                        <div class="primaryBannerContent">
+                            <h1>Interviewer</h1>
+                            <p style="margin-bottom: 0px;">
+                                We need you to help the IT Industry to identify the right talent for the Job. We welcome you to Join the strong community of 750+ interviewers of Various technologies.
+                            </p>
+                            <button class="btn btn-hero btn-lg" role="button" onclick="location.href = 'signUpInterviewer.html';">Register Now</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 primaryBannerBlock">
+                        <div class="primaryBannerContent">
+                            <h1>Candidate</h1>
+                            <p>
+                                Show case your technical Skills from the Technical Interviews done at Iaminteerviewed.<br />
+                                Get Interviewed, Get Rated, Get Visibility
+                            </p>
+                            <button class="btn btn-hero btn-lg" role="button" onclick="location.href = 'signUpCandidate.html';">Register & Schedule Interview</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="simple-marquee-container">
+                <div class="marquee-sibling">
+                    Interviewed Candidate with Rating
+                </div>
+                <div class="marquee">
+                    <ul class="marquee-content-items">
+                        <li>Candidate Name 1 [4.5]</li>
+                        <li>Candidate Name 2 [4.5]</li>
+                        <li>Candidate Name 3 [4.5]</li>
+                        <li>Candidate Name 4 [4.5]</li>
+                        <li>Candidate Name 5 [4.5]</li>
+                    </ul>
+                </div>
+            </div> -->
+                <div class="row candidateRatingRow">
+                    <div class="col-lg-2 col-md-4 col-sm-12 candidateRatingWrapper" ng-repeat="rating in listTop10Ratings track by $index">
+                        <a href="#">
+                            <div class="candidateRatingBlock hvr-rectangle-out">
+                                <h1>{{rating.CandidateName}} </h1>
+                                <h2>
+                                    <span class="labelText">Skill :</span>
+                                    <span class="valueText">{{rating.SecondarySkill1Name}}, {{rating.SecondarySkill2Name}}, {{rating.SecondarySkill3Name}}</span>
+                                    <br clear="all">
+                                </h2>
+                                <h3>
+                                    <span class="labelText">Rating:</span>
+                                    <span class="valueText">
+                                        <b>{{rating.TotalRating}}</b>/5
+                                    </span>
+                                    <br clear="all">
+                                </h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-12 candidateRatingWrapper">
+                        <a href="signIn.html">
+                            <div class="candidateRatingBlock">
+                                <i class="fa fa-angle-double-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="clearfix"></div>
+        <div class="clientele">
+            <h1>Clients We Work with</h1>
+            <p style="text-align: center; font-weight: 400;">
+                We will be delighted to have you as our client. Please mail us at
+                <a href="mailto:info@iaminterviewed.com">info@iaminterviewed.com</a> to know the list of our clients.
+            </p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="testimonial">
+            <img src="assets/OuterCSS/img/whatSaying.png">
+            <div class="testimonialBlock">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                            <!-- Bottom Carousel Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#quote-carousel" data-slide-to="1"></li>
+                                <li data-target="#quote-carousel" data-slide-to="2"></li>
+                            </ol>
+                            <!-- Carousel Slides / Quotes -->
+                            <div class="carousel-inner">
+                                <!-- Quote 1 -->
+                                <div class="item active">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p>
+                                                Our efforts of recruitment reduced by 60% and turnaround time is very fast.
+                                            </p>
+                                            <p class="testimonialClient">SENIOR MANAGER, TALENT ACQUISITION, INDIAN IT SERVICES COMPANY WITH 600+ EMPLOYEES</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Quote 2 -->
+                                <div class="item">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p>
+                                                Previously we were selecting 3 out of 65 profiles. Now we are selecting 3 out of 5. Thanks to the efficiency brought by Iaminterviewed.
+                                            </p>
+                                            <p class="testimonialClient">VICE PRESIDENT, DELIVERY OF GLOBAL MNC WITH 40,000+ EMPLOYEE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Quote 3 -->
+                                <div class="item">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p>
+                                                Our last walk-in interview was quite a disaster. We had more than 220 candidates who walked in for Java. We found only 9 were shortlisted for
+                                                second round and we could select only 3. Iaminterviewed.com clearly changes all this and provides us an opportunity to cut back significantly
+                                                on our hiring cost and time.
+                                            </p>
+                                            <p class="testimonialClient">CEO OF AN INTERNATIONAL IT SERVICE PROVIDER WITH 3500+ EMPLOYEES</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="howItWorks">
+            <div class="container ">
+                <h1>How It Works</h1>
+                <div class="animatedParent">
+                    <div class="howItWorksBlock animated fadeInLeft">
+                        <div class="col-sm-12 col-md-4 col-lg-4 howItWorksBlock1">
+                            <img src="assets/OuterCSS/img/IAmInterviewedLogo.png">
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-8 howItWorksBlock1_1">
+                            <h1>Register</h1>
+                            <p>Candidate Registers, Receive password and Login to fill the profile</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="animatedParent">
+                    <div class="howItWorksBlock animated fadeInRight">
+                        <div class="col-sm-12 col-md-4 col-lg-4 howItWorksBlock1">
+                            <img src="assets/OuterCSS/img/IAmInterviewedLogo.png">
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-8 howItWorksBlock1_2">
+                            <h1>Schedule Interview</h1>
+                            <p>Choose your best day and time to take technical interview</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="animatedParent">
+                    <div class="howItWorksBlock animated fadeInLeft">
+                        <div class="col-sm-12 col-md-4 col-lg-4 howItWorksBlock1">
+                            <img src="assets/OuterCSS/img/IAmInterviewedLogo.png">
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-8 howItWorksBlock1_3">
+                            <h1>Get interviewed, RATED</h1>
+                            <p>Respond to the interviewer call at the scheduled time and give your best.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="animatedParent">
+                    <div class="howItWorksBlock animated fadeInRight">
+                        <div class="col-sm-12 col-md-4 col-lg-4 howItWorksBlock1">
+                            <img src="assets/OuterCSS/img/IAmInterviewedLogo.png">
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-8 howItWorksBlock1_4">
+                            <h1 style="margin-bottom: 0px;">Get visible</h1>
+                            <p style="margin-top: 0px;">Login and view your detailed technical feedback, Accept your rating and download your badge and apply to Jobs with in IAmInterviewed and also outside jobs. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="greenBlock">
+            <p>
+                Iaminterviewed aims to reduce the burden on Delivery and Recruitment teams to complete the Technical Interviews FASTER.
+                Delivery teams now deliver their clients work without any distractions
+            </p>
+        </div>
+        <div class="topJob ">
+            <h1>List of Top Jobs</h1>
+
+            <div class="">
+                <div class="topJobBlock pull-left animated swing">
+                    <div class="col-sm-12 col-md-9 col-lg-9">
+                        <h2>
+                            Technical Architect
+                            <span>(Min Experience: 5 Years)</span>
+                        </h2>
+                        <h3>Java Developer</h3>
+                        <h4>Bangalore, India</h4>
+                        <div class="chip">Design Pattern</div>
+                        <div class="chip">Java</div>
+                        <div class="chip">Core Java</div>
+                        <div class="chip">Database</div>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <a class="waves-effect waves-light btn pull-right" href="signIn.html">Apply</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="topJobBlock pull-right  animated swing">
+                    <div class="col-sm-12 col-md-9 col-lg-9">
+                        <h2>
+                            Technical Architect
+                            <span>(Min Experience: 5 Years)</span>
+                        </h2>
+                        <h3>Java Developer</h3>
+                        <h4>Bangalore, India</h4>
+                        <div class="chip">Design Pattern</div>
+                        <div class="chip">Java</div>
+                        <div class="chip">Core Java</div>
+                        <div class="chip">Database</div>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <a class="waves-effect waves-light btn pull-right" href="signIn.html">Apply</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="topJobBlock pull-left animated swing">
+                    <div class="col-sm-12 col-md-9 col-lg-9">
+                        <h2>
+                            Technical Architect
+                            <span>(Min Experience: 5 Years)</span>
+                        </h2>
+                        <h3>Java Developer</h3>
+                        <h4>Bangalore, India</h4>
+                        <div class="chip">Design Pattern</div>
+                        <div class="chip">Java</div>
+                        <div class="chip">Core Java</div>
+                        <div class="chip">Database</div>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <a class="waves-effect waves-light btn pull-right" href="signIn.html">Apply</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="topJobBlock pull-right animated swing">
+                    <div class="col-sm-12 col-md-9 col-lg-9">
+                        <h2>
+                            Technical Architect
+                            <span>(Min Experience: 5 Years)</span>
+                        </h2>
+                        <h3>Java Developer</h3>
+                        <h4>Bangalore, India</h4>
+                        <div class="chip">Design Pattern</div>
+                        <div class="chip">Java</div>
+                        <div class="chip">Core Java</div>
+                        <div class="chip">Database</div>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <a class="waves-effect waves-light btn pull-right" href="signIn.html">Apply</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="topJobBlock pull-left animated swing">
+                    <div class="col-sm-12 col-md-9 col-lg-9">
+                        <h2>
+                            Technical Architect
+                            <span>(Min Experience: 5 Years)</span>
+                        </h2>
+                        <h3>Java Developer</h3>
+                        <h4>Bangalore, India</h4>
+                        <div class="chip">Design Pattern</div>
+                        <div class="chip">Java</div>
+                        <div class="chip">Core Java</div>
+                        <div class="chip">Database</div>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <a class="waves-effect waves-light btn pull-right" href="signIn.html">Apply</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="topJobBlock pull-right animated swing">
+                    <div class="col-sm-12 col-md-9 col-lg-9">
+                        <h2>
+                            Technical Architect
+                            <span>(Min Experience: 5 Years)</span>
+                        </h2>
+                        <h3>Java Developer</h3>
+                        <h4>Bangalore, India</h4>
+                        <div class="chip">Design Pattern</div>
+                        <div class="chip">Java</div>
+                        <div class="chip">Core Java</div>
+                        <div class="chip">Database</div>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <a class="waves-effect waves-light btn pull-right" href="signIn.html">Apply</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <!--<div class="numberBlock">
+        <div class="col-sm-12 col-md-3 col-lg-3 numberBlock1">
+            <img src="assets/OuterCSS/img/numberIcon1.png">
+            <h1>25000 +</h1>
+            <h2>Candidates registered</h2>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 numberBlock1">
+            <img src="assets/OuterCSS/img/numberIcon2.png">
+            <h1>20000 +</h1>
+            <h2>Completed interviews</h2>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 numberBlock1">
+            <img src="assets/OuterCSS/img/numberIcon3.png">
+            <h1>160 +</h1>
+            <h2>Companies registered</h2>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 numberBlock1">
+            <img src="assets/OuterCSS/img/numberIcon3.png">
+            <h1>750 +</h1>
+            <h2>Interviewers</h2>
+        </div>
+    </div>
+
+    <div class="getHired">
+        <h1>Associate with Iaminterviewed to complete technical interviews Faster </h1>
+        <img src="assets/OuterCSS/img/IAmInterviewedLogo.png">
+    </div>-->
+        <footer>
+            <div style="min-height: 250px;" class="footer animatedParent" id="footer-sub">
+                <div class="container-fluid row">
+                    <div class="col-md-4">
+                        <img src="assets/OuterCSS/img/IAmInterviewedLogo.png" class="logoFooter">
+                        <p>
+                            IamInterviewed is Technical Interview platform. It helps Companies to choose right talent with minimum efforts there by reducing the Time and Cost.
+                            IamInterviewed also helps candidate's to standout with Technical Skill rating to catch the attention of the companies and Recruiters.
+                        </p>
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <h5> Know Us </h5>
+                        <ul>
+                            <li>
+                                <a href="">Testimonials</a>
+                                <hr>
+                            </li>
+                            <li>
+                                <a href="aboutUs.html">About Us</a>
+                                <hr>
+                            </li>
+                            <li>
+                                <a href="">FAQ's</a>
+                                <hr>
+                            </li>
+                            <li>
+                                <a href="">Tips To Telephonic Interviews</a>
+                                <hr>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 contact-us-block">
+                        <h5> Contact Us </h5>
+                        <span>
+                            #10 M 226,
+                            100 Ft Road, HRBR Layout,
+                            Block 1, Kalyan Nagar,
+                            Bangalore - 560 043. India.
+                        </span>
+                        <ul>
+                            <li>
+                                eMail: <a href="mailto:info@iaminterviewed.com" class="footer-mail">info@iaminterviewed.com</a>
+                                <hr>
+                            </li>
+                            <li>
+                                LinkedIn: <a href="#" class="footer-mail">https://www.linkedin.com/in/iaminterviewed/</a>
+                                <hr>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr style="margin-bottom:0px; margin-top:30px; padding:0px;">
+                    <hr style="margin-bottom:30px; margin-top:0px; padding:0px;">
+                </div>
+            </div>
+
+        </footer>
+    </div>
+</body>
+<script src="~/assets/OuterCSS/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="~/assets/OuterCSS/js/bootstrap.js"></script>
+<script src="~/assets/OuterCSS/js/materialize.js"></script>
+<script src="~/assets/OuterCSS/js/jquery.scrollbox.js"></script>
+<script src="~/assets/OuterCSS/js/jquery.flexisel.js"></script>
+<script src="~/assets/OuterCSS/js/typed.js"></script>
+<script src="~/assets/OuterCSS/js/css3-animate-it.js"></script>
+<script src="~/assets/OuterCSS/js/marquee.js"></script>
+<script src="~/assets/InnerCSS/global/scripts/custom.js"></script>
+<!-- Start: Angular Script Reference -->
+<script src="~/assets/InnerCSS/plugins/angular-1.7.8/angular.js" type="text/javascript"></script>
+<script src="~/assets/InnerCSS/plugins/angular-1.7.8/angular-messages.min.js"></script>
+<script src="~/assets/InnerCSS/plugins/angular-1.7.8/angular-animate.min.js"></script>
+<script src="~/assets/InnerCSS/plugins/angular-1.7.8/angular-aria.min.js"></script>
+<script src="~/assets/InnerCSS/plugins/angular-1.7.8/angular-material.min.js"></script>
+<script src="~/assets/InnerCSS/plugins/angular-1.7.8/angular-idle.js"></script>
+<script src="~/app/js/idleLogout/idle/idle.js"></script>
+<script src="~/app/js/idleLogout/countdown/countdown.js"></script>
+<script src="~/app/js/idleLogout/keepalive/keepalive.js"></script>
+<script src="~/app/js/idleLogout/localStorage/localStorage.js"></script>
+<script src="~/app/js/idleLogout/title/title.js"></script>
+<script src="~/app/directives/NgStorage/ngStorage.min.js"></script>
+<script src="~/assets/InnerCSS/global/plugins/Angular-Tags-Input/ng-tags-input.js"></script>
+<script src="~/app/js/angular-resource.js"></script>
+<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+<!-- End: Angular Script Reference -->
+<!-- Start: Custom Scripts -->
+<script src="~/app/Config.js"></script>
+<script type="text/javascript" src="~/app/app.js"></script>
+<!-- End: Custom Scripts -->
+<!-- Start: Angularjs Services -->
+<script src="~/app/services/DataServices.js" type="text/javascript"></script>
+<!-- End: Angularjs Services -->
+<!-- Start: Angularjs Controllers -->
+<script src="~/app/components/Common/Controllers/IndexController.js"></script>
+<!-- End: Angularjs Controllers -->
+<script>
+    $(function () {
+
+        $('.simple-marquee-container').SimpleMarquee();
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#quote-carousel').carousel({
+            pause: true,
+            interval: 10000,
+        });
+
+        $('.count').each(function () {
+            $(this).prop('Counter', 0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 4000,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
+
+        $(".typed-element").typed({
+            strings: ["We provide unique database of job seekers rated for proficiency", "The Interviews will be over in less than 24 - 48 Hours", "From posting to call the candidate for F2F interview on the same day"],
+            typeSpeed: 50
+        });
+
+        $('#ratingHighlight').scrollbox({
+            switchItems: 5,
+            distance: 22
+        });
+
+        $("#flexiselDemo1").flexisel({
+            visibleItems: 5,
+            itemsToScroll: 1,
+            autoPlay: {
+                enable: true,
+                interval: 2000,
+                pauseOnHover: true
+            },
+            responsiveBreakpoints: {
+                portrait: {
+                    changePoint: 480,
+                    visibleItems: 1,
+                    itemsToScroll: 1
+                },
+                landscape: {
+                    changePoint: 640,
+                    visibleItems: 2,
+                    itemsToScroll: 2
+                },
+                tablet: {
+                    changePoint: 768,
+                    visibleItems: 3,
+                    itemsToScroll: 3
+                }
+            }
+        });
+    });
+</script>
+
+</html>

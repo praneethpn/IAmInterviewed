@@ -1,0 +1,86 @@
+﻿<div class="page-content page-main--right-content" style="min-height: 361px;" ng-controller="RecruiterDashboardController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('RecruiterDashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">Dashboard</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-blue bold uppercase">
+                            Job Postings
+                        </span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="col-with-divider">
+                        <div class="progressDiv">
+                            <div class="statChartHolder equalwidthleft">
+                                <canvas id="chartRequirements" width="100%" height="200"></canvas>
+                            </div>
+                            <div class="statRightHolder equalwidthright">
+                                <ul>
+                                    <li>
+                                        <h3 class="blue">
+                                            <span id="lblTotalRequirements" class="headerLabel">{{CompanyDashboardDetails.requirements[0].TotalRequirements}}</span>
+                                        </h3>
+                                        <span>Total Requirements Added</span>
+                                    </li>
+                                    <li>
+                                        <h3 class="purple">
+                                            <a href="#">
+                                                <span id="lblOpenRequirements" class="headerLabel">{{CompanyDashboardDetails.requirements[0].OpenRequirements}}</span>
+                                            </a>
+                                        </h3>
+                                        <span><a href="#" ng-click="redirectToDashboard('Open')">Open Requirements</a></span>
+                                    </li>
+                                </ul>
+
+                                <ul class="statsLeft">
+                                    <li>
+                                        <h3 class="yellow">
+                                            <a href="#">
+                                                <span id="lblClosedRequirements" class="headerLabelsmall">{{CompanyDashboardDetails.requirements[0].ClosedRequirements}}</span>
+                                            </a>
+                                        </h3>
+                                        <span><a href="#" ng-click="redirectToDashboard('Closed')">Closed Requirements</a></span>
+                                    </li>
+                                </ul>
+                                <ul class="statsRight">
+                                    <li>
+                                        <h3>
+                                            <a href="#">
+                                                <span id="lblOnHoldRequirements" class="headerLabelsmall">{{CompanyDashboardDetails.requirements[0].OnHoldRequirements}}</span>
+                                            </a>
+                                        </h3>
+                                        <span><a href="#" ng-click="redirectToDashboard('OnHold')">OnHold Requirements</a></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,468 @@
+﻿<div class="modal fade" id="candidateratingdetails" tabindex="-1" role="basic" aria-hidden="true" ng-controller="ViewRatingIAIController">
+    <div class="modal-dialog modal-full">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">
+                    Rating Details
+                    <a class="model-header-buttons" title="Download Rating as Pdf" id="btnGeneratePdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                    <a class="model-header-buttons" title="Print Rating" id="btnImageDownload1" ng-click="printRating()"><i class="fa fa-print" aria-hidden="true"></i></a>
+                    <a class="model-header-buttons" title="Load Preview" id="btnImageDownload"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
+                    <a class="model-header-buttons" title="Download Rating as Image" id="btn-Convert-Html2Image" style="display: none;"><i class="fa fa-download" aria-hidden="true"></i></a>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-tabs">
+                            <li class="tab" id="lipersonalinformation" ng-hide="loggedInUserDetails.RoleName != 'Company'"><a href="#tab_personalinformation" data-toggle="tab"> Personal Information </a></li>
+                            <li class="tab" id="litechnicalrating" style="display: none;"><a href="#tab_technicalrating" data-toggle="tab"> Technical Rating </a></li>
+                            <li class="tab" id="lisoftskillrating" style="display: none;"><a href="#tab_softskillrating" data-toggle="tab"> Soft Skill Rating </a></li>
+                            <li class="tab active" id="liiaiformat"><a href="#tab_iaiformat" data-toggle="tab"> Rating Details </a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade" id="tab_personalinformation" ng-hide="loggedInUserDetails.RoleName != 'Company'">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="portlet light bordered">
+                                            <!-- panel body -->
+                                            <div class="portlet-body">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label-rating">Candidate Name</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <span class="valueLabelRating">{{ratingDetailsIAI.CandidateName}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label-rating">Email Id</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <span class="valueLabelRating" ng-hide="ratingDetailsIAI.HasCandidateAccess == 'NO'">{{ratingDetailsIAI.Email}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label-rating">Mobile No</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <span class="valueLabelRating" ng-hide="ratingDetailsIAI.HasCandidateAccess == 'NO'">{{ratingDetailsIAI.MobileNumber}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label-rating">Resume</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <a href="../../../../assets/CandidateResumes/{{ratingDetailsIAI.Resume}}" class="valueLabelRating" ng-hide="ratingDetailsIAI.HasCandidateAccess == 'NO'">
+                                                            <i class="fa fa-download"></i> {{ratingDetailsIAI.Resume}}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label-rating">Location</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <span class="valueLabelRating" ng-hide="ratingDetailsIAI.HasCandidateAccess == 'NO'">{{ratingDetailsIAI.Location}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label-rating">Current Pay</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <span class="valueLabelRating" ng-hide="ratingDetailsIAI.HasCandidateAccess == 'NO'">{{ratingDetailsIAI.CurrentPay}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label-rating">Expected Pay</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <span class="valueLabelRating" ng-hide="ratingDetailsIAI.HasCandidateAccess == 'NO'">{{ratingDetailsIAI.ExpectedPay}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label-rating">Notice Period</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <span class="valueLabelRating" ng-hide="ratingDetailsIAI.HasCandidateAccess == 'NO'">{{ratingDetailsIAI.NoticePeriod}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label-rating">Audio Recording</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <audio id="audioPlayer" controls="controls" controlslist="nodownload">
+                                                            <source id="audio_src" src="#" type="audio/mpeg">
+                                                            <source id="audio_src_ogg" src="#" type="audio/ogg">
+                                                            Your browser does not support the audio element.
+                                                        </audio><br />
+                                                        <!--<a class="valueLabelRating" id="recordingLink" target="_blank" href="../../../../assets/InterviewRecordings/{{ratingDetailsIAI.AudioFile}}">
+                                                            Recording
+                                                        </a>-->
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <img ID="imgLogoPdfExport" style="height: 80px;" src="../../assets/InnerCSS/layouts/layout/img/IAmInterviewedLogo.png" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab_technicalrating" style="display: none;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject font-blue bold uppercase">
+                                                        Total Rating
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="row chart-class">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label-rating">Candidate Name</label>
+                                                            <span class="valueLabelRating">{{ratingDetailsIAI.CandidateName}}</span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <canvas id="chartTotalRating"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject font-blue bold uppercase">
+                                                        Rating By Skill
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="row chart-class">
+                                                    <div class="col-md-12">
+                                                        <canvas id="chartRatingBySkillTechRating"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-body">
+                                                <h2>Technical Rating ({{ratingDetailsIAI.OveralRating}} /5)</h2>
+                                                <ul class="comments-list-rating removeable-list-rating rating-widget-list-rating">
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            {{ratingDetailsIAI.SecSkillName1}} : <span id="Skill1Rating" class="valueLabelRating">{{ratingDetailsIAI.SecSkill1Rating}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p>
+                                                                {{ratingDetailsIAI.skill1comments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            {{ratingDetailsIAI.SecSKillName2}} : <span id="Skill2Rating" class="valueLabelRating">{{ratingDetailsIAI.SecSkill2Rating}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p>
+                                                                {{ratingDetailsIAI.skill2comments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            {{ratingDetailsIAI.SecSkillName3}} : <span id="Skill3Rating" class="valueLabelRating">{{ratingDetailsIAI.SecSkill3Rating}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p>
+                                                                {{ratingDetailsIAI.skill3comments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            {{ratingDetailsIAI.SecSkillName4}} : <span id="Skill4Rating" class="valueLabelRating">{{ratingDetailsIAI.SecSkill4Rating}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p>
+                                                                {{ratingDetailsIAI.skill4comments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            {{ratingDetailsIAI.SecSkillName5}} : <span id="Skill5Rating" class="valueLabelRating">{{ratingDetailsIAI.SecSkill5Rating}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p>
+                                                                {{ratingDetailsIAI.skill5comments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-body">
+                                                <h2>Interviewer Comments</h2>
+                                                <ul class="comments-list-rating removeable-list-rating rating-widget-list-rating">
+                                                    <li>
+                                                        <div class="comment-text-rating" style="width: 100%;">
+                                                            <p style="font-size: 13px;">
+                                                                {{ratingDetailsIAI.InterviewerRemarks}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab_softskillrating" style="display: none;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-body">
+                                                <h2>Soft Skill Rating ({{ratingDetailsIAI.SoftSkillRating}} /5)</h2>
+                                                <ul class="comments-list-rating removeable-list-rating rating-widget-list-rating">
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            English Communication : <span id="Skill1Rating" class="valueLabelRating">{{ratingDetailsIAI.EnglishCommunication}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p>
+                                                                {{ratingDetailsIAI.EngComments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            Attitude : <span id="Skill2Rating" class="valueLabelRating">{{ratingDetailsIAI.Attitude}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p>
+                                                                {{ratingDetailsIAI.Attitudecomments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            Interpersonal Skill Communication : <span id="Skill3Rating" class="valueLabelRating">{{ratingDetailsIAI.InterpersonalSkillCommunication}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p>
+                                                                {{ratingDetailsIAI.InterComments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade active in" id="tab_iaiformat">
+                                <div class="row" style="margin-bottom: 15px; border-bottom: 1px solid #cac9c9;" id="IAIPDFDownload">
+                                    <div class="col-md-4">
+                                        <img id="imgLogoInnerIAI" ImageAlign="left" class="innerlogocss" style="width: 90px;" src="../../../../assets/CompanyLogos/{{ratingDetailsIAI.Logo}}" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span id="lblCandidateNameIAI" class="candidateNameIAI">{{ratingDetailsIAI.CandidateName}}</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span id="lblInterviewIdIAI" class="interviewid-class">Interview Id : {{ratingDetailsIAI.UniqueId}}{{ratingDetailsIAI.ScheduleId}}</span><br />
+                                        <span id="lblDesignationIAI" class="interviewid-class">Designation : {{ratingDetailsIAI.Designation}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject font-blue bold uppercase">
+                                                        Total Rating
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <canvas id="chartTotalRatingIAIFormat"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject font-blue bold uppercase">
+                                                        Rating By Skill
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <canvas id="chartRatingBySkillIAIFormat"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-body">
+                                                <h2 id="">Technical Rating (<span id="spanTotalRatingIAI">{{ratingDetailsIAI.OveralRating}}</span> /5)</h2>
+                                                <ul class="comments-list-rating removeable-list-rating rating-widget-list-rating">
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            <span id="spanSecSkill1NameIAI">{{ratingDetailsIAI.SecSkillName1}}</span> : <span id="spanSkill1RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.SecSkill1Rating}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p id="pskill1commentsIAI">
+                                                                {{ratingDetailsIAI.skill1comments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            <span id="spanSecSkill2NameIAI">{{ratingDetailsIAI.SecSKillName2}}</span> : <span id="spanSkill2RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.SecSkill2Rating}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p id="pskill2commentsIAI">
+                                                                {{ratingDetailsIAI.skill2comments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            <span id="spanSecSkill3NameIAI">{{ratingDetailsIAI.SecSkillName3}}</span> : <span id="spanSkill3RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.SecSkill3Rating}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p id="pskill3commentsIAI">
+                                                                {{ratingDetailsIAI.skill3comments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            <span id="spanSecSkill4NameIAI">{{ratingDetailsIAI.SecSkillName4}}</span> : <span id="spanSkill4RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.SecSkill4Rating}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p id="pskill4commentsIAI">
+                                                                {{ratingDetailsIAI.skill4comments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            <span id="spanSecSkill5NameIAI">{{ratingDetailsIAI.SecSkillName5}}</span> : <span id="spanSkill5RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.SecSkill5Rating}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p id="pskill5commentsIAI">
+                                                                {{ratingDetailsIAI.skill5comments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-body">
+                                                <h2>Soft Skill Rating (<span id="spanSoftSkillRatingIAI">{{ratingDetailsIAI.SoftSkillRating}}</span> /5)</h2>
+                                                <ul class="comments-list-rating removeable-list-rating rating-widget-list-rating">
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            English Communication : <span id="spanEngCommIAI" class="valueLabelRating">{{ratingDetailsIAI.EnglishCommunication}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p id="pEngCommCommentsIAI">
+                                                                {{ratingDetailsIAI.EngComments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            Attitude : <span id="spanAttitudeIAI" class="valueLabelRating">{{ratingDetailsIAI.Attitude}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p id="pAttCommIAI">
+                                                                {{ratingDetailsIAI.Attitudecomments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="comment-head-rating">
+                                                            Interpersonal Skill Communication : <span id="spanInterIAI" class="valueLabelRating">{{ratingDetailsIAI.InterpersonalSkillCommunication}}</span>
+                                                        </div>
+                                                        <div class="comment-text-rating">
+                                                            <p id="pInterCommIAI">
+                                                                {{ratingDetailsIAI.InterComments}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="portlet light bordered">
+                                            <div class="portlet-body">
+                                                <h2>Interviewer Comments</h2>
+                                                <ul class="comments-list-rating removeable-list-rating rating-widget-list-rating">
+                                                    <li>
+                                                        <div class="comment-text-rating" style="width: 100%;">
+                                                            <p style="font-size: 13px;" id="pCommentsIAI">
+                                                                {{ratingDetailsIAI.InterviewerRemarks}}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="row">
+                    <div class="col-md-12" id="iaiFormat_download">
+
+                    </div>
+                </div>-->
+                <div id="editor"></div>
+                <div id="previewImage" style="display:none;"></div>
+                <input id="btn-Preview-Image" type="button" value="Preview" style="display:none;" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

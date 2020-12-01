@@ -1,0 +1,242 @@
+﻿<div class="page-content page-main--right-content" ng-controller="InterviewerProfileController">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a ng-click="RedirectUrl('Dashboard')">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="currentPage" href="#">MY PROFILE</a>
+                <!--<span>Dashboard</span>-->
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- BEGIN PAGE TITLE-->
+    <!-- END PAGE TITLE-->
+    <!-- END PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered" id="form_wizard_1">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-user font-blue"></i>
+                        <span class="caption-subject font-blue bold uppercase">
+                            Fill Your Profile
+                        </span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <form class="form-horizontal" action="#" id="submit_form" novalidate>
+                        <div class="form-wizard">
+                            <div class="form-body">
+                                <ul class="nav nav-pills nav-justified steps">
+                                    <li>
+                                        <a href="#tab1" data-toggle="tab" class="step">
+                                            <!--<span class="number"> 1 </span>-->
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> TECHNICAL INFORMATION
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab3" data-toggle="tab" class="step">
+                                            <!--<span class="number"> 3 </span>-->
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> PERSONAL INFORMATION
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!--<div id="bar" class="progress progress-striped" role="progressbar">
+                                    <div class="progress-bar progress-bar-success"> </div>
+                                </div>-->
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab1">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Primary Skill <span class="required">*</span></label>
+                                                        <select name="ddlPrimarySkill" id="ddlPrimarySkill" class="form-control" ng-model="PrimarySkill" required disabled>
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in PrimarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Secondary Skill 1 <span class="required">*</span></label>
+                                                        <select name="ddlSecondarySkill1" id="ddlSecondarySkill1" class="form-control" ng-model="SecondarySkill1" required disabled>
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in SecondarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Secondary Skill 2 <span class="required">*</span></label>
+                                                        <select name="ddlSecondarySkill2" id="ddlSecondarySkill2" class="form-control" ng-model="SecondarySkill2" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in SecondarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Secondary Skill 3 <span class="required">*</span></label>
+                                                        <select name="ddlSecondarySkill3" id="ddlSecondarySkill3" class="form-control" ng-model="SecondarySkill3" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in SecondarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Secondary Skill 4</label>
+                                                        <select name="ddlSecondarySkill4" id="ddlSecondarySkill4" class="form-control" ng-model="SecondarySkill4">
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in SecondarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Secondary Skill 5</label>
+                                                        <select name="ddlSecondarySkill5" id="ddlSecondarySkill5" class="form-control" ng-model="SecondarySkill5">
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{skill.SkillId}}" ng-repeat="skill in SecondarySkills">{{skill.SkillName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Current Location <span class="required">*</span></label>
+                                                        <select name="ddlLocation" id="ddlLocation" class="form-control" ng-model="CurrentLocation" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="{{city.Location}}" ng-repeat="city in Cities">{{city.Location}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Experience <span class="required">*</span></label>
+                                                        <select name="ddlExperience" id="ddlExperience" class="form-control" ng-model="Experience" required>
+                                                            <option value="">-Select-</option>
+                                                            <option value="0">Fresher</option>
+                                                            <option value="1">1+</option>
+                                                            <option value="2">2+</option>
+                                                            <option value="3">3+</option>
+                                                            <option value="4">4+</option>
+                                                            <option value="5">5+</option>
+                                                            <option value="6">6+</option>
+                                                            <option value="7">7+</option>
+                                                            <option value="8">8+</option>
+                                                            <option value="9">9+</option>
+                                                            <option value="10">10+</option>
+                                                            <option value="11">11+</option>
+                                                            <option value="12">12+</option>
+                                                            <option value="13">13+</option>
+                                                            <option value="14">14+</option>
+                                                            <option value="15">15+</option>
+                                                            <option value="16">16+</option>
+                                                            <option value="17">17+</option>
+                                                            <option value="18">18+</option>
+                                                            <option value="19">19+</option>
+                                                            <option value="20">20+</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Mobile Number <span class="required">*</span></label>
+                                                        <input type="text" class="form-control" name="MobileNumber" pattern="^\d{10}$" ng-model="MobileNumber" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Address</label>
+                                                        <textarea class="form-control" name="Address" rows="3" ng-model="Address"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Upload Resume <span class="required">*</span></label>
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="input-group input-large">
+                                                                <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                                                    <span class="fileinput-filename"> </span>
+                                                                </div>
+                                                                <span class="input-group-addon btn default btn-file">
+                                                                    <span class="fileinput-new"> Select file </span>
+                                                                    <span class="fileinput-exists"> Change </span>
+                                                                    <input type="file" name="..." ng-model="InterviewerResume" file-model="myFile">
+                                                                </span>
+                                                                <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput">
+                                                                    <i class="fa fa-trash-o"></i>&nbsp;Remove
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="audiofile">
+                                                        <a href="../../assets/CandidateResumes/{{InterviewerResumeDownload}}"><i class="fa fa-download"></i> {{InterviewerResumeDownload}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions fluid text-right">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="javascript:;" class="btn blue button-previous">
+                                            <i class="m-icon-swapleft m-icon-white"></i> Back
+                                        </a>
+                                        <a href="javascript:;" class="btn blue button-next">
+                                            Continue
+                                            <i class="m-icon-swapright m-icon-white"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn blue button-submit" ng-click="saveInterviewerProfile();">
+                                            Submit
+                                            <i class="fa fa-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
