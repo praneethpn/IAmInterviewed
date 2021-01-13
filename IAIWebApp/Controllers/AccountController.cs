@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.Web.Security;
 using IAIWebApp.DataHelpers;
 using IAIWebApp.Models;
-using System.Configuration;
 
 namespace IAIWebApp.Controllers
 {
@@ -33,7 +32,7 @@ namespace IAIWebApp.Controllers
         {
 
             try
-            {
+            {                
                 User _user = _account.AunthenticateUser(login.username, login.password);
                 if (!string.IsNullOrEmpty(_user.EmailID))
                 {
@@ -48,7 +47,12 @@ namespace IAIWebApp.Controllers
             catch (Exception ex)
             {
                 var Error = "Error. <Exception:>" + "\n" + ex.Message + " ";
-                return Json(new { data = "", Success = false, errorMessage = Error }, JsonRequestBehavior.AllowGet);
+                return Json(new
+                {
+                    data = "",
+                    Success = false,
+                    errorMessage = Error
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -66,7 +70,7 @@ namespace IAIWebApp.Controllers
         {
             try
             {
-                if(string.IsNullOrEmpty(_register.Name) || string.IsNullOrEmpty(_register.EmailAddress) || _register.PrimarySkill == null || 
+                if (string.IsNullOrEmpty(_register.Name) || string.IsNullOrEmpty(_register.EmailAddress) || _register.PrimarySkill == null ||
                     _register.SecondarySkill1 == null || string.IsNullOrEmpty(_register.MobileNumber) || string.IsNullOrEmpty(_register.Country))
                 {
                     return Json(new { data = "", Success = false, errorMessage = "Please fill All Mandatory Fields." }, JsonRequestBehavior.AllowGet);
@@ -136,7 +140,7 @@ namespace IAIWebApp.Controllers
                     else
                     {
                         return Json(new { data = "Registered Successfully.", Success = true, errorMessage = "" }, JsonRequestBehavior.AllowGet);
-                    }                    
+                    }
                 }
             }
             catch (Exception ex)

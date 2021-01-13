@@ -26446,10 +26446,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/21/2019 19:50:24</publishTime>
     </File>
     <File Include="bin/IAIWebApp.dll">
-      <publishTime>12/01/2020 10:49:28</publishTime>
+      <publishTime>12/29/2020 16:48:13</publishTime>
     </File>
     <File Include="bin/IAIWebApp.pdb">
-      <publishTime>12/01/2020 10:49:28</publishTime>
+      <publishTime>12/29/2020 16:48:13</publishTime>
     </File>
     <File Include="bin/MCPG.CCA.Util.dll">
       <publishTime>02/04/2014 16:45:10</publishTime>
@@ -26485,7 +26485,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/23/2012 15:23:58</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>08/03/2014 20:33:56</publishTime>
+      <publishTime>06/13/2016 23:06:14</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/18/2015 20:19:46</publishTime>
@@ -26522,6 +26522,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/SendGrid.dll">
+      <publishTime>12/16/2020 20:53:54</publishTime>
+    </File>
+    <File Include="bin/SendGrid.pdb">
+      <publishTime>12/16/2020 20:53:54</publishTime>
+    </File>
+    <File Include="bin/SendGrid.SmtpApi.dll">
+      <publishTime>08/19/2020 20:05:12</publishTime>
+    </File>
+    <File Include="bin/StarkbankEcdsa.dll">
+      <publishTime>06/23/2020 15:00:34</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>05/30/2017 21:38:50</publishTime>
@@ -26626,7 +26638,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/02/2020 10:15:53</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>05/01/2020 10:57:56</publishTime>
+      <publishTime>12/29/2020 16:45:14</publishTime>
     </File>
     <File Include="pages/Candidate/ApplyJobs.html">
       <publishTime>10/22/2019 21:17:14</publishTime>
@@ -26812,7 +26824,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/21/2019 19:47:42</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/12/2020 15:35:11</publishTime>
+      <publishTime>12/29/2020 16:48:21</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -10,6 +10,8 @@ using System.Configuration;
 using System.IO;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
+using System.Web.Script.Serialization;
 
 namespace IAIWebApp.Controllers
 {
@@ -627,8 +629,12 @@ namespace IAIWebApp.Controllers
                 {
                     primaryskill = null;
                 }
+                var serializer = new JavaScriptSerializer();
+                serializer.MaxJsonLength = Int32.MaxValue;
                 List<CompanyModel> _companyAddedCandidates = _companyDataHelper.GetCompanyAddedCandidateDetials(primaryskill, companyId, startDate, endDate);
-                return Json(new { data = _companyAddedCandidates, Success = true, errorMessage = "" }, JsonRequestBehavior.AllowGet);
+                var jsonResult = Json(new { data = _companyAddedCandidates, Success = true, errorMessage = "" }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
             }
             catch (Exception ex)
             {

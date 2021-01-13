@@ -59,3 +59,9 @@ E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Web.Http.xml
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Net.Http.Formatting.xml
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\obj\Release\IAIWebApp.csproj.CoreCompileInputs.cache
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\MCPG.CCA.Util.dll
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\SendGrid.dll
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\SendGrid.SmtpApi.dll
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\StarkbankEcdsa.dll
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\SendGrid.pdb
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\SendGrid.xml
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\SendGrid.SmtpApi.xml

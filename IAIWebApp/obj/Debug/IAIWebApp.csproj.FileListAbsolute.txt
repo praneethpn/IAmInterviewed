@@ -1,7 +1,7 @@
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\ApplicationInsights.config
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\roslyn\csc.exe
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
@@ -27,6 +27,9 @@ E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\Microsoft.Applicati
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\Microsoft.Web.Infrastructure.dll
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\Newtonsoft.Json.dll
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\SendGrid.dll
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\SendGrid.SmtpApi.dll
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\StarkbankEcdsa.dll
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Web.Helpers.dll
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Web.Http.dll
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Web.Mvc.dll
@@ -43,6 +46,10 @@ E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\Microsoft.AI.Web.xm
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\Microsoft.AI.WindowsServer.xml
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\Microsoft.ApplicationInsights.xml
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\Newtonsoft.Json.xml
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\SendGrid.pdb
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\SendGrid.xml
+E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\SendGrid.SmtpApi.xml
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Web.Http.xml
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Web.Helpers.xml
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Web.Mvc.xml
@@ -52,7 +59,6 @@ E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Web.WebPages
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Web.WebPages.Deployment.xml
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Web.WebPages.Razor.xml
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\Antlr3.Runtime.pdb
-E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\Newtonsoft.Json.xml
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\bin\System.Net.Http.Formatting.xml
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\obj\Debug\IAIWebApp.csprojAssemblyReference.cache
 E:\Projects\IAmInterviewed\IAIWebApp\IAIWebApp\IAIWebApp\obj\Debug\IAIWebApp.csproj.CoreCompileInputs.cache
