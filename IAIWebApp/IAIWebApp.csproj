@@ -8346,6 +8346,8 @@
     <Content Include="assets\OuterCSS\img\numberIcon1.png" />
     <Content Include="assets\OuterCSS\img\numberIcon2.png" />
     <Content Include="assets\OuterCSS\img\numberIcon3.png" />
+    <Content Include="assets\OuterCSS\img\privacypolicy.png" />
+    <Content Include="assets\OuterCSS\img\privacypolicypic.png" />
     <Content Include="assets\OuterCSS\img\topBannertext.jpg" />
     <Content Include="assets\OuterCSS\img\topBannertext_new.png" />
     <Content Include="assets\OuterCSS\img\topBannertext.png" />
@@ -8373,6 +8375,7 @@
     <Content Include="index.html" />
     <Content Include="Interview.html" />
     <Content Include="Interviewer.html" />
+    <Content Include="PrivacyPolicy.html" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
