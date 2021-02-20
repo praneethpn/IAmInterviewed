@@ -397,7 +397,6 @@
         $("#confirmScheduleInterviewPopup").modal("hide");
     }
 
-
     $scope.scheduleInterview = function () {
         manageLoader('load');
         var saveInterviewScheduleURL = IAMInterviewed.Company.saveInterviewScheduleCompany + "?ScheduleDate=" + $scope.ScheduleDate + "&Interviewer=" + $scope.Interviewer +
@@ -490,6 +489,21 @@
     $scope.viewRatingDetails = function (objCandidateRating) {
         $scope.$broadcast('bindCandidateRatingDetails', $rootScope.objRequirement.ReqId, objCandidateRating.ScheduleId);
         //$("#candidateratingdetails").modal('show');
+    }
+
+    $scope.getHistory = function (profileId) {
+        manageLoader('load');
+        var getProfileHistoryURL = IAMInterviewed.Company.getProfileHistory + "?ProfileId=" + profileId + "&companyId=" + $rootScope.loggedInUserDetails.UserID;
+        $http.get(getProfileHistoryURL).then(function success(response) {
+            //console.log(response.data);
+            $scope.profileHistoryData = response.data.data;
+            $("#candidateHistory").modal("show");
+            manageLoader();
+        }, function error(response) {
+            $rootScope.resultMessage = response.data.errorMessage;
+            showNotification('error');
+            manageLoader();
+        });
     }
 
     $scope.paginate = function (value) {

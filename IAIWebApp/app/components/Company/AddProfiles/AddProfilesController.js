@@ -397,7 +397,6 @@
         $("#confirmScheduleInterviewPopup").modal("hide");
     }
 
-
     $scope.scheduleInterview = function () {
         manageLoader('load');
         var saveInterviewScheduleURL = IAMInterviewed.Company.saveInterviewScheduleCompany + "?ScheduleDate=" + $scope.ScheduleDate + "&Interviewer=" + $scope.Interviewer +
@@ -490,6 +489,68 @@
     $scope.viewRatingDetails = function (objCandidateRating) {
         $scope.$broadcast('bindCandidateRatingDetails', $rootScope.objRequirement.ReqId, objCandidateRating.ScheduleId);
         //$("#candidateratingdetails").modal('show');
+    }
+
+    $scope.getHistory = function (profileId) {
+        manageLoader('load');
+        var getProfileHistoryURL = IAMInterviewed.Company.getProfileHistory + "?ProfileId=" + profileId + "&companyId=" + $rootScope.loggedInUserDetails.UserID;
+        $http.get(getProfileHistoryURL).then(function success(response) {
+            //console.log(response.data);
+            $scope.profileHistoryData = response.data.data;
+            $("#candidateHistory").modal("show");
+            manageLoader();
+        }, function error(response) {
+            $rootScope.resultMessage = response.data.errorMessage;
+            showNotification('error');
+            manageLoader();
+        });
+    }
+
+    $scope.exportToExcel = function () {
+        var createXLSLFormatObj = [];
+        /* XLS Head Columns */
+        var xlsHeader = ["Name", "Email Id", "Mobile Number", "Interview Date", "Rating", "Select Status", "Status Comments"];
+        var xlsRows = [];
+        angular.forEach($scope.companyProfiles, function (value, key) {
+            var xlsRowObject = {
+                "Name": value.CandidateName,
+                "Email Id": value.Email,
+                "Mobile Number": value.Mobile,
+                "Interview Date": value.InterviewDate,
+                "Rating": value.TotalRating,                
+                "Select Status": value.SelectStetus,
+                "Status Comments": value.StatusUpdateRemarks
+            }
+            xlsRows.push(xlsRowObject);
+        });
+        createXLSLFormatObj.push(xlsHeader);
+        $.each(xlsRows, function (index, value) {
+            var innerRowData = [];
+            //$("tbody").append('<tr><td>' + value.CandidateName + '</td><td>' + value.Email + '</td><td>' + value.MobileNumber + '</td><td>' + value.PrimarySKillName
+            //    + '</td><td>' + value.Designation + '</td><td>' + value.RecruiterName + '</td><td>' + value.DisplayDate + '</td><td>' + value.InterviewDateNew
+            //    + '</td><td>' + value.InterviewType + '</td><td>' + value.OveralRating + '</td><td>' + value.SelectStetus + '</td><td>' + value.StatusRemarks + '</td></tr>');
+            $.each(value, function (ind, val) {
+
+                innerRowData.push(val);
+            });
+            createXLSLFormatObj.push(innerRowData);
+        });
+        /* File Name */
+        var filename = "AddProfiles.xlsx";
+        /* Sheet Name */
+        var ws_name = "Profiles";
+
+        if (typeof console !== 'undefined') console.log(new Date());
+        var wb = XLSX.utils.book_new(),
+            ws = XLSX.utils.aoa_to_sheet(createXLSLFormatObj);
+
+        /* Add worksheet to workbook */
+        XLSX.utils.book_append_sheet(wb, ws, ws_name);
+
+        /* Write workbook and Download */
+        if (typeof console !== 'undefined') console.log(new Date());
+        XLSX.writeFile(wb, filename);
+        if (typeof console !== 'undefined') console.log(new Date());
     }
 
     $scope.paginate = function (value) {

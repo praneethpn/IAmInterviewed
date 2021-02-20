@@ -130,6 +130,11 @@
                                 <option value="Reject">Reject</option>
                             </select>
                         </div>
+                        <div class="col-md-2">
+                            <a class="export-excel" title="Export" ng-click="exportToExcel()" ng-hide="companyProfiles.length < 1">
+                                <img src="../../../../assets/InnerCSS/global/img/Export To Excel.jpg" />
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -147,6 +152,7 @@
                                     <th> Status Reason </th>
                                     <!--<th></th>-->
                                     <!--<th></th>-->
+                                    <th></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -185,6 +191,7 @@
                                     <td><a ng-click="scheduleInterviewPopup(profile)">Schedule</a></td>
                                     <td><a ng-click="reScheduleInterviewPopup(profile)">Re Schedule</a></td>
                                     <td><a ng-hide="profile.TotalRating == '' || profile.TotalRating == null || profile.TotalRating == '--'" ng-click="viewRatingDetails(profile)">Rating</a></td>
+                                    <td><a ng-click="getHistory(profile.CompanyProfileId)" title="History"><i class="fa fa-history" aria-hidden="true"></i></a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -509,6 +516,7 @@
                                 </div>-->
                                 <div class="form-group" ng-show="TimeSlot == ''">
                                     <ul class="interviewer-slots">
+                                        "i
                                         <li ng-repeat="interviewer in Interviewers">
                                             <span>{{interviewer.InterviewerName}}</span> <br />
                                             <a ng-repeat="slot in interviewer.timeSlotList" ng-click="schedulePopUp(slot, interviewer);">{{slot.TimeSlot}}</a>
@@ -607,6 +615,42 @@
                 <div class="modal-footer">
                     <button type="button" class="btn green" ng-click="selectTime()">Ok</button>
                     <button type="button" class="btn dark btn-outline" data-dismiss="modal" ng-click="Interviewer = ''; TimeSlot = '';">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="candidateHistory" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog modal-half">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">CANDIDATE PROFILE</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th> Date </th>
+                                        <th> Comments </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dump in profileHistoryData.followUpDump">
+                                        <td> {{dump.FollowUpDateDisplay}} </td>
+                                        <td> {{dump.Comments}} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
                 </div>
             </div>
             <!-- /.modal-content -->

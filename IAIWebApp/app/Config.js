@@ -103,6 +103,7 @@
         getSchedulesByUniqueId: "Company/GetSchedulesByUniqueId",
         GetCompanyDashBoardJobPostingDetails: "Company/GetCompanyDashBoardJobPostingDetails",
         saveCompanyRequestAccess: "Company/saveCompanyRequestAccess",
-        getScheduleDetailsForViewRating: "Company/getScheduleDetailsForViewRating"
+        getScheduleDetailsForViewRating: "Company/getScheduleDetailsForViewRating",
+        getProfileHistory: "Company/GetAllProfilesFollowUpById"
     }
 }

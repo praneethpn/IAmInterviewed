@@ -10,7 +10,7 @@ using System.Configuration;
 using System.IO;
 using System.Net;
 using Newtonsoft.Json.Linq;
-using Microsoft.Office.Interop.Word;
+//using Microsoft.Office.Interop.Word;
 using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
 

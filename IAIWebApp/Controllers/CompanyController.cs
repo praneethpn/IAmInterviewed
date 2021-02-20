@@ -958,7 +958,7 @@ namespace IAIWebApp.Controllers
                                             + "Interview Topics: " + mainTopics + "<br /><br />"
                                             + "Please login here to see details: " + URL + "<br /><br />"
                                             + callMessage + " <br /><br />"
-                                            //+ "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
+                                            + "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
                                             + "Have a nice day...<br /><br />"
                                             + "Thanks,<br />"
                                             + "Team IAmInterviewed";
@@ -994,7 +994,7 @@ namespace IAIWebApp.Controllers
                                     + "Interview Topics: " + mainTopics + "<br /><br />"
                                     + "Please login here to see details: " + URL + "<br /><br />"
                                     + "Audio Interview you will get Phone call. Video Interview you will receive ZOOM invite. <br /><br />"
-                                    //+ "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
+                                    + "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
                                     + "Have a nice day...<br /><br />"
                                     + "Thanks,<br />"
                                     + "Team IAmInterviewed";
@@ -1034,6 +1034,23 @@ namespace IAIWebApp.Controllers
             {
                 CompanyModel _ratingDetails = _companyDataHelper.getScheduleDetailsForViewRating(reqId, scheduleId);
                 return Json(new { data = _ratingDetails, Success = true, errorMessage = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                var Error = "Error. <Exception:>" + "\n" + ex.Message + " ";
+                return Json(new { data = "", Success = false, errorMessage = Error }, JsonRequestBehavior.AllowGet);
+                //return Content("Error = " + Error);
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult GetAllProfilesFollowUpById(int ProfileId, int companyId)
+        {
+            try
+            {
+                CompanyProfilesFollowUp _followpUpProfile = _companyDataHelper.GetAllProfilesFollowUpById(ProfileId, companyId);
+                return Json(new { data = _followpUpProfile, Success = true, errorMessage = "" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

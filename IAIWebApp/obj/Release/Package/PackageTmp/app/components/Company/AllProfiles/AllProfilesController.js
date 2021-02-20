@@ -86,6 +86,21 @@
         }
     }
 
+    $scope.getHistory = function (profileId) {
+        manageLoader('load');
+        var getProfileHistoryURL = IAMInterviewed.Company.getProfileHistory + "?ProfileId=" + profileId + "&companyId=" + $rootScope.loggedInUserDetails.UserID;
+        $http.get(getProfileHistoryURL).then(function success(response) {
+            //console.log(response.data);
+            $scope.profileHistoryData = response.data.data;
+            $("#candidateHistory").modal("show");
+            manageLoader();
+        }, function error(response) {
+            $rootScope.resultMessage = response.data.errorMessage;
+            showNotification('error');
+            manageLoader();
+        });
+    }
+
     $(document).ready(function () {
         $timeout(function () {
             //onComponentLoad();

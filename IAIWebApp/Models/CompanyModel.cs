@@ -327,4 +327,29 @@ namespace IAIWebApp.Models
         public string UniqueId { get; set; }
         public string StatusUpdateRemarks { get; set; }
     }
+
+    public class CompanyProfilesFollowUp
+    {
+        public List<CompanyProfilesFollowUpDump> followUpDump { get; set; }
+        public int CompanyId { get; set; }
+        public string CompanyName { get; set; }
+        public int CompanyProfileId { get; set; }
+        public string CandidateName { get; set; }
+        public DateTime FollowUpDate { get; set; }
+        public string FollowUpDateDisplay { get; set; }
+        public string Comments { get; set; }
+        public string EmailId { get; set; }
+        public string MobileNo { get; set; }
+        public string PrimarySkill { get; set; }
+        public string SecondarySkill1 { get; set; }
+        public string SecondarySkill2 { get; set; }
+        public string SecondarySkill3 { get; set; }
+        public string SelectStatus { get; set; }
+    }
+    public class CompanyProfilesFollowUpDump
+    {
+        public DateTime FollowUpDate { get; set; }
+        public string FollowUpDateDisplay { get; set; }
+        public string Comments { get; set; }
+    }
 }

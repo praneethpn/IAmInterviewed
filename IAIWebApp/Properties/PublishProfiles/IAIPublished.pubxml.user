@@ -25,7 +25,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2019 21:46:46</publishTime>
     </File>
     <File Include="app/components/Candidate/Call/InterviewCallController.js">
-      <publishTime>05/25/2020 14:27:54</publishTime>
+      <publishTime>01/24/2021 12:28:39</publishTime>
     </File>
     <File Include="app/components/Candidate/CandidateDashboard/CandidateDashboard.html">
       <publishTime>12/29/2019 18:51:09</publishTime>
@@ -109,10 +109,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/23/2020 16:43:23</publishTime>
     </File>
     <File Include="app/components/Company/AddProfiles/AddProfiles.html">
-      <publishTime>11/05/2020 19:02:22</publishTime>
+      <publishTime>02/15/2021 11:20:58</publishTime>
     </File>
     <File Include="app/components/Company/AddProfiles/AddProfilesController.js">
-      <publishTime>11/05/2020 19:07:04</publishTime>
+      <publishTime>02/15/2021 11:21:11</publishTime>
     </File>
     <File Include="app/components/Company/AllJobPostings/AllJobPostings.html">
       <publishTime>06/27/2020 13:12:24</publishTime>
@@ -121,10 +121,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/19/2020 21:16:42</publishTime>
     </File>
     <File Include="app/components/Company/AllProfiles/AllProfiles.html">
-      <publishTime>11/17/2020 12:17:16</publishTime>
+      <publishTime>02/15/2021 11:21:39</publishTime>
     </File>
     <File Include="app/components/Company/AllProfiles/AllProfilesController.js">
-      <publishTime>11/16/2020 19:21:56</publishTime>
+      <publishTime>02/15/2021 11:21:20</publishTime>
     </File>
     <File Include="app/components/Company/CompanyProfile/CompanyProfile.html">
       <publishTime>12/27/2019 16:45:23</publishTime>
@@ -220,7 +220,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/24/2020 18:42:42</publishTime>
     </File>
     <File Include="app/components/Interviewer/InterviewerDashboard/InterviewerDashboardController.js">
-      <publishTime>07/21/2020 20:16:51</publishTime>
+      <publishTime>01/24/2021 12:35:35</publishTime>
     </File>
     <File Include="app/components/Interviewer/ReferFriend/ReferFriend.html">
       <publishTime>11/01/2019 21:12:13</publishTime>
@@ -241,7 +241,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/23/2018 21:47:11</publishTime>
     </File>
     <File Include="app/Config.js">
-      <publishTime>11/03/2020 23:16:14</publishTime>
+      <publishTime>02/15/2021 11:06:57</publishTime>
     </File>
     <File Include="app/controllers/CandidateControllers/ApplyJobsController.js">
       <publishTime>10/22/2019 21:46:46</publishTime>
@@ -438,6 +438,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="assets/CandidateResumes/7_Swetha.K- Asp.Net-old.docx">
       <publishTime>05/07/2020 12:43:45</publishTime>
     </File>
+    <File Include="assets/Important Docs/FAQ s v2.pdf">
+      <publishTime>12/10/2017 11:50:19</publishTime>
+    </File>
+    <File Include="assets/Important Docs/IAmInterviewed - Privacy  Policy.docx">
+      <publishTime>01/13/2021 11:15:50</publishTime>
+    </File>
+    <File Include="assets/Important Docs/IAmInterviewedData.xml">
+      <publishTime>12/10/2017 11:50:19</publishTime>
+    </File>
+    <File Include="assets/Important Docs/Terms and ConditionsV2.pdf">
+      <publishTime>12/10/2017 11:50:20</publishTime>
+    </File>
     <File Include="assets/InnerCSS/apps/css/inbox.css">
       <publishTime>03/30/2017 23:59:10</publishTime>
     </File>
@@ -508,7 +520,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/24/2020 18:40:56</publishTime>
     </File>
     <File Include="assets/InnerCSS/global/css/Custom.css">
-      <publishTime>11/16/2020 20:32:31</publishTime>
+      <publishTime>01/24/2021 12:12:13</publishTime>
     </File>
     <File Include="assets/InnerCSS/global/css/customCompany.css">
       <publishTime>03/30/2020 15:47:57</publishTime>
@@ -26242,7 +26254,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/27/2020 11:53:44</publishTime>
     </File>
     <File Include="assets/OuterCSS/css/style.css">
-      <publishTime>07/13/2020 20:12:33</publishTime>
+      <publishTime>01/13/2021 13:10:47</publishTime>
     </File>
     <File Include="assets/OuterCSS/css/template.css">
       <publishTime>03/27/2020 11:53:44</publishTime>
@@ -26397,6 +26409,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="assets/OuterCSS/img/numberIcon3.png">
       <publishTime>01/16/2020 21:12:35</publishTime>
     </File>
+    <File Include="assets/OuterCSS/img/privacypolicy.png">
+      <publishTime>01/13/2021 12:11:39</publishTime>
+    </File>
+    <File Include="assets/OuterCSS/img/privacypolicypic.png">
+      <publishTime>01/13/2021 12:18:16</publishTime>
+    </File>
     <File Include="assets/OuterCSS/img/topBannertext.jpg">
       <publishTime>01/16/2020 21:12:35</publishTime>
     </File>
@@ -26446,10 +26464,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/21/2019 19:50:24</publishTime>
     </File>
     <File Include="bin/IAIWebApp.dll">
-      <publishTime>12/29/2020 16:48:13</publishTime>
+      <publishTime>02/15/2021 11:24:26</publishTime>
     </File>
     <File Include="bin/IAIWebApp.pdb">
-      <publishTime>12/29/2020 16:48:13</publishTime>
+      <publishTime>02/15/2021 11:24:26</publishTime>
     </File>
     <File Include="bin/MCPG.CCA.Util.dll">
       <publishTime>02/04/2014 16:45:10</publishTime>
@@ -26626,19 +26644,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/21/2019 19:47:42</publishTime>
     </File>
     <File Include="home.html">
-      <publishTime>11/02/2020 10:15:21</publishTime>
+      <publishTime>01/13/2021 13:14:05</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>11/02/2020 09:58:59</publishTime>
+      <publishTime>01/13/2021 13:11:28</publishTime>
     </File>
     <File Include="Interview.html">
-      <publishTime>11/02/2020 10:15:36</publishTime>
+      <publishTime>01/24/2021 12:07:52</publishTime>
     </File>
     <File Include="Interviewer.html">
       <publishTime>11/02/2020 10:15:53</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>12/29/2020 16:45:14</publishTime>
+      <publishTime>01/24/2021 11:36:11</publishTime>
     </File>
     <File Include="pages/Candidate/ApplyJobs.html">
       <publishTime>10/22/2019 21:17:14</publishTime>
@@ -26730,6 +26748,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="pages/Interviewer/Schedules.html">
       <publishTime>12/30/2019 21:52:12</publishTime>
     </File>
+    <File Include="PrivacyPolicy.html">
+      <publishTime>01/13/2021 13:07:45</publishTime>
+    </File>
     <File Include="res/iml.json">
       <publishTime>11/11/2019 18:31:18</publishTime>
     </File>
@@ -26812,7 +26833,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/21/2019 19:47:42</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>11/02/2020 10:17:13</publishTime>
+      <publishTime>01/13/2021 13:14:18</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutCCAV.cshtml">
       <publishTime>05/19/2020 12:42:11</publishTime>
@@ -26824,7 +26845,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/21/2019 19:47:42</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/29/2020 16:48:21</publishTime>
+      <publishTime>01/24/2021 12:48:11</publishTime>
     </File>
   </ItemGroup>
 </Project>

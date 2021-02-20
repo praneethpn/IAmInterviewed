@@ -1831,6 +1831,7 @@ namespace IAIWebApp.DataHelpers
                 for (int i = 0; i < count; i++)
                 {
                     CompanyModel _model = new CompanyModel();
+                    _model.ProfileId = string.IsNullOrEmpty(dsmain.Tables[0].Rows[i]["ProfileId"].ToString()) ? 0 : Convert.ToInt32(dsmain.Tables[0].Rows[i]["ProfileId"]);
                     _model.CandidateId = Convert.ToInt32(dsmain.Tables[0].Rows[i]["UserId"]);
                     _model.UniqueId = dsmain.Tables[0].Rows[i]["UniqId"].ToString();
                     _model.Email = dsmain.Tables[0].Rows[i]["EmailId"].ToString();
@@ -2361,6 +2362,7 @@ namespace IAIWebApp.DataHelpers
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
                     CandidateModel _model = new CandidateModel();
+                    _model.CompanyProfileId = ds.Tables[0].Rows[i]["ProfileId"].ToString();
                     _model.candidateid = Convert.ToInt32(ds.Tables[0].Rows[i]["UserId"]);
                     _model.Email = ds.Tables[0].Rows[i]["EmailId"].ToString();
                     _model.uniquenumber = ds.Tables[0].Rows[i]["UniqId"].ToString();
@@ -2689,6 +2691,59 @@ namespace IAIWebApp.DataHelpers
                 string methodName = method.Name;
                 string className = method.ReflectedType.Name;
                 sendErrorMail(ex, methodName, className);
+            }
+        }
+
+        public CompanyProfilesFollowUp GetAllProfilesFollowUpById(int ProfileId, int companyId)
+        {
+            CompanyProfilesFollowUp _model = new CompanyProfilesFollowUp();
+            try
+            {
+                List<SqlParameter> parscandidate = new List<SqlParameter>();
+                List<SqlParameter> parscandidate1 = new List<SqlParameter>();
+                DataSet ds = new DataSet();
+                DataSet d1 = new DataSet();
+                string[] tablenew = new string[] { "CompanyProfiles" };
+                parscandidate.Add(GetSqlParameter("@ProfileId", SqlDbType.Int, ProfileId));
+                SqlHelper.FillDataset(CS, SP, "Proc_Get_AllProfilesFollowUpById", ds, tablenew, parscandidate.ToArray());
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    _model.CompanyProfileId = Convert.ToInt32(ds.Tables[0].Rows[0]["CompanyProfileId"]);
+                    _model.FollowUpDate = Convert.ToDateTime(ds.Tables[0].Rows[0]["FollowUpDate"]);
+                    _model.FollowUpDateDisplay = _model.FollowUpDate.ToString("dd/MMM/yyyy");
+                    _model.Comments = ds.Tables[0].Rows[0]["Comments"].ToString();
+                    _model.SelectStatus = ds.Tables[0].Rows[0]["SelectStatus"].ToString();
+                    _model.CompanyId = companyId;
+                }
+                else
+                {
+                    _model.CompanyProfileId = ProfileId;
+                    _model.CompanyId = companyId;
+                    _model.Comments = "";
+                }
+                List<CompanyProfilesFollowUpDump> _dumpArray = new List<CompanyProfilesFollowUpDump>();
+                if (ds.Tables[1].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+                    {
+                        CompanyProfilesFollowUpDump _dump = new CompanyProfilesFollowUpDump();
+                        _dump.FollowUpDate = Convert.ToDateTime(ds.Tables[1].Rows[i]["FollowUpDate"]);
+                        _dump.FollowUpDateDisplay = _dump.FollowUpDate.ToString("dd/MMM/yyyy");
+                        _dump.Comments = ds.Tables[1].Rows[i]["Comments"].ToString();
+                        _dumpArray.Add(_dump);
+                    }
+                }
+                _model.followUpDump = _dumpArray;
+
+                return _model;
+            }
+            catch (Exception ex)
+            {
+                //MethodBase method = System.Reflection.MethodBase.GetCurrentMethod();
+                //string methodName = method.Name;
+                //string className = method.ReflectedType.Name;
+                //sendErrorMail(ex, methodName, className);
+                return _model;
             }
         }
 

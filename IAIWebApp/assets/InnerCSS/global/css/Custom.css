@@ -1279,11 +1279,15 @@ tags-input .tags .tag-item .remove-button {
     color: #337ab7;
     float: right;
 }
+    .call-grid-button i {
+        font-size: 25px;
 
-.table-no-hover > tbody > tr:hover, .table-no-hover > tbody > tr:hover > td {
-    background: transparent !important;
-    color: #333 !important;
-}
+    }
+
+    .table-no-hover > tbody > tr:hover, .table-no-hover > tbody > tr:hover > td {
+        background: transparent !important;
+        color: #333 !important;
+    }
 
 .table-scrollable .table-no-hover tbody tr:nth-child(even) {
     background: #ffffff !important;
@@ -1418,4 +1422,8 @@ tags-input .tags .tag-item .remove-button {
     height: 17px !important;
     border-radius: 25px !important;
     font-size: 11px !important;
+}
+.export-excel img {
+    width: 30px;
+    height: 30px;
 }

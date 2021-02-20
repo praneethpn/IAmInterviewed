@@ -92,6 +92,7 @@ namespace IAIWebApp.Models
         public string DisplayScheduleDate { get; set; }
         public DateTime FollowUpDate { get; set; }
         public string FollowUpDateDisplay { get; set; }
+        public string CompanyProfileId { get; set; }
     }
 
     public class CandidateProfileModel

@@ -67,7 +67,7 @@
             <div class="nav-wrapper">
                 <ul>
                     <li style="width: 100%; text-align: center;">
-                        <a href="#" id="waitTextInterview">Please wait while we initiate your interview.</a>
+                        <a href="#" id="waitTextInterview">Hi {{CandidateProfile[0].CandidateName}}, Please wait while Panel joins call. Thank you. </a>
                         <a href="#" id="completedInterview">Thanks for attending Interview. We will update your Rating, Please Check your mail.</a>
                     </li>
                 </ul>
@@ -81,7 +81,8 @@
                 <div class="videoBlock">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
-                            <video id="localVideo" autoplay muted style="display: none;" ng-hide="!isCallStarted" width="200px" height="250px"></video>
+                            <video id="localVideo" autoplay muted style="display: none;" width="200px" height="250px"></video>
+                            <!--ng-hide="!isCallStarted"-->
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <video id="remoteVideo" autoplay width="200px" height="250px" style="display: none;" ng-hide="!isCallStarted"></video>
@@ -98,6 +99,13 @@
                     <button type="button" id="btnend" class="btn red call-button" ng-click="endCall()" title="End Call" ng-hide="!isCallStarted">
                         <i class="fa fa-microphone-slash reject" aria-hidden="true"></i>
                     </button>
+                </p>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 controlWrapper">
+                <h2 style="text-align: center;">Interview Topics</h2>
+                <p>
+                    {{CandidateProfile[0].PrimarySkillName}} ({{CandidateProfile[0].SecondarySkill1Name}}, {{CandidateProfile[0].SecondarySkill2Name}}, {{CandidateProfile[0].SecondarySkill3Name}}
+                    , {{CandidateProfile[0].SecondarySkill4Name}}, {{CandidateProfile[0].SecondarySkill5Name}})
                 </p>
             </div>
         </div>

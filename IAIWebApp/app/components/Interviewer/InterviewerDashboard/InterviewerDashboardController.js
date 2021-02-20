@@ -272,6 +272,8 @@
         //callid = CS.call.startPSTNCall(destnum, "localVideo", "remoteVideo", function () { });
         callid = CS.call.startCall(objInterview.UserId + objInterview.CandidateUniqueId, "localVideo", "remoteVideo", false, handleCallFromIML, recordCall)
         $scope.isCallStarted = true;
+        objInterview.InterviewerRemarks = "Panel Joined Call";
+        $scope.updateStatusInterview(objInterview);
     }
 
     $scope.startVideoCall = function (objInterview) {
@@ -284,6 +286,8 @@
         $scope.isCallStarted = true;
         //document.getElementById("localVideo").style.display = "block";
         document.getElementById("remoteVideo").style.display = "block";
+        objInterview.InterviewerRemarks = "Panel Joined Call";
+        $scope.updateStatusInterview(objInterview);
     }
 
     /* End ongoing call */

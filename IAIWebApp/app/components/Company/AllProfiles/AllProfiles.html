@@ -62,6 +62,14 @@
                                 <button class="btn btn-primary" type="button" ng-click="getCompanyAddedProfiles()" ng-disabled="startDateSearch == '' || endDateSearch == ''">Search</button>
                             </div>
                         </div>
+                        <div class="form-group col-md-1 col-lg-1">
+                            <div class="form-actions">
+                                <a class="export-excel" title="Export" ng-click="exportToExcel()" ng-hide="companyAddedProfilesList.length < 1">
+                                    <img src="../../../../assets/InnerCSS/global/img/Export To Excel.jpg" />
+                                </a>
+                                <!--<button class="btn btn-primary" type="button" ng-click="exportToExcel()" ng-hide="companyAddedProfilesList.length < 1">Export</button>-->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,8 +84,8 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th> 
-                                        Name 
+                                    <th>
+                                        Name
                                         <!--<input type="text" class="form-control header-search" ng-keyup="searchFilterHeader();" autocomplete="off" ng-model="nameSearch" />-->
                                     </th>
                                     <th> Email </th>
@@ -95,6 +103,7 @@
                                     <!--<th> ScreenStatus </th>-->
                                     <th> SelectStatus </th>
                                     <th> Status Comments </th>
+                                    <th></th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -114,6 +123,7 @@
                                     <td>{{candidate.SelectStetus}}</td>
                                     <td>{{candidate.StatusRemarks}}</td>
                                     <td><a ng-click="viewRatingDetails(candidate)">Details</a></td>
+                                    <td><a ng-click="getHistory(candidate.ProfileId)" title="History"><i class="fa fa-history" aria-hidden="true"></i></a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -125,4 +135,40 @@
         </div>
     </div>
     <ng-include src="'app/components/Common/ViewRating/ViewRating.html'"></ng-include>
+
+    <div class="modal fade" id="candidateHistory" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog modal-half">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">CANDIDATE PROFILE</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th> Date </th>
+                                        <th> Comments </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dump in profileHistoryData.followUpDump">
+                                        <td> {{dump.FollowUpDateDisplay}} </td>
+                                        <td> {{dump.Comments}} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 </div>

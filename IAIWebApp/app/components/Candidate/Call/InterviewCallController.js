@@ -42,6 +42,21 @@
     $scope.isCallStarted = false;
     $scope.isCallAccepted = false;
     $scope.callInterview = "";
+
+    ////Selector for your <video> element
+    //const video = document.querySelector('#localVideo');
+
+    ////Core
+    //window.navigator.mediaDevices.getUserMedia({ video: true })
+    //    .then(stream => {
+    //        video.srcObject = stream;
+    //        video.onloadedmetadata = (e) => {
+    //            video.play();
+    //        };
+    //    })
+    //    .catch(() => {
+    //        alert('You have give browser the permission to run Webcam and mic ;( ');
+    //    });
     //
     /* On document load initiate sdk initialization and login */
     function pageload() { // Initializes the sdk and logs in the user.
@@ -77,7 +92,7 @@
         //$scope.isCallAccepted = false;
         document.getElementById("btnaccept").style.visibility = "hidden";
         document.getElementById("btnreject").style.visibility = "hidden";
-        $("#divAudioVideoBlock").hide();
+        //$("#divAudioVideoBlock").hide();
         $("#waitTextInterview").show();
         $("#completedInterview").hide();
     }
@@ -117,12 +132,12 @@
                     //document.getElementById("remoteVideo").style.display = "block";
                 }
                 else {
-                    document.getElementById("localVideo").style.display = "none";
+                    document.getElementById("localVideo").style.display = "block";
                     //document.getElementById("remoteVideo").style.display = "none";
                 }
                 document.getElementById("btnaccept").style.visibility = "visible";
                 document.getElementById("btnreject").style.visibility = "visible";
-                $("#divAudioVideoBlock").show();
+                //$("#divAudioVideoBlock").show();
                 $("#waitTextInterview").hide();
                 $("#completedInterview").hide();
                 break;
@@ -139,10 +154,10 @@
                 console.log("incoming call end");
                 document.getElementById("btnaccept").style.visibility = "hidden";
                 document.getElementById("btnreject").style.visibility = "hidden";
-                document.getElementById("localVideo").style.display = "none";
+                document.getElementById("localVideo").style.display = "block";
                 //document.getElementById("remoteVideo").style.display = "none";
                 //document.getElementById("btnend").style.visibility = "hidden";
-                $("#divAudioVideoBlock").hide();
+                //$("#divAudioVideoBlock").hide();
                 $("#waitTextInterview").hide();
                 $("#completedInterview").show();
 				CS.call.end(callid, "Bye", function (ret, resp) {
@@ -169,7 +184,7 @@
                 //document.getElementById("remoteVideo").style.display = "block";
             }
             else {
-                document.getElementById("localVideo").style.display = "none";
+                document.getElementById("localVideo").style.display = "block";
                 //document.getElementById("remoteVideo").style.display = "none";
             }
         });
@@ -203,10 +218,10 @@
     $scope.endCall = function () {
         document.getElementById("btnaccept").style.visibility = "hidden";
         document.getElementById("btnreject").style.visibility = "hidden";
-        document.getElementById("localVideo").style.display = "none";
+        document.getElementById("localVideo").style.display = "block";
         //document.getElementById("remoteVideo").style.display = "none";
         //document.getElementById("btnend").style.visibility = "hidden";
-        $("#divAudioVideoBlock").hide();
+        //$("#divAudioVideoBlock").hide();
         $("#waitTextInterview").hide();
         $("#completedInterview").show();
         console.log(callid);
@@ -221,7 +236,7 @@
     }
 
     $(document).ready(function () {
-        $("#divAudioVideoBlock").hide();
+        //$("#divAudioVideoBlock").hide();
         $("#waitTextInterview").show();
         $("#completedInterview").hide();
     });

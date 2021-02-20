@@ -443,7 +443,7 @@ namespace IAIWebApp.Controllers
                                             + "Interview Topics: " + mainTopics + "<br />"
                                             + "Please login here to see details: " + URL + "<br /><br />"
                                             + callMessage + " < br /><br />"
-                                            //+ "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
+                                            + "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
                                             + "Have a nice day...<br /><br />"
                                             + "Thanks,<br />"
                                             + "Team IAmInterviewed";
@@ -526,7 +526,7 @@ namespace IAIWebApp.Controllers
                                                 + "Interview Topics: " + mainTopics + "<br />"
                                                 + "Please login here to see details: " + URL + "<br /><br />"
                                                 + callMessage + "<br /><br />"
-                                                //+ "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
+                                                + "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
                                                 + "Have a nice day...<br /><br />"
                                                 + "Thanks,<br />"
                                                 + "Team IAmInterviewed";

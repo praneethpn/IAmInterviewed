@@ -956,6 +956,13 @@ a.linkMore:hover {
     padding: 100px 0 0 50px;
 }
 
+    .innerBanner.privacy-policy {
+        height: 300px;
+        background: url(../img/privacypolicy.png) no-repeat left center;
+        background-size: cover;
+        padding: 100px 0 0 50px;
+    }
+
 .innerBanner h1 {
     font-size: 46px;
     background: url(../img/innerHeaderBg.png) no-repeat left center;
@@ -1458,4 +1465,13 @@ nav .nav-wrapper {
 }
 .btn-banner {
     float: right;
+}
+.privacy-policy h1, h2, h3, a {
+    color: #0072b0;
+}
+.privacy-policy h1 {
+    font-weight: 400;
+}
+.privacy-policy h2, h3 {
+    font-weight: 300;
 }
