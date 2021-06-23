@@ -124,6 +124,13 @@ namespace IAIWebApp.Controllers
         {
             try
             {
+                if(string.IsNullOrEmpty(_ratingModel.SecondarySkill1Remarks) || string.IsNullOrEmpty(_ratingModel.SecondarySkill2Remarks) || 
+                    string.IsNullOrEmpty(_ratingModel.SecondarySkill3Remarks) || string.IsNullOrEmpty(_ratingModel.InterviewerRemarks) || 
+                    (!string.IsNullOrEmpty(_ratingModel.SecondarySkill4Rating) && string.IsNullOrEmpty(_ratingModel.SecondarySkill4Remarks)) ||
+                    (!string.IsNullOrEmpty(_ratingModel.SecondarySkill5Rating) && string.IsNullOrEmpty(_ratingModel.SecondarySkill5Remarks)))
+                {
+                    return Json(new { data = "", Success = false, errorMessage = "Remarks are Mandatory." }, JsonRequestBehavior.AllowGet);
+                }
                 if (string.IsNullOrEmpty(_ratingModel.SecondarySkill4Rating) && string.IsNullOrEmpty(_ratingModel.SecondarySkill5Rating))
                 {
                     double skill1 = Convert.ToDouble(_ratingModel.SecondarySkill1Rating);

@@ -23,6 +23,16 @@
         $scope.requirementId = 0;
         $scope.currentPage = 1;
         $scope.numPerPage = 20;
+        $scope.subSkill1 = "";
+        $scope.subSkill2 = "";
+        $scope.subSkill3 = "";
+        $scope.subSkill4 = "";
+        $scope.subSkill5 = "";
+        $scope.subSkill6 = "";
+        $scope.subSkill7 = "";
+        $scope.subSkill8 = "";
+        $scope.subSkill9 = "";
+        $scope.subSkill10 = "";
     }
     $scope.ClearAll();
 
@@ -165,6 +175,16 @@
             $scope.designation = objRequirement.JobTitleId.toString();
             $scope.HighestPay = objRequirement.HighestPay.toString();
             $scope.requirementId = objRequirement.ReqId;
+            $scope.subSkill1 = objRequirement.subSkill1;
+            $scope.subSkill2 = objRequirement.subSkill2;
+            $scope.subSkill3 = objRequirement.subSkill3;
+            $scope.subSkill4 = objRequirement.subSkill4;
+            $scope.subSkill5 = objRequirement.subSkill5;
+            $scope.subSkill6 = objRequirement.subSkill6;
+            $scope.subSkill7 = objRequirement.subSkill7;
+            $scope.subSkill8 = objRequirement.subSkill8;
+            $scope.subSkill9 = objRequirement.subSkill9;
+            $scope.subSkill10 = objRequirement.subSkill10;
             $(".scroll-to-top").click();
         });
     }
@@ -192,6 +212,16 @@
             Remarks: $scope.keyResponsibilities,
             UserId: $rootScope.loggedInUserDetails.UserID,
             AdditionalSkills: $scope.additionalSkills,
+            subSkill1 : $scope.subSkill1,
+            subSkill2: $scope.subSkill2,
+            subSkill3: $scope.subSkill3,
+            subSkill4: $scope.subSkill4,
+            subSkill5: $scope.subSkill5,
+            subSkill6: $scope.subSkill6,
+            subSkill7: $scope.subSkill7,
+            subSkill8: $scope.subSkill8,
+            subSkill9: $scope.subSkill9,
+            subSkill10: $scope.subSkill10
         }
         var saveCompanyRequirementsURL = IAMInterviewed.Company.saveCompanyRequirements;
         $http.post(saveCompanyRequirementsURL, objData).then(function (response) {

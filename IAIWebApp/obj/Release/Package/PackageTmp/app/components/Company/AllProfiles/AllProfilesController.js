@@ -32,9 +32,18 @@
         manageLoader('load');
         var getCompanyAddedCandidateDetialsURL = IAMInterviewed.Company.getCompanyAddedCandidateDetials + "?primaryskill=" + $scope.primarySkillSearch + "&companyId=" + $rootScope.loggedInUserDetails.UserID
             + "&startDate=" + $scope.startDateSearch + "&endDate=" + $scope.endDateSearch;
-        $http.get(getCompanyAddedCandidateDetialsURL).then(function success(response) {
-            $scope.companyAddedProfilesList = response.data.data;
-            $scope.companyAddedProfilesListBase = response.data.data;
+        $http.get(getCompanyAddedCandidateDetialsURL).then(function success(response) {            
+            $scope.companyAddedProfilesList = [];            
+            if ($scope.CompanyHomeDetails.CompanyUserType == 'Admin') {
+                $scope.companyAddedProfilesList = response.data.data;
+                $scope.companyAddedProfilesListBase = response.data.data;
+            }
+            else {
+                $scope.companyAddedProfilesListBase = $.grep(response.data.data, function (value) {
+                    return value.RecruiterId == $rootScope.loggedInUserDetails.UserID;
+                });
+                $scope.companyAddedProfilesList = $scope.companyAddedProfilesListBase;
+            }
             $scope.totalItems = $scope.companyAddedProfilesList.length;
             //console.log($scope.companyAddedProfilesList);
             manageLoader();
@@ -60,6 +69,14 @@
 
     $scope.searchFilterHeader = function () {
         if ($scope.nameSearch == "" && $scope.recruiterSearch == "") {
+            //if ($scope.CompanyHomeDetails.CompanyUserType == 'Admin') {
+            //    $scope.companyAddedProfilesList = $scope.companyAddedProfilesListBase;
+            //}
+            //else {
+            //    $scope.companyAddedProfilesList = $.grep($scope.companyAddedProfilesListBase, function (value) {
+            //        return value.RecruiterId == $rootScope.loggedInUserDetails.UserID;
+            //    });
+            //}
             $scope.companyAddedProfilesList = $scope.companyAddedProfilesListBase;            
             $scope.totalItems = $scope.companyAddedProfilesList.length;
         }
@@ -99,6 +116,58 @@
             showNotification('error');
             manageLoader();
         });
+    }
+
+    $scope.exportToExcel = function () {
+        var createXLSLFormatObj = [];
+        /* XLS Head Columns */
+        var xlsHeader = ["Name", "Email Id", "Mobile Number", "Primary Skill", "Designation", "Recruiter", "Created Date", "Interview Date", "Interview Type", "Rating", "Comments"];
+        var xlsRows = [];
+        angular.forEach($scope.companyAddedProfilesList, function (value, key) {
+            var xlsRowObject = {
+                "Name": value.CandidateName,
+                "Email Id": value.Email,
+                "Mobile Number": value.MobileNumber,
+                "Primary Skill": value.PrimarySKillName,
+                "Designation": value.Designation,
+                "Recruiter": value.RecruiterName,
+                "Created Date": value.DisplayDate,
+                "Interview Date": value.InterviewDateNew,
+                "Interview Type": value.InterviewType,
+                "Rating": value.OveralRating,
+                //"Select Status": value.SelectStetus,
+                "Comments": value.StatusRemarks
+            }
+            xlsRows.push(xlsRowObject);
+        });
+        createXLSLFormatObj.push(xlsHeader);
+        $.each(xlsRows, function (index, value) {
+            var innerRowData = [];
+            //$("tbody").append('<tr><td>' + value.CandidateName + '</td><td>' + value.Email + '</td><td>' + value.MobileNumber + '</td><td>' + value.PrimarySKillName
+            //    + '</td><td>' + value.Designation + '</td><td>' + value.RecruiterName + '</td><td>' + value.DisplayDate + '</td><td>' + value.InterviewDateNew
+            //    + '</td><td>' + value.InterviewType + '</td><td>' + value.OveralRating + '</td><td>' + value.SelectStetus + '</td><td>' + value.StatusRemarks + '</td></tr>');
+            $.each(value, function (ind, val) {
+
+                innerRowData.push(val);
+            });
+            createXLSLFormatObj.push(innerRowData);
+        });
+        /* File Name */
+        var filename = "AllProfiles.xlsx";
+        /* Sheet Name */
+        var ws_name = "AllProfiles";
+
+        if (typeof console !== 'undefined') console.log(new Date());
+        var wb = XLSX.utils.book_new(),
+            ws = XLSX.utils.aoa_to_sheet(createXLSLFormatObj);
+
+        /* Add worksheet to workbook */
+        XLSX.utils.book_append_sheet(wb, ws, ws_name);
+
+        /* Write workbook and Download */
+        if (typeof console !== 'undefined') console.log(new Date());
+        XLSX.writeFile(wb, filename);
+        if (typeof console !== 'undefined') console.log(new Date());
     }
 
     $(document).ready(function () {

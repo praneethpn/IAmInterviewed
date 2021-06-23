@@ -64,7 +64,9 @@
         //document.getElementById("mute").style.visibility = "hidden";
         //document.getElementById("start").style.visibility = "hidden";
         $scope.isCallStarted = false;
-
+        if (CS == undefined) {
+            return;
+        }
         // configuration parameters. 
         let config = {
             appId: "pid_ae61897c_1bd3_442c_a9ff_9a5bc85db218" //<--- insert your project id here

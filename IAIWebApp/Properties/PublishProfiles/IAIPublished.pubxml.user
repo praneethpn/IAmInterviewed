@@ -25,7 +25,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/22/2019 21:46:46</publishTime>
     </File>
     <File Include="app/components/Candidate/Call/InterviewCallController.js">
-      <publishTime>01/24/2021 12:28:39</publishTime>
+      <publishTime>03/27/2021 17:22:28</publishTime>
     </File>
     <File Include="app/components/Candidate/CandidateDashboard/CandidateDashboard.html">
       <publishTime>12/29/2019 18:51:09</publishTime>
@@ -37,7 +37,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2020 20:32:43</publishTime>
     </File>
     <File Include="app/components/Candidate/CandidateProfile/CandidateProfileController.js">
-      <publishTime>06/09/2020 22:25:27</publishTime>
+      <publishTime>06/22/2021 18:33:41</publishTime>
     </File>
     <File Include="app/components/Candidate/FavoriteCompany/FavoriteCompany.html">
       <publishTime>10/22/2019 19:28:31</publishTime>
@@ -70,7 +70,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/19/2020 15:37:22</publishTime>
     </File>
     <File Include="app/components/Common/Controllers/CompanyHomeController.js">
-      <publishTime>04/23/2020 17:37:52</publishTime>
+      <publishTime>06/23/2021 12:38:06</publishTime>
     </File>
     <File Include="app/components/Common/Controllers/DashboardController.js">
       <publishTime>05/02/2019 21:02:15</publishTime>
@@ -79,7 +79,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/23/2020 17:38:15</publishTime>
     </File>
     <File Include="app/components/Common/Controllers/IndexController.js">
-      <publishTime>07/10/2020 09:37:21</publishTime>
+      <publishTime>04/24/2021 23:14:45</publishTime>
     </File>
     <File Include="app/components/Common/Controllers/InterviewerHomeController.js">
       <publishTime>04/23/2020 17:38:30</publishTime>
@@ -103,16 +103,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/27/2020 14:07:33</publishTime>
     </File>
     <File Include="app/components/Common/ViewRating/ViewRating.html">
-      <publishTime>07/23/2020 16:43:12</publishTime>
+      <publishTime>06/08/2021 20:24:49</publishTime>
     </File>
     <File Include="app/components/Common/ViewRating/ViewRatingIAIController.js">
-      <publishTime>07/23/2020 16:43:23</publishTime>
+      <publishTime>06/09/2021 22:19:19</publishTime>
     </File>
     <File Include="app/components/Company/AddProfiles/AddProfiles.html">
-      <publishTime>02/15/2021 11:20:58</publishTime>
+      <publishTime>06/23/2021 13:16:20</publishTime>
     </File>
     <File Include="app/components/Company/AddProfiles/AddProfilesController.js">
-      <publishTime>02/15/2021 11:21:11</publishTime>
+      <publishTime>06/23/2021 13:17:10</publishTime>
     </File>
     <File Include="app/components/Company/AllJobPostings/AllJobPostings.html">
       <publishTime>06/27/2020 13:12:24</publishTime>
@@ -121,10 +121,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/19/2020 21:16:42</publishTime>
     </File>
     <File Include="app/components/Company/AllProfiles/AllProfiles.html">
-      <publishTime>02/15/2021 11:21:39</publishTime>
+      <publishTime>02/24/2021 12:31:00</publishTime>
     </File>
     <File Include="app/components/Company/AllProfiles/AllProfilesController.js">
-      <publishTime>02/15/2021 11:21:20</publishTime>
+      <publishTime>02/24/2021 12:31:21</publishTime>
     </File>
     <File Include="app/components/Company/CompanyProfile/CompanyProfile.html">
       <publishTime>12/27/2019 16:45:23</publishTime>
@@ -145,10 +145,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/19/2020 21:57:34</publishTime>
     </File>
     <File Include="app/components/Company/PostJob/PostJob.html">
-      <publishTime>04/19/2020 21:49:17</publishTime>
+      <publishTime>06/02/2021 20:06:26</publishTime>
     </File>
     <File Include="app/components/Company/PostJob/PostJobController.js">
-      <publishTime>09/24/2020 18:40:11</publishTime>
+      <publishTime>06/02/2021 20:10:57</publishTime>
     </File>
     <File Include="app/components/Company/PreAppliedCandidates/PreAppliedCandidates.html">
       <publishTime>05/08/2020 18:58:28</publishTime>
@@ -214,13 +214,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/27/2019 15:49:04</publishTime>
     </File>
     <File Include="app/components/Interviewer/EditProfile/InterviewerProfileController.js">
-      <publishTime>04/15/2020 12:30:21</publishTime>
+      <publishTime>06/22/2021 18:32:12</publishTime>
     </File>
     <File Include="app/components/Interviewer/InterviewerDashboard/InterviewerDashboard.html">
-      <publishTime>09/24/2020 18:42:42</publishTime>
+      <publishTime>06/08/2021 20:27:28</publishTime>
     </File>
     <File Include="app/components/Interviewer/InterviewerDashboard/InterviewerDashboardController.js">
-      <publishTime>01/24/2021 12:35:35</publishTime>
+      <publishTime>06/22/2021 18:34:06</publishTime>
     </File>
     <File Include="app/components/Interviewer/ReferFriend/ReferFriend.html">
       <publishTime>11/01/2019 21:12:13</publishTime>
@@ -520,7 +520,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/24/2020 18:40:56</publishTime>
     </File>
     <File Include="assets/InnerCSS/global/css/Custom.css">
-      <publishTime>01/24/2021 12:12:13</publishTime>
+      <publishTime>06/08/2021 20:11:07</publishTime>
     </File>
     <File Include="assets/InnerCSS/global/css/customCompany.css">
       <publishTime>03/30/2020 15:47:57</publishTime>
@@ -26214,6 +26214,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="assets/InnerCSS/plugins/crypto-js-develop/test/x64-wordarray-test.js">
       <publishTime>02/13/2020 04:14:59</publishTime>
     </File>
+    <File Include="assets/InnerCSS/plugins/xlxs/xlsx.full.min.js">
+      <publishTime>02/20/2021 15:02:21</publishTime>
+    </File>
     <File Include="assets/InterviewRecordings/19180_Sundeep SAP QM.mp3">
       <publishTime>07/21/2020 17:28:12</publishTime>
     </File>
@@ -26464,10 +26467,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/21/2019 19:50:24</publishTime>
     </File>
     <File Include="bin/IAIWebApp.dll">
-      <publishTime>02/15/2021 11:24:26</publishTime>
+      <publishTime>06/23/2021 13:20:35</publishTime>
     </File>
     <File Include="bin/IAIWebApp.pdb">
-      <publishTime>02/15/2021 11:24:26</publishTime>
+      <publishTime>06/23/2021 13:20:35</publishTime>
     </File>
     <File Include="bin/MCPG.CCA.Util.dll">
       <publishTime>02/04/2014 16:45:10</publishTime>
@@ -26614,7 +26617,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/28/2020 16:07:31</publishTime>
     </File>
     <File Include="Company.html">
-      <publishTime>11/02/2020 10:02:14</publishTime>
+      <publishTime>06/23/2021 13:09:11</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
       <publishTime>10/21/2019 19:48:06</publishTime>
@@ -26845,7 +26848,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/21/2019 19:47:42</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/24/2021 12:48:11</publishTime>
+      <publishTime>06/23/2021 13:20:40</publishTime>
     </File>
   </ItemGroup>
 </Project>

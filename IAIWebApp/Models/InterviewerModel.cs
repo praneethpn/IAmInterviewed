@@ -70,6 +70,26 @@ namespace IAIWebApp.Models
         public string InterviewType { get; set; }
         public string DisplayDate { get; set; }
         public string CompanySchedule { get; set; }
+        public string subSkill1 { get; set; }
+        public int subSkill1Rating { get; set; }
+        public string subSkill2 { get; set; }
+        public int subSkill2Rating { get; set; }
+        public string subSkill3 { get; set; }
+        public int subSkill3Rating { get; set; }
+        public string subSkill4 { get; set; }
+        public int subSkill4Rating { get; set; }
+        public string subSkill5 { get; set; }
+        public int subSkill5Rating { get; set; }
+        public string subSkill6 { get; set; }
+        public int subSkill6Rating { get; set; }
+        public string subSkill7 { get; set; }
+        public int subSkill7Rating { get; set; }
+        public string subSkill8 { get; set; }
+        public int subSkill8Rating { get; set; }
+        public string subSkill9 { get; set; }
+        public int subSkill9Rating { get; set; }
+        public string subSkill10 { get; set; }
+        public int subSkill10Rating { get; set; }
     }
 
     public class InterviewerRatingModel
@@ -100,6 +120,26 @@ namespace IAIWebApp.Models
         public int InterviewerId { get; set; }
         public int CandidateId { get; set; }
         public string CandidateName { get; set; }
+        public string subSkill1 { get; set; }
+        public int subSkill1Rating { get; set; }
+        public string subSkill2 { get; set; }
+        public int subSkill2Rating { get; set; }
+        public string subSkill3 { get; set; }
+        public int subSkill3Rating { get; set; }
+        public string subSkill4 { get; set; }
+        public int subSkill4Rating { get; set; }
+        public string subSkill5 { get; set; }
+        public int subSkill5Rating { get; set; }
+        public string subSkill6 { get; set; }
+        public int subSkill6Rating { get; set; }
+        public string subSkill7 { get; set; }
+        public int subSkill7Rating { get; set; }
+        public string subSkill8 { get; set; }
+        public int subSkill8Rating { get; set; }
+        public string subSkill9 { get; set; }
+        public int subSkill9Rating { get; set; }
+        public string subSkill10 { get; set; }
+        public int subSkill10Rating { get; set; }
     }
 
     public class TimeSlotModel

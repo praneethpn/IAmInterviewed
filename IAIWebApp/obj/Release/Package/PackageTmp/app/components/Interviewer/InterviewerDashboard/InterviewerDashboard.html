@@ -389,7 +389,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row"> <!--ng-hide="viewInterview.CompanySchedule == 'YES'"-->
+                        <div class="row">
+                            <!--ng-hide="viewInterview.CompanySchedule == 'YES'"-->
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-md-2 control-label no-padding-right">Resume</label>
@@ -560,7 +561,10 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <textarea name="txtskill1Remarks" rows="2" cols="20" id="txtskill1Remarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.SecondarySkill1Remarks" required></textarea>
+                                                        <textarea name="txtskill1Remarks" minlength="50" maxlength="200" rows="2" cols="20" id="txtskill1Remarks" class="form-control" placeholder="Min 50 and Max 200 characters"
+                                                                  ng-model="viewRateInterview.SecondarySkill1Remarks" required ng-keyup="remarks1Change()" ng-keydown="remarks1Change()" ng-text-change="remarks1Change()"></textarea>
+                                                        <span class="secSkillRemarksText" ng-hide="secSkill1Remarks1Count >= 50 || secSkill1Remarks1Count == 0">Please enter min 50 characters.</span>
+                                                        <span id="spanRemarks1Count" class="remarks_count">{{secSkill1Remarks1Count}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -580,7 +584,10 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <textarea name="txtskill2Remarks" rows="2" cols="20" id="txtskill2Remarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.SecondarySkill2Remarks" required></textarea>
+                                                        <textarea name="txtskill2Remarks" rows="2" cols="20" minlength="50" maxlength="200" id="txtskill2Remarks" class="form-control" placeholder="Min 50 and Max 200 characters"
+                                                                  ng-model="viewRateInterview.SecondarySkill2Remarks" required ng-keyup="remarks2Change()" ng-keydown="remarks2Change()" ng-text-change="remarks2Change()"></textarea>
+                                                        <span class="secSkillRemarksText" ng-hide="secSkill1Remarks2Count >= 50 || secSkill1Remarks2Count == 0">Please enter min 50 characters.</span>
+                                                        <span id="spanRemarks2Count" class="remarks_count">{{secSkill1Remarks2Count}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -600,7 +607,10 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <textarea name="txtskill3Remarks" rows="2" cols="20" id="txtskill3Remarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.SecondarySkill3Remarks" required></textarea>
+                                                        <textarea name="txtskill3Remarks" rows="2" cols="20" minlength="50" maxlength="200" id="txtskill3Remarks" class="form-control" placeholder="Min 50 and Max 200 characters"
+                                                                  ng-model="viewRateInterview.SecondarySkill3Remarks" required ng-keyup="remarks3Change()" ng-keydown="remarks3Change()" ng-text-change="remarks3Change()"></textarea>
+                                                        <span class="secSkillRemarksText" ng-hide="secSkill1Remarks3Count >= 50 || secSkill1Remarks3Count == 0">Please enter min 50 characters.</span>
+                                                        <span id="spanRemarks3Count" class="remarks_count">{{secSkill1Remarks3Count}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -620,7 +630,11 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <textarea name="txtskill4Remarks" rows="2" cols="20" id="txtskill4Remarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.SecondarySkill4Remarks" ng-disabled="viewRateInterview.SecondarySkill4 == ''" ng-required="viewRateInterview.SecondarySkill4 != ''"></textarea>
+                                                        <textarea name="txtskill4Remarks" rows="2" cols="20" minlength="50" maxlength="200" id="txtskill4Remarks" class="form-control" placeholder="Min 50 and Max 200 characters"
+                                                                  ng-model="viewRateInterview.SecondarySkill4Remarks" ng-disabled="viewRateInterview.SecondarySkill4 == ''" ng-required="viewRateInterview.SecondarySkill4 != ''"
+                                                                  ng-keyup="remarks4Change()" ng-keydown="remarks4Change()" ng-text-change="remarks4Change()"></textarea>
+                                                        <span class="secSkillRemarksText" ng-hide="secSkill1Remarks4Count >= 50 || secSkill1Remarks4Count == 0">Please enter min 50 characters.</span>
+                                                        <span id="spanRemarks4Count" class="remarks_count">{{secSkill1Remarks4Count}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -640,7 +654,294 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <textarea name="txtskill5Remarks" rows="2" cols="20" id="txtskill5Remarks" class="form-control" placeholder="Max 200 characters" ng-model="viewRateInterview.SecondarySkill5Remarks" ng-disabled="viewRateInterview.SecondarySkill5 == ''" ng-required="viewRateInterview.SecondarySkill5 != ''"></textarea>
+                                                        <textarea name="txtskill5Remarks" rows="2" cols="20" minlength="50" maxlength="200" id="txtskill5Remarks" class="form-control" placeholder="Min 50 and Max 200 characters"
+                                                                  ng-model="viewRateInterview.SecondarySkill5Remarks" ng-disabled="viewRateInterview.SecondarySkill5 == ''" ng-required="viewRateInterview.SecondarySkill5 != ''"
+                                                                  ng-keyup="remarks5Change()" ng-keydown="remarks5Change()" ng-text-change="remarks5Change()"></textarea>
+                                                        <span class="secSkillRemarksText" ng-hide="secSkill1Remarks5Count >= 50 || secSkill1Remarks5Count == 0">Please enter min 50 characters.</span>
+                                                        <span id="spanRemarks5Count" class="remarks_count">{{secSkill1Remarks5Count}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h2 ng-hide="viewRateInterview.subSkill1 == '' && viewRateInterview.subSkill2 == '' && viewRateInterview.subSkill3 == '' && viewRateInterview.subSkill4 == '' &&
+                                            viewRateInterview.subSkill5 == '' && viewRateInterview.subSkill6 == '' && viewRateInterview.subSkill7 == '' && viewRateInterview.subSkill8 == '' &&
+                                            viewRateInterview.subSkill9 == '' && viewRateInterview.subSkill10 == ''">Sub Skill Ratings</h2>
+                                        <div class="row">
+                                            <div class="col-md-6" ng-hide="viewRateInterview.subSkill1 == ''">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.subSkill1}}<span class="required">*</span></label>
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill1Rating" value="1" ng-model="viewRateInterview.subSkill1Rating" ng-required="viewRateInterview.subSkill1 != ''"> 1
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill1Rating" value="2" ng-model="viewRateInterview.subSkill1Rating" ng-required="viewRateInterview.subSkill1 != ''"> 2
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill1Rating" value="3" ng-model="viewRateInterview.subSkill1Rating" ng-required="viewRateInterview.subSkill1 != ''"> 3
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill1Rating" value="4" ng-model="viewRateInterview.subSkill1Rating" ng-required="viewRateInterview.subSkill1 != ''"> 4
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill1Rating" value="4" ng-model="viewRateInterview.subSkill1Rating" ng-required="viewRateInterview.subSkill1 != ''"> 5
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" ng-hide="viewRateInterview.subSkill2 == ''">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.subSkill2}}<span class="required">*</span></label>
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill2Rating" value="1" ng-model="viewRateInterview.subSkill2Rating" ng-required="viewRateInterview.subSkill2 != ''"> 1
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill2Rating" value="2" ng-model="viewRateInterview.subSkill2Rating" ng-required="viewRateInterview.subSkill2 != ''"> 2
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill2Rating" value="3" ng-model="viewRateInterview.subSkill2Rating" ng-required="viewRateInterview.subSkill2 != ''"> 3
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill2Rating" value="4" ng-model="viewRateInterview.subSkill2Rating" ng-required="viewRateInterview.subSkill2 != ''"> 4
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill2Rating" value="4" ng-model="viewRateInterview.subSkill2Rating" ng-required="viewRateInterview.subSkill2 != ''"> 5
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6" ng-hide="viewRateInterview.subSkill3 == ''">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.subSkill3}}<span class="required">*</span></label>
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill3Rating" value="1" ng-model="viewRateInterview.subSkill3Rating" ng-required="viewRateInterview.subSkill3 != ''"> 1
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill3Rating" value="2" ng-model="viewRateInterview.subSkill3Rating" ng-required="viewRateInterview.subSkill3 != ''"> 2
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill3Rating" value="3" ng-model="viewRateInterview.subSkill3Rating" ng-required="viewRateInterview.subSkill3 != ''"> 3
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill3Rating" value="4" ng-model="viewRateInterview.subSkill3Rating" ng-required="viewRateInterview.subSkill3 != ''"> 4
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill3Rating" value="4" ng-model="viewRateInterview.subSkill3Rating" ng-required="viewRateInterview.subSkill3 != ''"> 5
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" ng-hide="viewRateInterview.subSkill4 == ''">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.subSkill2}}<span class="required">*</span></label>
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill4Rating" value="1" ng-model="viewRateInterview.subSkill4Rating" ng-required="viewRateInterview.subSkill4 != ''"> 1
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill4Rating" value="2" ng-model="viewRateInterview.subSkill4Rating" ng-required="viewRateInterview.subSkill4 != ''"> 2
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill4Rating" value="3" ng-model="viewRateInterview.subSkill4Rating" ng-required="viewRateInterview.subSkill4 != ''"> 3
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill4Rating" value="4" ng-model="viewRateInterview.subSkill4Rating" ng-required="viewRateInterview.subSkill4 != ''"> 4
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill4Rating" value="4" ng-model="viewRateInterview.subSkill4Rating" ng-required="viewRateInterview.subSkill4 != ''"> 5
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6" ng-hide="viewRateInterview.subSkill5 == ''">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.subSkill5}}<span class="required">*</span></label>
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill5Rating" value="1" ng-model="viewRateInterview.subSkill5Rating" ng-required="viewRateInterview.subSkill5 != ''"> 1
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill5Rating" value="2" ng-model="viewRateInterview.subSkill5Rating" ng-required="viewRateInterview.subSkill5 != ''"> 2
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill5Rating" value="3" ng-model="viewRateInterview.subSkill5Rating" ng-required="viewRateInterview.subSkill5 != ''"> 3
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill5Rating" value="4" ng-model="viewRateInterview.subSkill5Rating" ng-required="viewRateInterview.subSkill5 != ''"> 4
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill5Rating" value="4" ng-model="viewRateInterview.subSkill5Rating" ng-required="viewRateInterview.subSkill5 != ''"> 5
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" ng-hide="viewRateInterview.subSkill6 == ''">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.subSkill6}}<span class="required">*</span></label>
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill6Rating" value="1" ng-model="viewRateInterview.subSkill6Rating" ng-required="viewRateInterview.subSkill6 != ''"> 1
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill6Rating" value="2" ng-model="viewRateInterview.subSkill6Rating" ng-required="viewRateInterview.subSkill6 != ''"> 2
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill6Rating" value="3" ng-model="viewRateInterview.subSkill6Rating" ng-required="viewRateInterview.subSkill6 != ''"> 3
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill6Rating" value="4" ng-model="viewRateInterview.subSkill6Rating" ng-required="viewRateInterview.subSkill6 != ''"> 4
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill6Rating" value="4" ng-model="viewRateInterview.subSkill6Rating" ng-required="viewRateInterview.subSkill6 != ''"> 5
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6" ng-hide="viewRateInterview.subSkill7 == ''">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.subSkill7}}<span class="required">*</span></label>
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill7Rating" value="1" ng-model="viewRateInterview.subSkill7Rating" ng-required="viewRateInterview.subSkill7 != ''"> 1
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill7Rating" value="2" ng-model="viewRateInterview.subSkill7Rating" ng-required="viewRateInterview.subSkill7 != ''"> 2
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill7Rating" value="3" ng-model="viewRateInterview.subSkill7Rating" ng-required="viewRateInterview.subSkill7 != ''"> 3
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill7Rating" value="4" ng-model="viewRateInterview.subSkill7Rating" ng-required="viewRateInterview.subSkill7 != ''"> 4
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill7Rating" value="4" ng-model="viewRateInterview.subSkill7Rating" ng-required="viewRateInterview.subSkill7 != ''"> 5
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" ng-hide="viewRateInterview.subSkill8 == ''">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.subSkill8}}<span class="required">*</span></label>
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill8Rating" value="1" ng-model="viewRateInterview.subSkill8Rating" ng-required="viewRateInterview.subSkill8 != ''"> 1
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill8Rating" value="2" ng-model="viewRateInterview.subSkill8Rating" ng-required="viewRateInterview.subSkill8 != ''"> 2
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill8Rating" value="3" ng-model="viewRateInterview.subSkill8Rating" ng-required="viewRateInterview.subSkill8 != ''"> 3
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill8Rating" value="4" ng-model="viewRateInterview.subSkill8Rating" ng-required="viewRateInterview.subSkill8 != ''"> 4
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill8Rating" value="4" ng-model="viewRateInterview.subSkill8Rating" ng-required="viewRateInterview.subSkill8 != ''"> 5
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6" ng-hide="viewRateInterview.subSkill9 == ''">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.subSkill9}}<span class="required">*</span></label>
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill9Rating" value="1" ng-model="viewRateInterview.subSkill9Rating" ng-required="viewRateInterview.subSkill9 != ''"> 1
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill9Rating" value="2" ng-model="viewRateInterview.subSkill9Rating" ng-required="viewRateInterview.subSkill9 != ''"> 2
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill9Rating" value="3" ng-model="viewRateInterview.subSkill9Rating" ng-required="viewRateInterview.subSkill9 != ''"> 3
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill9Rating" value="4" ng-model="viewRateInterview.subSkill9Rating" ng-required="viewRateInterview.subSkill9 != ''"> 4
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill9Rating" value="4" ng-model="viewRateInterview.subSkill9Rating" ng-required="viewRateInterview.subSkill9 != ''"> 5
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" ng-hide="viewRateInterview.subSkill10 == ''">
+                                                <div class="form-group">
+                                                    <label class="form-label">{{viewRateInterview.subSkill10}}<span class="required">*</span></label>
+                                                    <div class="mt-radio-inline">
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill10Rating" value="1" ng-model="viewRateInterview.subSkill10Rating" ng-required="viewRateInterview.subSkill10 != ''"> 1
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill10Rating" value="2" ng-model="viewRateInterview.subSkill10Rating" ng-required="viewRateInterview.subSkill10 != ''"> 2
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill10Rating" value="3" ng-model="viewRateInterview.subSkill10Rating" ng-required="viewRateInterview.subSkill10 != ''"> 3
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill10Rating" value="4" ng-model="viewRateInterview.subSkill10Rating" ng-required="viewRateInterview.subSkill10 != ''"> 4
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="mt-radio mt-radio-outline">
+                                                            <input type="radio" name="subSkill10Rating" value="4" ng-model="viewRateInterview.subSkill10Rating" ng-required="viewRateInterview.subSkill10 != ''"> 5
+                                                            <span></span>
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -739,7 +1040,10 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label">Interviewer Comments <span class="required">*</span></label>
-                                                    <textarea name="interviewerRemarks" id="interviewerRemarks" class="form-control" rows="5" ng-model="viewRateInterview.InterviewerRemarks" required></textarea>
+                                                    <textarea name="interviewerRemarks" id="interviewerRemarks" class="form-control" rows="5" minlength="100" maxlength="500" placeholder="Min 100 and Max 500 characters"
+                                                              ng-model="viewRateInterview.InterviewerRemarks" required ng-keyup="totalremarksChange()" ng-keydown="totalremarksChange()" ng-text-change="totalremarksChange()"></textarea>
+                                                    <span class="secSkillRemarksText" ng-hide="totalRemarksCount >= 100 || totalRemarksCount == 0">Please enter min 100 characters.</span>
+                                                    <span id="totalRemarksCount" class="remarks_count">{{totalRemarksCount}}</span>
                                                 </div>
                                             </div>
                                         </div>

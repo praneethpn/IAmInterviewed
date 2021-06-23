@@ -33,7 +33,8 @@
     $scope.SetRedirectUrl = function (key) {
         var ReturnUrl = '';
         if (key == 'Dashboard') {
-            ReturnUrl = { url: "app/components/Company/Dashboard/Dashboard.html" };
+            //ReturnUrl = { url: "app/components/Company/Dashboard/Dashboard.html" };
+            ReturnUrl = { url: "app/components/Company/AllJobPostings/AllJobPostings.html" };
         }
         else if (key == 'CompanyProfile') {
             ReturnUrl = { url: "app/components/Company/CompanyProfile/CompanyProfile.html" };
@@ -78,7 +79,8 @@
             ReturnUrl = { url: "app/components/Company/ScheduleInterview/ScheduleInterview.html" };
         }
         else if (key == 'RecruiterDashboard') {
-            ReturnUrl = { url: "app/components/Company/RecruiterDashboard/RecruiterDashboard.html" };
+            //ReturnUrl = { url: "app/components/Company/RecruiterDashboard/RecruiterDashboard.html" };
+            ReturnUrl = { url: "app/components/Company/AllJobPostings/AllJobPostings.html" };
         }
         else if (key == 'RequirementsDashboard') {
             ReturnUrl = { url: "app/components/Company/RequirementsDashboard/RequirementsDashboard.html" };

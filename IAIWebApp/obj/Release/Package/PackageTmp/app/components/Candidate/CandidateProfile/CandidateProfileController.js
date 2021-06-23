@@ -152,42 +152,31 @@
             manageLoader();
         }
         else {
-            if ($scope.myFile != undefined && $scope.myFile != "") {
-                $scope.UploadType = "CandidateResume";
-                var file = $scope.myFile;
-                var UploadURL = IAMInterviewed.Candidate.UploadResume;
-                var payload = new FormData();
-                payload.append("CandidateId", $rootScope.loggedInUserDetails.UserID);
-                payload.append("file", file);
-                $http.post(UploadURL, payload, {
-                    headers: { 'Content-Type': undefined },
-                    transformRequest: angular.identity
-                }).then(function (response) {
-                    $scope.UpdateCandidateDetailsAfterFileUpload($rootScope.loggedInUserDetails.UserID + "_" + file.name);
-                    manageLoader();
-                }, function (response) {
-                    $rootScope.resultMessage = "Error while Uploading Resume. Please try again....";
-                    showNotification('error');
-                    manageLoader();
-                });
-                //myService.uploadFile(UploadURL, payload).then(function (response) {
-                //    //success, file uploaded
-                //    //$rootScope.resultMessage = "Resume Uploaded Successfully.";
-                //    //showNotification('success');
-                //    $scope.UpdateCandidateDetailsAfterFileUpload($rootScope.loggedInUserDetails.UserID + "_" + file.name);
-                //    manageLoader();
-                //}).catch(function (response) {
-                //    $rootScope.resultMessage = "Error while Uploading Resume. Please try again....";
-                //    showNotification('error');
-                //    manageLoader();
-                //    //bummer
-                //});
-            }
-            else {
-                $scope.UpdateCandidateDetailsAfterFileUpload($scope.CandidateResumeDownload);
+        if ($scope.myFile != undefined && $scope.myFile != "") {
+            $scope.UploadType = "CandidateResume";
+            var file = $scope.myFile;
+            var UploadURL = IAMInterviewed.Candidate.UploadResume;
+            var payload = new FormData();
+            payload.append("CandidateId", $rootScope.loggedInUserDetails.UserID);
+            payload.append("file", file);
+            $http.post(UploadURL, payload, {
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+            }).then(function (response) {
+                $scope.UpdateCandidateDetailsAfterFileUpload($rootScope.loggedInUserDetails.UserID + "_" + file.name);
                 manageLoader();
-            }
+            }, function (response) {
+                $rootScope.resultMessage = "Error while Uploading Resume. Please try again....";
+                showNotification('error');
+                manageLoader();
+            });
+            //$scope.UpdateCandidateDetailsAfterFileUpload($rootScope.loggedInUserDetails.UserID + "_" + file.name);
         }
+        else {
+            $scope.UpdateCandidateDetailsAfterFileUpload($scope.CandidateResumeDownload);
+            manageLoader();
+        }
+        //}
     }
 
     $scope.UpdateCandidateDetailsAfterFileUpload = function (Resume) {

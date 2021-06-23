@@ -28,7 +28,8 @@ namespace IAIWebApp.Controllers
                 // Now if our password was enctypted or hashed we would have done the
                 // same operation on the user entered password here, But for now
                 // since the password is in plain text lets just authenticate directly
-                return Json(new { data = slills, Success = true, errorMessage = "" }, JsonRequestBehavior.AllowGet);
+                string IAIPath = Server.MapPath("~/assets/CandidateResumes/");
+                return Json(new { data = slills, Success = true, errorMessage = IAIPath }, JsonRequestBehavior.AllowGet);
                 //return Content(HttpStatusCode.OK, new { data = slills, Success = true, errorMessage = "" });
                 //return Request.CreateResponse(HttpStatusCode.OK, new { data = slills, Success = true, errorMessage = "" });
                 //return Content(slills);

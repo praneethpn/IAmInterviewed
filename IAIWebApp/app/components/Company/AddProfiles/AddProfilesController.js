@@ -33,7 +33,7 @@
         $scope.statusSearch = "Select";
         $scope.companyCandidateId = "";
         $scope.currentPage = 1;
-        $scope.numPerPage = 20;
+        $scope.numPerPage = 10;
     }
     $scope.clearAll();
 
@@ -57,12 +57,12 @@
     $scope.getCompanyProfiles = function () {
         manageLoader('load');
         var getCompanyAddedProfilesURL = IAMInterviewed.Company.getCompanyAddedProfiles + "?companyId=" + $rootScope.loggedInUserDetails.UserID + "&primaryskill=" + $rootScope.objRequirement.PrimarySkill
-            + "&jobCode=" + $rootScope.objRequirement.JobCode + "&statusFilter=" + $scope.statusSearch;
+            + "&jobCode=" + $rootScope.objRequirement.JobCode + "&statusFilter=" + $scope.statusSearch + "&currentPage=" + $scope.currentPage + "&pageSize=" + $scope.numPerPage;
         $http.get(getCompanyAddedProfilesURL).then(function success(response) {
             //console.log(response.data);
-            $scope.companyProfilesAll = response.data.data;
-            $scope.companyProfiles = response.data.data;
-            $scope.totalItems = $scope.companyProfiles.length;
+            $scope.companyProfilesAll = response.data.data.companyProfiles;
+            $scope.companyProfiles = response.data.data.companyProfiles;
+            $scope.totalItems = response.data.data.totalRecords;
             manageLoader();
         }, function error(response) {
             $rootScope.resultMessage = response.data.errorMessage;
@@ -509,7 +509,7 @@
     $scope.exportToExcel = function () {
         var createXLSLFormatObj = [];
         /* XLS Head Columns */
-        var xlsHeader = ["Name", "Email Id", "Mobile Number", "Interview Date", "Rating", "Select Status", "Status Comments"];
+        var xlsHeader = ["Name", "Email Id", "Mobile Number", "Interview Date", "Rating", "Comments"];
         var xlsRows = [];
         angular.forEach($scope.companyProfiles, function (value, key) {
             var xlsRowObject = {
@@ -518,8 +518,8 @@
                 "Mobile Number": value.Mobile,
                 "Interview Date": value.InterviewDate,
                 "Rating": value.TotalRating,                
-                "Select Status": value.SelectStetus,
-                "Status Comments": value.StatusUpdateRemarks
+                //"Select Status": value.SelectStetus,
+                "Comments": value.StatusUpdateRemarks
             }
             xlsRows.push(xlsRowObject);
         });
@@ -556,10 +556,14 @@
     $scope.paginate = function (value) {
         var begin, end, index;
         begin = ($scope.currentPage - 1) * $scope.numPerPage;
-        end = begin + $scope.numPerPage;
+        end = begin + $scope.numPerPage;        
         index = $scope.companyProfiles.indexOf(value);
         return (begin <= index && index < end);
     };
+
+    //$scope.pageChanged = function () {
+    //    $scope.getCompanyProfiles();
+    //}; 
 
     $(document).ready(function () {
         $timeout(function () {

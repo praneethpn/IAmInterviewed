@@ -32,9 +32,18 @@
         manageLoader('load');
         var getCompanyAddedCandidateDetialsURL = IAMInterviewed.Company.getCompanyAddedCandidateDetials + "?primaryskill=" + $scope.primarySkillSearch + "&companyId=" + $rootScope.loggedInUserDetails.UserID
             + "&startDate=" + $scope.startDateSearch + "&endDate=" + $scope.endDateSearch;
-        $http.get(getCompanyAddedCandidateDetialsURL).then(function success(response) {
-            $scope.companyAddedProfilesList = response.data.data;
-            $scope.companyAddedProfilesListBase = response.data.data;
+        $http.get(getCompanyAddedCandidateDetialsURL).then(function success(response) {            
+            $scope.companyAddedProfilesList = [];            
+            if ($scope.CompanyHomeDetails.CompanyUserType == 'Admin') {
+                $scope.companyAddedProfilesList = response.data.data;
+                $scope.companyAddedProfilesListBase = response.data.data;
+            }
+            else {
+                $scope.companyAddedProfilesListBase = $.grep(response.data.data, function (value) {
+                    return value.RecruiterId == $rootScope.loggedInUserDetails.UserID;
+                });
+                $scope.companyAddedProfilesList = $scope.companyAddedProfilesListBase;
+            }
             $scope.totalItems = $scope.companyAddedProfilesList.length;
             //console.log($scope.companyAddedProfilesList);
             manageLoader();
@@ -60,6 +69,14 @@
 
     $scope.searchFilterHeader = function () {
         if ($scope.nameSearch == "" && $scope.recruiterSearch == "") {
+            //if ($scope.CompanyHomeDetails.CompanyUserType == 'Admin') {
+            //    $scope.companyAddedProfilesList = $scope.companyAddedProfilesListBase;
+            //}
+            //else {
+            //    $scope.companyAddedProfilesList = $.grep($scope.companyAddedProfilesListBase, function (value) {
+            //        return value.RecruiterId == $rootScope.loggedInUserDetails.UserID;
+            //    });
+            //}
             $scope.companyAddedProfilesList = $scope.companyAddedProfilesListBase;            
             $scope.totalItems = $scope.companyAddedProfilesList.length;
         }
@@ -104,7 +121,7 @@
     $scope.exportToExcel = function () {
         var createXLSLFormatObj = [];
         /* XLS Head Columns */
-        var xlsHeader = ["Name", "Email Id", "Mobile Number", "Primary Skill", "Designation", "Recruiter", "Created Date", "Interview Date", "Interview Type", "Rating", "Select Status", "Status Comments"];
+        var xlsHeader = ["Name", "Email Id", "Mobile Number", "Primary Skill", "Designation", "Recruiter", "Created Date", "Interview Date", "Interview Type", "Rating", "Comments"];
         var xlsRows = [];
         angular.forEach($scope.companyAddedProfilesList, function (value, key) {
             var xlsRowObject = {
@@ -118,8 +135,8 @@
                 "Interview Date": value.InterviewDateNew,
                 "Interview Type": value.InterviewType,
                 "Rating": value.OveralRating,
-                "Select Status": value.SelectStetus,
-                "Status Comments": value.StatusRemarks
+                //"Select Status": value.SelectStetus,
+                "Comments": value.StatusRemarks
             }
             xlsRows.push(xlsRowObject);
         });

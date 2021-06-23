@@ -244,6 +244,16 @@ namespace IAIWebApp.DataHelpers
                     _model.SelectedProfilesCount = ds.Tables[0].Rows[i]["SelectedProfilesCount"].ToString();
                     _model.PreAppliedCandidatesCount = ds.Tables[0].Rows[i]["PreAppliedCandidatesCount"].ToString();
                     _model.CompanyProfilesCount = ds.Tables[0].Rows[i]["CompanyProfilesCount"].ToString();
+                    _model.subSkill1 = ds.Tables[0].Rows[i]["Subskill1"].ToString();
+                    _model.subSkill2 = ds.Tables[0].Rows[i]["Subskill2"].ToString();
+                    _model.subSkill3 = ds.Tables[0].Rows[i]["Subskill3"].ToString();
+                    _model.subSkill4 = ds.Tables[0].Rows[i]["Subskill4"].ToString();
+                    _model.subSkill5 = ds.Tables[0].Rows[i]["Subskill5"].ToString();
+                    _model.subSkill6 = ds.Tables[0].Rows[i]["Subskill6"].ToString();
+                    _model.subSkill7 = ds.Tables[0].Rows[i]["Subskill7"].ToString();
+                    _model.subSkill8 = ds.Tables[0].Rows[i]["Subskill8"].ToString();
+                    _model.subSkill9 = ds.Tables[0].Rows[i]["Subskill9"].ToString();
+                    _model.subSkill10 = ds.Tables[0].Rows[i]["Subskill10"].ToString();
                     nwmd.Add(_model);
                 }
                 return nwmd;
@@ -432,6 +442,16 @@ namespace IAIWebApp.DataHelpers
                 pars.Add(GetSqlParameter("@Remarks", SqlDbType.VarChar, _model.Remarks));
                 pars.Add(GetSqlParameter("@UserId", SqlDbType.Int, _model.UserId));
                 pars.Add(GetSqlParameter("@Additionalskills", SqlDbType.VarChar, _model.AdditionalSkills));
+                pars.Add(GetSqlParameter("@SubSkill1", SqlDbType.VarChar, _model.subSkill1));
+                pars.Add(GetSqlParameter("@SubSkill2", SqlDbType.VarChar, _model.subSkill2));
+                pars.Add(GetSqlParameter("@SubSkill3", SqlDbType.VarChar, _model.subSkill3));
+                pars.Add(GetSqlParameter("@SubSkill4", SqlDbType.VarChar, _model.subSkill4));
+                pars.Add(GetSqlParameter("@SubSkill5", SqlDbType.VarChar, _model.subSkill5));
+                pars.Add(GetSqlParameter("@SubSkill6", SqlDbType.VarChar, _model.subSkill6));
+                pars.Add(GetSqlParameter("@SubSkill7", SqlDbType.VarChar, _model.subSkill7));
+                pars.Add(GetSqlParameter("@SubSkill8", SqlDbType.VarChar, _model.subSkill8));
+                pars.Add(GetSqlParameter("@SubSkill9", SqlDbType.VarChar, _model.subSkill9));
+                pars.Add(GetSqlParameter("@SubSkill10", SqlDbType.VarChar, _model.subSkill10));
                 SqlHelper.ExecuteNonQuery(CS, SP, "Proc_Save_CompanyRequirements", pars.ToArray());
                 return nwmd;
             }
@@ -1243,6 +1263,26 @@ namespace IAIWebApp.DataHelpers
                     _model.InterComments = ds.Tables[0].Rows[0]["InterpersonalSkillCommunicationRemarks"].ToString();
                     _model.InterviewerRemarks = ds.Tables[0].Rows[0]["InterviewerRemarks"].ToString();
                     _model.Logo = ds.Tables[0].Rows[0]["Logo"].ToString();
+                    _model.subSkill1 = ds.Tables[0].Rows[0]["subSkill1"].ToString();
+                    _model.subSkill1Rating = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["subSkill1Rating"].ToString()) ? 0 : Convert.ToInt32(ds.Tables[0].Rows[0]["subSkill1Rating"]);
+                    _model.subSkill2 = ds.Tables[0].Rows[0]["subSkill2"].ToString();
+                    _model.subSkill2Rating = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["subSkill2Rating"].ToString()) ? 0 : Convert.ToInt32(ds.Tables[0].Rows[0]["subSkill2Rating"]);
+                    _model.subSkill3 = ds.Tables[0].Rows[0]["subSkill3"].ToString();
+                    _model.subSkill3Rating = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["subSkill3Rating"].ToString()) ? 0 : Convert.ToInt32(ds.Tables[0].Rows[0]["subSkill3Rating"]);
+                    _model.subSkill4 = ds.Tables[0].Rows[0]["subSkill4"].ToString();
+                    _model.subSkill4Rating = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["subSkill4Rating"].ToString()) ? 0 : Convert.ToInt32(ds.Tables[0].Rows[0]["subSkill4Rating"]);
+                    _model.subSkill5 = ds.Tables[0].Rows[0]["subSkill5"].ToString();
+                    _model.subSkill5Rating = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["subSkill5Rating"].ToString()) ? 0 : Convert.ToInt32(ds.Tables[0].Rows[0]["subSkill5Rating"]);
+                    _model.subSkill6 = ds.Tables[0].Rows[0]["subSkill6"].ToString();
+                    _model.subSkill6Rating = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["subSkill6Rating"].ToString()) ? 0 : Convert.ToInt32(ds.Tables[0].Rows[0]["subSkill6Rating"]);
+                    _model.subSkill7 = ds.Tables[0].Rows[0]["subSkill7"].ToString();
+                    _model.subSkill7Rating = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["subSkill7Rating"].ToString()) ? 0 : Convert.ToInt32(ds.Tables[0].Rows[0]["subSkill7Rating"]);
+                    _model.subSkill8 = ds.Tables[0].Rows[0]["subSkill8"].ToString();
+                    _model.subSkill8Rating = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["subSkill8Rating"].ToString()) ? 0 : Convert.ToInt32(ds.Tables[0].Rows[0]["subSkill8Rating"]);
+                    _model.subSkill9 = ds.Tables[0].Rows[0]["subSkill9"].ToString();
+                    _model.subSkill9Rating = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["subSkill9Rating"].ToString()) ? 0 : Convert.ToInt32(ds.Tables[0].Rows[0]["subSkill9Rating"]);
+                    _model.subSkill10 = ds.Tables[0].Rows[0]["subSkill10"].ToString();
+                    _model.subSkill10Rating = string.IsNullOrEmpty(ds.Tables[0].Rows[0]["subSkill10Rating"].ToString()) ? 0 : Convert.ToInt32(ds.Tables[0].Rows[0]["subSkill10Rating"]);
                     _model.CanidateShortlisted = false;
                 }
                 return _model;
@@ -1873,6 +1913,7 @@ namespace IAIWebApp.DataHelpers
                     }
                     _model.ReqId = reqid;
                     _model.Designation = dsmain.Tables[0].Rows[i]["Designation"].ToString();
+                    _model.RecruiterId = Convert.ToInt32(dsmain.Tables[0].Rows[i]["RecruiterId"]);
                     _model.RecruiterName = dsmain.Tables[0].Rows[i]["RecruiterName"].ToString();
                     _model.PrimarySKillName = dsmain.Tables[0].Rows[i]["skillname"].ToString();
                     //_model.PrimarySkill = dsmain.Tables[0].Rows[i]["skillname"].ToString();
@@ -2346,14 +2387,17 @@ namespace IAIWebApp.DataHelpers
             }
         }
 
-        public List<CandidateModel> GetCandidateDetials(string Primaryskill, string Company, string JobCode, string StatusFilter)
+        public AddProfilesModel GetCandidateDetials(string Primaryskill, string Company, string JobCode, string StatusFilter, int currentPage, int pageSize)
         {
+            AddProfilesModel _addProfiles = new AddProfilesModel();
             List<CandidateModel> nwmd = new List<CandidateModel>();
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(GetSqlParameter("@PrimarySkill", SqlDbType.Int, Primaryskill));
             pars.Add(GetSqlParameter("@Company", SqlDbType.VarChar, Company));
             pars.Add(GetSqlParameter("@JobCode", SqlDbType.VarChar, JobCode));
             pars.Add(GetSqlParameter("@StatusFilter", SqlDbType.VarChar, StatusFilter));
+            pars.Add(GetSqlParameter("@CurrentPage", SqlDbType.Int, currentPage));
+            pars.Add(GetSqlParameter("@PageSize", SqlDbType.Int, pageSize));
             try
             {
                 DataSet ds = new DataSet();
@@ -2456,7 +2500,9 @@ namespace IAIWebApp.DataHelpers
                     //}
                     nwmd.Add(_model);
                 }
-                return nwmd;
+                _addProfiles.companyProfiles = nwmd;
+                _addProfiles.totalRecords = string.IsNullOrEmpty(ds.Tables[1].Rows[0]["TotalRowCount"].ToString()) ? 0 : Convert.ToInt32(ds.Tables[1].Rows[0]["TotalRowCount"]);
+                return _addProfiles;
             }
             catch (Exception ex)
             {
@@ -2464,7 +2510,7 @@ namespace IAIWebApp.DataHelpers
                 string methodName = method.Name;
                 string className = method.ReflectedType.Name;
                 sendErrorMail(ex, methodName, className);
-                return nwmd;
+                return _addProfiles;
             }
 
         }

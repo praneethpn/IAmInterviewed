@@ -41,6 +41,27 @@
         $("#pInterCommIAI").text('');
         $("#pCommentsIAI").text('');
 
+        $("#spanSubSkill1IAI").text('');
+        $("#spanSubSkill1RatingIAI").text('');
+        $("#spanSubSkill2IAI").text('');
+        $("#spanSubSkill2RatingIAI").text('');
+        $("#spanSubSkill3IAI").text('');
+        $("#spanSubSkill3RatingIAI").text('');
+        $("#spanSubSkill4IAI").text('');
+        $("#spanSubSkill4RatingIAI").text('');
+        $("#spanSubSkill5IAI").text('');
+        $("#spanSubSkill5RatingIAI").text('');
+        $("#spanSubSkill6IAI").text('');
+        $("#spanSubSkill6RatingIAI").text('');
+        $("#spanSubSkill7IAI").text('');
+        $("#spanSubSkill7RatingIAI").text('');
+        $("#spanSubSkill8IAI").text('');
+        $("#spanSubSkill8RatingIAI").text('');
+        $("#spanSubSkill9IAI").text('');
+        $("#spanSubSkill9RatingIAI").text('');
+        $("#spanSubSkill10IAI").text('');
+        $("#spanSubSkill10RatingIAI").text('');
+
         $("#btnImageDownload").show();
         $("#btn-Convert-Html2Image").hide();
         $("#btn-Convert-Html2Image").removeAttr("download");
@@ -80,6 +101,27 @@
                 $("#spanInterIAI").text($scope.ratingDetailsIAI.InterpersonalSkillCommunication);
                 $("#pInterCommIAI").text($scope.ratingDetailsIAI.InterComments);
                 $("#pCommentsIAI").text($scope.ratingDetailsIAI.InterviewerRemarks);
+
+                $("#spanSubSkill1IAI").text($scope.ratingDetailsIAI.subSkill1);
+                $("#spanSubSkill1RatingIAI").text($scope.ratingDetailsIAI.subSkill1Rating);
+                $("#spanSubSkill2IAI").text($scope.ratingDetailsIAI.subSkill2);
+                $("#spanSubSkill2RatingIAI").text($scope.ratingDetailsIAI.subSkill2Rating);
+                $("#spanSubSkill3IAI").text($scope.ratingDetailsIAI.subSkill3);
+                $("#spanSubSkill3RatingIAI").text($scope.ratingDetailsIAI.subSkill3Rating);
+                $("#spanSubSkill4IAI").text($scope.ratingDetailsIAI.subSkill4);
+                $("#spanSubSkill4RatingIAI").text($scope.ratingDetailsIAI.subSkill4Rating);
+                $("#spanSubSkill5IAI").text($scope.ratingDetailsIAI.subSkill5);
+                $("#spanSubSkill5RatingIAI").text($scope.ratingDetailsIAI.subSkill5Rating);
+                $("#spanSubSkill6IAI").text($scope.ratingDetailsIAI.subSkill6);
+                $("#spanSubSkill6RatingIAI").text($scope.ratingDetailsIAI.subSkill6Rating);
+                $("#spanSubSkill7IAI").text($scope.ratingDetailsIAI.subSkill7);
+                $("#spanSubSkill7RatingIAI").text($scope.ratingDetailsIAI.subSkill7Rating);
+                $("#spanSubSkill8IAI").text($scope.ratingDetailsIAI.subSkill8);
+                $("#spanSubSkill8RatingIAI").text($scope.ratingDetailsIAI.subSkill8Rating);
+                $("#spanSubSkill9IAI").text($scope.ratingDetailsIAI.subSkill9);
+                $("#spanSubSkill9RatingIAI").text($scope.ratingDetailsIAI.subSkill9Rating);
+                $("#spanSubSkill10IAI").text($scope.ratingDetailsIAI.subSkill10);
+                $("#spanSubSkill10RatingIAI").text($scope.ratingDetailsIAI.subSkill10Rating);                
                 
                 BindRatingDonutChartTechRating(parseFloat($scope.ratingDetailsIAI.OveralRating));
                 BindProfilesBySkillChart();
@@ -313,15 +355,19 @@
         }
     }
 
-    $("#btnGeneratePdf").click(function () {        
+    $("#btnGeneratePdf").click(function () {
+        var candidateName = $scope.ratingDetailsIAI.CandidateName;
+        var candidateNameFormatted = candidateName.replace(/\./g, ' ');
         var options = {};
         var doc = new jsPDF('p', 'pt', 'a4');
         doc.addHTML($("#tab_iaiformat"), 15, 15, options, function () {
-            doc.save($scope.ratingDetailsIAI.CandidateName);
+            doc.save(candidateNameFormatted);
         });
     });
 
     $("#btnImageDownload").click(function () {
+        var candidateName = $scope.ratingDetailsIAI.CandidateName;
+        var candidateNameFormatted = candidateName.replace(/\./g, ' ');
         var element = $("#tab_iaiformat"); // global variable
         var getCanvas;
         html2canvas(element, {
@@ -334,7 +380,7 @@
         var imgageData = getCanvas.toDataURL("image/png");
         // Now browser starts downloading it instead of just showing it
         var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
-        $("#btn-Convert-Html2Image").attr("download", $scope.ratingDetailsIAI.CandidateName).attr("href", newData);
+        $("#btn-Convert-Html2Image").attr("download", candidateNameFormatted).attr("href", newData);
         $("#btnImageDownload").hide();
         $("#btn-Convert-Html2Image").show();
     });

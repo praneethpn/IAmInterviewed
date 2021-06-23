@@ -4,6 +4,12 @@
         $scope.viewInterview = "";
         $scope.AudioFile = "";
         $scope.AudioFileDownload = "";
+        $scope.secSkill1Remarks1Count = 0;
+        $scope.secSkill1Remarks2Count = 0;
+        $scope.secSkill1Remarks3Count = 0;
+        $scope.secSkill1Remarks4Count = 0;
+        $scope.secSkill1Remarks5Count = 0;
+        $scope.totalRemarksCount = 0;
     }
     $scope.ClearAll();
 
@@ -17,9 +23,9 @@
             //$scope.search();
             $scope.totalItems = $scope.Interviews.InterviewsToBeConfirmed.length;
             $scope.currentPage = 1;
-            $scope.numPerPage = 20;  
+            $scope.numPerPage = 20;
             manageLoader();
-            deferred.resolve(response.data.data);            
+            deferred.resolve(response.data.data);
         }, function error(response) {
             $rootScope.resultMessage = response.data.errorMessage;
             showNotification('error');
@@ -27,7 +33,7 @@
             deferred.reject;
         });
         return deferred.promise;
-    } 
+    }
 
     $scope.paginate1 = function (value) {
         var begin, end, index;
@@ -37,7 +43,7 @@
         return (begin <= index && index < end);
     };
     $scope.loadInterviews().then(function (response) {
-        $timeout(function () { $("#btnTodaysInterviews").click(); }, 100);        
+        $timeout(function () { $("#btnTodaysInterviews").click(); }, 100);
     });
     //$scope.loadInterviews();
 
@@ -93,6 +99,7 @@
         }
         $scope.AudioFileDownload = objRateInterview.AudioFile;
         //console.log($scope.viewRateInterview);
+        $('#form_wizard_1').bootstrapWizard('show', 0);
     }
 
     $scope.updateRating = function () {
@@ -104,42 +111,31 @@
             manageLoader();
         }
         else {
-            if ($scope.myFile != undefined && $scope.myFile != "") {
-                $scope.UploadType = "CandidateResume";
-                var file = $scope.myFile;
-                var UploadURL = IAMInterviewed.Interviewer.UploadRatingFile;
-                var payload = new FormData();
-                payload.append("ScheduleId", $scope.viewRateInterview.ScheduleId);
-                payload.append("file", file);
-                $http.post(UploadURL, payload, {
-                    headers: { 'Content-Type': undefined },
-                    transformRequest: angular.identity
-                }).then(function (response) {
-                    $scope.UpdateRatingAfterFileUpload($scope.viewRateInterview.ScheduleId + "_" + file.name);
-                    manageLoader();
-                }, function (response) {
-                    $rootScope.resultMessage = "Error while Uploading Resume. Please try again....";
-                    showNotification('error');
-                    manageLoader();
-                });
-                //myService.uploadFile(UploadURL, payload).then(function (response) {
-                //    //success, file uploaded
-                //    //$rootScope.resultMessage = "Resume Uploaded Successfully.";
-                //    //showNotification('success');
-                //    $scope.UpdateCandidateDetailsAfterFileUpload($rootScope.loggedInUserDetails.UserID + "_" + file.name);
-                //    manageLoader();
-                //}).catch(function (response) {
-                //    $rootScope.resultMessage = "Error while Uploading Resume. Please try again....";
-                //    showNotification('error');
-                //    manageLoader();
-                //    //bummer
-                //});
-            }
-            else {
-                $scope.UpdateRatingAfterFileUpload($scope.AudioFileDownload);
+        if ($scope.myFile != undefined && $scope.myFile != "") {
+            $scope.UploadType = "CandidateResume";
+            var file = $scope.myFile;
+            var UploadURL = IAMInterviewed.Interviewer.UploadRatingFile;
+            var payload = new FormData();
+            payload.append("ScheduleId", $scope.viewRateInterview.ScheduleId);
+            payload.append("file", file);
+            $http.post(UploadURL, payload, {
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+            }).then(function (response) {
+                $scope.UpdateRatingAfterFileUpload($scope.viewRateInterview.ScheduleId + "_" + file.name);
                 manageLoader();
-            }
+            }, function (response) {
+                $rootScope.resultMessage = "Error while Uploading Resume. Please try again....";
+                showNotification('error');
+                manageLoader();
+            });
+            //$scope.UpdateRatingAfterFileUpload($scope.viewRateInterview.ScheduleId + "_" + file.name);
         }
+        else {
+            $scope.UpdateRatingAfterFileUpload($scope.AudioFileDownload);
+            manageLoader();
+        }
+        //}
     }
 
     $scope.UpdateRatingAfterFileUpload = function (AudioFile) {
@@ -170,7 +166,27 @@
             InterviewDateTime: $scope.viewRateInterview.DisplayDate + " - " + $scope.viewRateInterview.TimeSlot,
             InterviewerId: $rootScope.loggedInUserDetails.UserID,
             CandidateId: $scope.viewRateInterview.CandidateId,
-            CandidateName: $scope.viewRateInterview.CandidateName
+            CandidateName: $scope.viewRateInterview.CandidateName,
+            subSkill1: $scope.viewRateInterview.subSkill1,
+            subSkill1Rating: $scope.viewRateInterview.subSkill1Rating,
+            subSkill2: $scope.viewRateInterview.subSkill2,
+            subSkill2Rating: $scope.viewRateInterview.subSkill2Rating,
+            subSkill3: $scope.viewRateInterview.subSkill3,
+            subSkill3Rating: $scope.viewRateInterview.subSkill3Rating,
+            subSkill4: $scope.viewRateInterview.subSkill4,
+            subSkill4Rating: $scope.viewRateInterview.subSkill4Rating,
+            subSkill5: $scope.viewRateInterview.subSkill5,
+            subSkill5Rating: $scope.viewRateInterview.subSkill5Rating,
+            subSkill6: $scope.viewRateInterview.subSkill6,
+            subSkill6Rating: $scope.viewRateInterview.subSkill6Rating,
+            subSkill7: $scope.viewRateInterview.subSkill7,
+            subSkill7Rating: $scope.viewRateInterview.subSkill7Rating,
+            subSkill8: $scope.viewRateInterview.subSkill8,
+            subSkill8Rating: $scope.viewRateInterview.subSkill8Rating,
+            subSkill9: $scope.viewRateInterview.subSkill9,
+            subSkill9Rating: $scope.viewRateInterview.subSkill9Rating,
+            subSkill10: $scope.viewRateInterview.subSkill10,
+            subSkill10Rating: $scope.viewRateInterview.subSkill10Rating,
         }
         var updateRatingURL = IAMInterviewed.Interviewer.updateRating;
         $http.post(updateRatingURL, objData).then(function (response) {
@@ -179,7 +195,7 @@
                 showNotification('success');
                 manageLoader();
                 $scope.ViewMode = 'Interviews';
-                $scope.loadInterviews();                
+                $scope.loadInterviews();
             }
             else {
                 $rootScope.resultMessage = response.data.errorMessage;
@@ -224,7 +240,7 @@
 
     $scope.viewRatingDetails = function (objCandidateRating) {
         var ratingIAIFormat = {
-            Logo : "",
+            Logo: "",
             CandidateName: objCandidateRating.CandidateName,
             UniqueId: objCandidateRating.CandidateUniqueId,
             ScheduleId: objCandidateRating.ScheduleId,
@@ -257,6 +273,72 @@
         //$("#candidateratingdetails").modal('show');
     }
 
+    $scope.remarks1Change = function () {
+        //console.log($("#txtskill1Remarks").val());
+        $scope.secSkill1Remarks1Count = $scope.viewRateInterview.SecondarySkill1Remarks == undefined ? $("#txtskill1Remarks").val().length : $scope.viewRateInterview.SecondarySkill1Remarks.length;
+        if (($scope.secSkill1Remarks1Count < 50 && $scope.secSkill1Remarks1Count > 0) || $scope.secSkill1Remarks1Count >= 200) {
+            $("#spanRemarks1Count").addClass('count_error');
+        }
+        else {
+            $("#spanRemarks1Count").removeClass('count_error');
+        }
+    }
+
+    $scope.remarks2Change = function () {
+        //console.log($("#txtskill1Remarks").val());
+        $scope.secSkill1Remarks2Count = $scope.viewRateInterview.SecondarySkill2Remarks == undefined ? $("#txtskill2Remarks").val().length : $scope.viewRateInterview.SecondarySkill2Remarks.length;
+        if (($scope.secSkill1Remarks2Count < 50 && $scope.secSkill1Remarks2Count > 0) || $scope.secSkill1Remarks2Count >= 200) {
+            $("#spanRemarks2Count").addClass('count_error');
+        }
+        else {
+            $("#spanRemarks2Count").removeClass('count_error');
+        }
+    }
+
+    $scope.remarks3Change = function () {
+        //console.log($("#txtskill3Remarks").val());
+        $scope.secSkill1Remarks3Count = $scope.viewRateInterview.SecondarySkill3Remarks == undefined ? $("#txtskill3Remarks").val().length : $scope.viewRateInterview.SecondarySkill3Remarks.length;
+        if (($scope.secSkill1Remarks3Count < 50 && $scope.secSkill1Remarks3Count > 0) || $scope.secSkill1Remarks3Count >= 200) {
+            $("#spanRemarks3Count").addClass('count_error');
+        }
+        else {
+            $("#spanRemarks3Count").removeClass('count_error');
+        }
+    }
+
+    $scope.remarks4Change = function () {
+        //console.log($("#txtskill4Remarks").val());
+        $scope.secSkill1Remarks4Count = $scope.viewRateInterview.SecondarySkill4Remarks == undefined ? $("#txtskill4Remarks").val().length : $scope.viewRateInterview.SecondarySkill4Remarks.length;
+        if (($scope.secSkill1Remarks4Count < 50 && $scope.secSkill1Remarks4Count > 0) || $scope.secSkill1Remarks4Count >= 200) {
+            $("#spanRemarks4Count").addClass('count_error');
+        }
+        else {
+            $("#spanRemarks4Count").removeClass('count_error');
+        }
+    }
+
+    $scope.remarks5Change = function () {
+        //console.log($("#txtskill5Remarks").val());
+        $scope.secSkill1Remarks5Count = $scope.viewRateInterview.SecondarySkill5Remarks == undefined ? $("#txtskill5Remarks").val().length : $scope.viewRateInterview.SecondarySkill5Remarks.length;
+        if (($scope.secSkill1Remarks5Count < 50 && $scope.secSkill1Remarks5Count > 0) || $scope.secSkill1Remarks5Count >= 200) {
+            $("#spanRemarks5Count").addClass('count_error');
+        }
+        else {
+            $("#spanRemarks5Count").removeClass('count_error');
+        }
+    }
+
+    $scope.totalremarksChange = function () {
+        //console.log($("#txtskill1Remarks").val());
+        $scope.totalRemarksCount = $scope.viewRateInterview.InterviewerRemarks == undefined ? $("#interviewerRemarks").val().length : $scope.viewRateInterview.InterviewerRemarks.length;
+        if (($scope.totalRemarksCount < 100 && $scope.totalRemarksCount > 0) || $scope.totalRemarksCount >= 500) {
+            $("#spanRemarks1Count").addClass('count_error');
+        }
+        else {
+            $("#spanRemarks1Count").removeClass('count_error');
+        }
+    }
+
     var callid = '', is_muted = false;
     $scope.is_muted = false;
     $scope.isCallStarted = false;
@@ -264,7 +346,7 @@
     var recordCall = true;
 
     /* Initiate outbound call (call remote party) */
-    $scope.startCall = function (objInterview) {        
+    $scope.startCall = function (objInterview) {
         $scope.callInterview = objInterview;
         var destnum = "+91" + objInterview.MobileNumber;
         //document.getElementById("end").style.visibility = "visible";
@@ -301,7 +383,7 @@
         CS.call.end(callid, "Bye", function (ret, resp) {
             if (ret == 200)
                 CS.call.saveRecording(callid, 'recording.webm');
-                console.log("call end successfully");
+            console.log("call end successfully");
         });
     }
 
@@ -326,6 +408,9 @@
         //document.getElementById("end").style.visibility = "hidden";
         //document.getElementById("mute").style.visibility = "hidden";
         //document.getElementById("start").style.visibility = "hidden";
+        if (CS == undefined) {
+            return;
+        }
         $scope.isCallStarted = false;
         CS.call.onMessage(handleCallFromIML);
 

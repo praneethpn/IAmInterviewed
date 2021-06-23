@@ -33,7 +33,7 @@
         $scope.statusSearch = "Select";
         $scope.companyCandidateId = "";
         $scope.currentPage = 1;
-        $scope.numPerPage = 20;
+        $scope.numPerPage = 10;
     }
     $scope.clearAll();
 
@@ -57,12 +57,12 @@
     $scope.getCompanyProfiles = function () {
         manageLoader('load');
         var getCompanyAddedProfilesURL = IAMInterviewed.Company.getCompanyAddedProfiles + "?companyId=" + $rootScope.loggedInUserDetails.UserID + "&primaryskill=" + $rootScope.objRequirement.PrimarySkill
-            + "&jobCode=" + $rootScope.objRequirement.JobCode + "&statusFilter=" + $scope.statusSearch;
+            + "&jobCode=" + $rootScope.objRequirement.JobCode + "&statusFilter=" + $scope.statusSearch + "&currentPage=" + $scope.currentPage + "&pageSize=" + $scope.numPerPage;
         $http.get(getCompanyAddedProfilesURL).then(function success(response) {
             //console.log(response.data);
-            $scope.companyProfilesAll = response.data.data;
-            $scope.companyProfiles = response.data.data;
-            $scope.totalItems = $scope.companyProfiles.length;
+            $scope.companyProfilesAll = response.data.data.companyProfiles;
+            $scope.companyProfiles = response.data.data.companyProfiles;
+            $scope.totalItems = response.data.data.totalRecords;
             manageLoader();
         }, function error(response) {
             $rootScope.resultMessage = response.data.errorMessage;
@@ -506,13 +506,67 @@
         });
     }
 
-    $scope.paginate = function (value) {
+    $scope.exportToExcel = function () {
+        var createXLSLFormatObj = [];
+        /* XLS Head Columns */
+        var xlsHeader = ["Name", "Email Id", "Mobile Number", "Interview Date", "Rating", "Comments"];
+        var xlsRows = [];
+        angular.forEach($scope.companyProfiles, function (value, key) {
+            var xlsRowObject = {
+                "Name": value.CandidateName,
+                "Email Id": value.Email,
+                "Mobile Number": value.Mobile,
+                "Interview Date": value.InterviewDate,
+                "Rating": value.TotalRating,                
+                //"Select Status": value.SelectStetus,
+                "Comments": value.StatusUpdateRemarks
+            }
+            xlsRows.push(xlsRowObject);
+        });
+        createXLSLFormatObj.push(xlsHeader);
+        $.each(xlsRows, function (index, value) {
+            var innerRowData = [];
+            //$("tbody").append('<tr><td>' + value.CandidateName + '</td><td>' + value.Email + '</td><td>' + value.MobileNumber + '</td><td>' + value.PrimarySKillName
+            //    + '</td><td>' + value.Designation + '</td><td>' + value.RecruiterName + '</td><td>' + value.DisplayDate + '</td><td>' + value.InterviewDateNew
+            //    + '</td><td>' + value.InterviewType + '</td><td>' + value.OveralRating + '</td><td>' + value.SelectStetus + '</td><td>' + value.StatusRemarks + '</td></tr>');
+            $.each(value, function (ind, val) {
+
+                innerRowData.push(val);
+            });
+            createXLSLFormatObj.push(innerRowData);
+        });
+        /* File Name */
+        var filename = "AddProfiles.xlsx";
+        /* Sheet Name */
+        var ws_name = "Profiles";
+
+        if (typeof console !== 'undefined') console.log(new Date());
+        var wb = XLSX.utils.book_new(),
+            ws = XLSX.utils.aoa_to_sheet(createXLSLFormatObj);
+
+        /* Add worksheet to workbook */
+        XLSX.utils.book_append_sheet(wb, ws, ws_name);
+
+        /* Write workbook and Download */
+        if (typeof console !== 'undefined') console.log(new Date());
+        XLSX.writeFile(wb, filename);
+        if (typeof console !== 'undefined') console.log(new Date());
+    }
+
+    /*$scope.paginate = function (value) {
         var begin, end, index;
         begin = ($scope.currentPage - 1) * $scope.numPerPage;
         end = begin + $scope.numPerPage;
+        if ($scope.currentPage > 1) {
+            $scope.getCompanyProfiles();
+        }  
         index = $scope.companyProfiles.indexOf(value);
         return (begin <= index && index < end);
-    };
+    };*/
+
+    $scope.pageChanged = function () {
+        $scope.getCompanyProfiles();
+    }; 
 
     $(document).ready(function () {
         $timeout(function () {

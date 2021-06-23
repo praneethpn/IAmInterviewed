@@ -74,12 +74,12 @@
             manageLoader();
             deferred.resolve(response.data.data);
         },
-        function error(response) {
-            $rootScope.resultMessage = response.data.errorMessage;
-            showNotification('error');
-            manageLoader();
-            deferred.reject;
-        });
+            function error(response) {
+                $rootScope.resultMessage = response.data.errorMessage;
+                showNotification('error');
+                manageLoader();
+                deferred.reject;
+            });
         return deferred.promise;
     }
 
@@ -93,12 +93,12 @@
             manageLoader();
             deferred.resolve(response.data.data);
         },
-        function error(response) {
-            $rootScope.resultMessage = response.data.errorMessage;
-            showNotification('error');
-            manageLoader();
-            deferred.reject;
-        });
+            function error(response) {
+                $rootScope.resultMessage = response.data.errorMessage;
+                showNotification('error');
+                manageLoader();
+                deferred.reject;
+            });
         return deferred.promise;
     }
 
@@ -110,11 +110,11 @@
                 $scope.SecondarySkill2 = $scope.CandidateProfile[0].SecondarySkill2 != '0' ? $scope.CandidateProfile[0].SecondarySkill2.toString() : "";
                 $scope.SecondarySkill3 = $scope.CandidateProfile[0].SecondarySkill3 != '0' ? $scope.CandidateProfile[0].SecondarySkill3.toString() : "";
                 $scope.SecondarySkill4 = $scope.CandidateProfile[0].SecondarySkill4 != '0' ? $scope.CandidateProfile[0].SecondarySkill4.toString() : "";
-                $scope.SecondarySkill5 = $scope.CandidateProfile[0].SecondarySkill5 != '0' ? $scope.CandidateProfile[0].SecondarySkill5.toString() : "";               
+                $scope.SecondarySkill5 = $scope.CandidateProfile[0].SecondarySkill5 != '0' ? $scope.CandidateProfile[0].SecondarySkill5.toString() : "";
                 $scope.InterviewerResumeDownload = $scope.CandidateProfile[0].Resume.toString();
-                $scope.Experience = $scope.CandidateProfile[0].Experience != '0' ? $scope.CandidateProfile[0].Experience.toString() : "";                
+                $scope.Experience = $scope.CandidateProfile[0].Experience != '0' ? $scope.CandidateProfile[0].Experience.toString() : "";
                 $scope.MobileNumber = $scope.CandidateProfile[0].Mobile.toString();
-                $scope.Address = $scope.CandidateProfile[0].Address.toString();                
+                $scope.Address = $scope.CandidateProfile[0].Address.toString();
                 $scope.LoadCities().then(function (response) {
                     $scope.CurrentLocation = $scope.CandidateProfile[0].Location != '0' ? $scope.CandidateProfile[0].Location.toString() : "";
                 });
@@ -133,41 +133,30 @@
             manageLoader();
         }
         else {
-            if ($scope.myFile != undefined && $scope.myFile != "") {
-                $scope.UploadType = "CandidateResume";
-                var file = $scope.myFile;
-                var UploadURL = IAMInterviewed.Candidate.UploadResume;
-                var payload = new FormData();
-                payload.append("CandidateId", $rootScope.loggedInUserDetails.UserID);
-                payload.append("file", file);
-                $http.post(UploadURL, payload, {
-                    headers: { 'Content-Type': undefined },
-                    transformRequest: angular.identity
-                }).then(function (response) {
-                    $scope.UpdateCandidateDetailsAfterFileUpload($rootScope.loggedInUserDetails.UserID + "_" + file.name);
-                    manageLoader();
-                }, function (response) {
-                    $rootScope.resultMessage = "Error while Uploading Resume. Please try again....";
-                    showNotification('error');
-                    manageLoader();
-                });
-                //myService.uploadFile(UploadURL, payload).then(function (response) {
-                //    //success, file uploaded
-                //    //$rootScope.resultMessage = "Resume Uploaded Successfully.";
-                //    //showNotification('success');
-                //    $scope.UpdateCandidateDetailsAfterFileUpload($rootScope.loggedInUserDetails.UserID + "_" + file.name);
-                //    manageLoader();
-                //}).catch(function (response) {
-                //    $rootScope.resultMessage = "Error while Uploading Resume. Please try again....";
-                //    showNotification('error');
-                //    manageLoader();
-                //    //bummer
-                //});
-            }
-            else {
-                $scope.UpdateCandidateDetailsAfterFileUpload($scope.CandidateResumeDownload);
+        if ($scope.myFile != undefined && $scope.myFile != "") {
+            $scope.UploadType = "CandidateResume";
+            var file = $scope.myFile;
+            var UploadURL = IAMInterviewed.Candidate.UploadResume;
+            var payload = new FormData();
+            payload.append("CandidateId", $rootScope.loggedInUserDetails.UserID);
+            payload.append("file", file);
+            $http.post(UploadURL, payload, {
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+            }).then(function (response) {
+                $scope.UpdateCandidateDetailsAfterFileUpload($rootScope.loggedInUserDetails.UserID + "_" + file.name);
                 manageLoader();
-            }
+            }, function (response) {
+                $rootScope.resultMessage = "Error while Uploading Resume. Please try again....";
+                showNotification('error');
+                manageLoader();
+            });
+            //$scope.UpdateCandidateDetailsAfterFileUpload($rootScope.loggedInUserDetails.UserID + "_" + file.name);
+        }
+        else {
+            $scope.UpdateCandidateDetailsAfterFileUpload($scope.CandidateResumeDownload);
+            manageLoader();
+        }
         }
     }
 
@@ -200,7 +189,7 @@
         var saveCandidateProfileURL = IAMInterviewed.Interviewer.saveInterviewerProfile;
         $http.post(saveCandidateProfileURL, objData).then(function (response) {
             if (response.data.Success == true) {
-                $rootScope.resultMessage = "Data Saved Successfylly.";                
+                $rootScope.resultMessage = "Data Saved Successfylly.";
                 showNotification('success');
                 manageLoader();
             }

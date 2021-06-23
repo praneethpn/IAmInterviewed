@@ -86,7 +86,7 @@
                                 <tr>
                                     <th>
                                         Name
-                                        <!--<input type="text" class="form-control header-search" ng-keyup="searchFilterHeader();" autocomplete="off" ng-model="nameSearch" />-->
+                                        <input type="text" class="form-control header-search" ng-keyup="searchFilterHeader();" autocomplete="off" ng-model="nameSearch" />
                                     </th>
                                     <th> Email </th>
                                     <th> MobileNo </th>
@@ -94,15 +94,15 @@
                                     <th> Designation </th>
                                     <th>
                                         Recruiter
-                                        <!--<input type="text" class="form-control header-search" ng-keyup="searchFilterHeader();" autocomplete="off" ng-model="recruiterSearch" />-->
+                                        <input type="text" class="form-control header-search" ng-keyup="searchFilterHeader();" autocomplete="off" ng-model="recruiterSearch" />
                                     </th>
                                     <th> Created Date </th>
                                     <th> Interview Date </th>
                                     <th> Interview Type </th>
                                     <th> Rating </th>
                                     <!--<th> ScreenStatus </th>-->
-                                    <th> SelectStatus </th>
-                                    <th> Status Comments </th>
+                                    <!--<th> SelectStatus </th>-->
+                                    <th> Comments </th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -120,7 +120,7 @@
                                     <td>{{candidate.InterviewType}}</td>
                                     <td>{{candidate.OveralRating}}</td>
                                     <!--<td>{{candidate.ScreenSelect}}</td>-->
-                                    <td>{{candidate.SelectStetus}}</td>
+                                    <!--<td>{{candidate.SelectStetus}}</td>-->
                                     <td>{{candidate.StatusRemarks}}</td>
                                     <td><a ng-click="viewRatingDetails(candidate)">Details</a></td>
                                     <td><a ng-click="getHistory(candidate.ProfileId)" title="History"><i class="fa fa-history" aria-hidden="true"></i></a></td>

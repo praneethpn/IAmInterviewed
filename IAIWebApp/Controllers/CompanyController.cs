@@ -812,13 +812,16 @@ namespace IAIWebApp.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult GetCompanyAddedProfiles(string companyId, string primaryskill, string jobCode, string statusFilter)
+        public ActionResult GetCompanyAddedProfiles(string companyId, string primaryskill, string jobCode, string statusFilter, int currentPage, int pageSize)
         {
             try
             {
-                List<CandidateModel> _companyProfiles = _companyDataHelper.GetCandidateDetials(primaryskill, companyId, jobCode, statusFilter);
-
-                return Json(new { data = _companyProfiles, Success = true, errorMessage = "" }, JsonRequestBehavior.AllowGet);
+                var serializer = new JavaScriptSerializer();
+                serializer.MaxJsonLength = Int32.MaxValue;
+                AddProfilesModel _companyProfiles = _companyDataHelper.GetCandidateDetials(primaryskill, companyId, jobCode, statusFilter, currentPage, pageSize);
+                var jsonResult = Json(new { data = _companyProfiles, Success = true, errorMessage = "" }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
             }
             catch (Exception ex)
             {
@@ -933,6 +936,7 @@ namespace IAIWebApp.Controllers
                     string candidateUniqueId = CandidateId + _candidatelistCandidate[0].uniquenumber;
                     string URL = "<a href='http://www.iaminterviewed.com/'>www.iaminterviewed.com </a>";
                     string InterviewURL = "<a href='http://www.iaminterviewed.com/Interview.html?username=" + candidateUniqueId + "'>Join Interview </a>";
+                    string privacyURL = "<a href='https://iaminterviewed.com/PrivacyPolicy.html'>https://iaminterviewed.com/PrivacyPolicy.html</a>";
                     string InterviewerName = _candidatelistinterviewer.Count > 0 ? _candidatelistinterviewer[0].CandidateName : "Saran";
                     string mainTopics = _candidatelistCandidate[0].PrimarySkillName + "( " + _candidatelistCandidate[0].SecondarySkill1Name + ", " + _candidatelistCandidate[0].SecondarySkill2Name +
                         ", " + _candidatelistCandidate[0].SecondarySkill3Name + ", " + _candidatelistCandidate[0].SecondarySkill4Name + ", " + _candidatelistCandidate[0].SecondarySkill5Name + " )";
@@ -958,7 +962,8 @@ namespace IAIWebApp.Controllers
                                             + "Interview Topics: " + mainTopics + "<br /><br />"
                                             + "Please login here to see details: " + URL + "<br /><br />"
                                             + callMessage + " <br /><br />"
-                                            + "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
+                                            //+ "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
+                                            + "Please visit "  +privacyURL + " to know the Privacy Policy. <br /><br />"
                                             + "Have a nice day...<br /><br />"
                                             + "Thanks,<br />"
                                             + "Team IAmInterviewed";
@@ -986,6 +991,7 @@ namespace IAIWebApp.Controllers
                 string candidateUniqueId = candidateId + _candidatelistCandidate[0].uniquenumber;
                 string URL = "<a href='http://www.iaminterviewed.com/'>www.iaminterviewed.com </a>";
                 string InterviewURL = "<a href='http://www.iaminterviewed.com/Interview.html?username=" + candidateUniqueId + "'>Join Interview </a>";
+                string privacyURL = "<a href='https://iaminterviewed.com/PrivacyPolicy.html'>https://iaminterviewed.com/PrivacyPolicy.html</a>";
                 string mainTopics = _candidatelistCandidate[0].PrimarySkillName + "( " + _candidatelistCandidate[0].SecondarySkill1Name + ", " + _candidatelistCandidate[0].SecondarySkill2Name +
                         ", " + _candidatelistCandidate[0].SecondarySkill3Name + ", " + _candidatelistCandidate[0].SecondarySkill4Name + ", " + _candidatelistCandidate[0].SecondarySkill5Name + " )";
                 string bodyCandidate = "Hi " + _candidatelistCandidate[0].CandidateName + ",<br /><br />Your interview has been re scheduled, please find the details,<br /><br />"
@@ -994,7 +1000,8 @@ namespace IAIWebApp.Controllers
                                     + "Interview Topics: " + mainTopics + "<br /><br />"
                                     + "Please login here to see details: " + URL + "<br /><br />"
                                     + "Audio Interview you will get Phone call. Video Interview you will receive ZOOM invite. <br /><br />"
-                                    + "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
+                                    //+ "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
+                                    + "Please visit " + privacyURL + " to know the Privacy Policy. <br /><br />"
                                     + "Have a nice day...<br /><br />"
                                     + "Thanks,<br />"
                                     + "Team IAmInterviewed";

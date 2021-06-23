@@ -244,6 +244,47 @@
                                         </div>
                                     </div>
                                 </div>
+                                <h2>Sub Skill Ratings</h2>
+                                <div class="row padding-10">
+                                    <div class="col-md-6" id="divSubskill1" ng-hide="ratingDetailsIAI.subSkill1 == ''">
+                                        <span>{{ratingDetailsIAI.subSkill1}}</span> : <span class="valueLabelRating">{{ratingDetailsIAI.subSkill1Rating}}</span>
+                                    </div>
+                                    <div class="col-md-6" id="divSubskill2" ng-hide="ratingDetailsIAI.subSkill2 == ''">
+                                        <span>{{ratingDetailsIAI.subSkill2}}</span> : <span class="valueLabelRating">{{ratingDetailsIAI.subSkill2Rating}}</span>
+                                    </div>
+                                </div>
+                                <div class="row padding-10">
+                                    <div class="col-md-6" id="divSubskill3" ng-hide="ratingDetailsIAI.subSkill3 == ''">
+                                        <span >{{ratingDetailsIAI.subSkill3}}</span> : <span class="valueLabelRating">{{ratingDetailsIAI.subSkill3Rating}}</span>
+                                    </div>
+                                    <div class="col-md-6" id="divSubskill4" ng-hide="ratingDetailsIAI.subSkill4 == ''">
+                                        <span>{{ratingDetailsIAI.subSkill4}}</span> : <span class="valueLabelRating">{{ratingDetailsIAI.subSkill4Rating}}</span>
+                                    </div>
+                                </div>
+                                <div class="row padding-10">
+                                    <div class="col-md-6" id="divSubskill5" ng-hide="ratingDetailsIAI.subSkill5 == ''">
+                                        <span>{{ratingDetailsIAI.subSkill5}}</span> : <span class="valueLabelRating">{{ratingDetailsIAI.subSkill5Rating}}</span>
+                                    </div>
+                                    <div class="col-md-6" id="divSubskill6" ng-hide="ratingDetailsIAI.subSkill6 == ''">
+                                        <span>{{ratingDetailsIAI.subSkill6}}</span> : <span class="valueLabelRating">{{ratingDetailsIAI.subSkill6Rating}}</span>
+                                    </div>
+                                </div>
+                                <div class="row padding-10">
+                                    <div class="col-md-6" id="divSubskill7" ng-hide="ratingDetailsIAI.subSkill7 == ''">
+                                        <span>{{ratingDetailsIAI.subSkill7}}</span> : <span class="valueLabelRating">{{ratingDetailsIAI.subSkill7Rating}}</span>
+                                    </div>
+                                    <div class="col-md-6" id="divSubskill8" ng-hide="ratingDetailsIAI.subSkill8 == ''">
+                                        <span>{{ratingDetailsIAI.subSkill8}}</span> : <span class="valueLabelRating">{{ratingDetailsIAI.subSkill8Rating}}</span>
+                                    </div>
+                                </div>
+                                <div class="row padding-10">
+                                    <div class="col-md-6" id="divSubskill9" ng-hide="ratingDetailsIAI.subSkill9 == ''">
+                                        <span>{{ratingDetailsIAI.subSkill9}}</span> : <span class="valueLabelRating">{{ratingDetailsIAI.subSkill9Rating}}</span>
+                                    </div>
+                                    <div class="col-md-6" id="divSubskill10" ng-hide="ratingDetailsIAI.subSkill10 == ''">
+                                        <span>{{ratingDetailsIAI.subSkill10}}</span> : <span class="valueLabelRating">{{ratingDetailsIAI.subSkill10Rating}}</span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="tab_softskillrating" style="display: none;">
                                 <div class="row">
@@ -443,6 +484,49 @@
                                                 </ul>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <h2 ng-hide="ratingDetailsIAI.subSkill1 == '' && ratingDetailsIAI.subSkill2 == '' && ratingDetailsIAI.subSkill3 == '' && ratingDetailsIAI.subSkill4 == '' && 
+                                    ratingDetailsIAI.subSkill5 == '' && ratingDetailsIAI.subSkill6 == '' && ratingDetailsIAI.subSkill7 == '' && ratingDetailsIAI.subSkill8 == '' && 
+                                    ratingDetailsIAI.subSkill9 == '' && ratingDetailsIAI.subSkill10 == ''">Sub Skill Ratings</h2>
+                                <div class="row padding-10">
+                                    <div class="col-md-6" ng-hide="ratingDetailsIAI.subSkill1 == ''">
+                                        <span id="spanSubSkill1IAI">{{ratingDetailsIAI.subSkill1}}</span> : <span id="spanSubSkill1RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.subSkill1Rating}}</span>
+                                    </div>
+                                    <div class="col-md-6" ng-hide="ratingDetailsIAI.subSkill2 == ''">
+                                        <span id="spanSubSkill2IAI">{{ratingDetailsIAI.subSkill2}}</span> : <span id="spanSubSkill2RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.subSkill2Rating}}</span>
+                                    </div>
+                                </div>
+                                <div class="row padding-10">
+                                    <div class="col-md-6" ng-hide="ratingDetailsIAI.subSkill3 == ''">
+                                        <span id="spanSubSkill3IAI">{{ratingDetailsIAI.subSkill3}}</span> : <span id="spanSubSkill3RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.subSkill3Rating}}</span>
+                                    </div>
+                                    <div class="col-md-6" ng-hide="ratingDetailsIAI.subSkill4 == ''">
+                                        <span id="spanSubSkill4IAI">{{ratingDetailsIAI.subSkill4}}</span> : <span id="spanSubSkill4RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.subSkill4Rating}}</span>
+                                    </div>
+                                </div>
+                                <div class="row padding-10">
+                                    <div class="col-md-6" ng-hide="ratingDetailsIAI.subSkill5 == ''">
+                                        <span id="spanSubSkill5IAI">{{ratingDetailsIAI.subSkill5}}</span> : <span id="spanSubSkill5RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.subSkill5Rating}}</span>
+                                    </div>
+                                    <div class="col-md-6" ng-hide="ratingDetailsIAI.subSkill6 == ''">
+                                        <span id="spanSubSkill6IAI">{{ratingDetailsIAI.subSkill6}}</span> : <span id="spanSubSkill6RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.subSkill6Rating}}</span>
+                                    </div>
+                                </div>
+                                <div class="row padding-10">
+                                    <div class="col-md-6" ng-hide="ratingDetailsIAI.subSkill7 == ''">
+                                        <span id="spanSubSkill7IAI">{{ratingDetailsIAI.subSkill7}}</span> : <span id="spanSubSkill7RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.subSkill7Rating}}</span>
+                                    </div>
+                                    <div class="col-md-6" ng-hide="ratingDetailsIAI.subSkill8 == ''">
+                                        <span id="spanSubSkill8IAI">{{ratingDetailsIAI.subSkill8}}</span> : <span id="spanSubSkill8RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.subSkill8Rating}}</span>
+                                    </div>
+                                </div>
+                                <div class="row padding-10">
+                                    <div class="col-md-6" ng-hide="ratingDetailsIAI.subSkill9 == ''">
+                                        <span id="spanSubSkill9IAI">{{ratingDetailsIAI.subSkill9}}</span> : <span id="spanSubSkill9RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.subSkill9Rating}}</span>
+                                    </div>
+                                    <div class="col-md-6" ng-hide="ratingDetailsIAI.subSkill10 == ''">
+                                        <span id="spanSubSkill10IAI">{{ratingDetailsIAI.subSkill10}}</span> : <span id="spanSubSkill10RatingIAI" class="valueLabelRating">{{ratingDetailsIAI.subSkill10Rating}}</span>
                                     </div>
                                 </div>
                             </div>

@@ -180,6 +180,26 @@ namespace IAIWebApp.Models
         public bool CanidateShortlisted { get; set; }
         public string DisplayStartDate { get; set; }
         public string DisplayEndDate { get; set; }
+        public string subSkill1 { get; set; }
+        public int subSkill1Rating { get; set; }
+        public string subSkill2 { get; set; }
+        public int subSkill2Rating { get; set; }
+        public string subSkill3 { get; set; }
+        public int subSkill3Rating { get; set; }
+        public string subSkill4 { get; set; }
+        public int subSkill4Rating { get; set; }
+        public string subSkill5 { get; set; }
+        public int subSkill5Rating { get; set; }
+        public string subSkill6 { get; set; }
+        public int subSkill6Rating { get; set; }
+        public string subSkill7 { get; set; }
+        public int subSkill7Rating { get; set; }
+        public string subSkill8 { get; set; }
+        public int subSkill8Rating { get; set; }
+        public string subSkill9 { get; set; }
+        public int subSkill9Rating { get; set; }
+        public string subSkill10 { get; set; }
+        public int subSkill10Rating { get; set; }
     }
 
     public class CompanyProfileModel
@@ -217,6 +237,16 @@ namespace IAIWebApp.Models
         public string Remarks { get; set; }
         public int UserId { get; set; }
         public string AdditionalSkills { get; set; }
+        public string subSkill1 { get; set; }
+        public string subSkill2 { get; set; }
+        public string subSkill3 { get; set; }
+        public string subSkill4 { get; set; }
+        public string subSkill5 { get; set; }
+        public string subSkill6 { get; set; }
+        public string subSkill7 { get; set; }
+        public string subSkill8 { get; set; }
+        public string subSkill9 { get; set; }
+        public string subSkill10 { get; set; }
     }
 
     public class CompanySkillWiseProfilesReportModel

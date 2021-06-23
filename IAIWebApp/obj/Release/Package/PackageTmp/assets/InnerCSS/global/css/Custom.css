@@ -1423,3 +1423,29 @@ tags-input .tags .tag-item .remove-button {
     border-radius: 25px !important;
     font-size: 11px !important;
 }
+.export-excel img {
+    width: 30px;
+    height: 30px;
+}
+.table td, .table th {
+    font-size: 8pt !important;
+}
+
+.secSkillRemarksText {
+    color: red;
+    font-size: 12px;
+    float: left;
+    display: inline;
+}
+.remarks_count {
+    color: #ccc;
+    font-size: 12px;
+    float: right;
+    display: inline;
+}
+.remarks_count.count_error {
+    color: red !important;
+}
+.padding-10 {
+    padding: 10px !important;
+}

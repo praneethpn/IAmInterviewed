@@ -99,6 +99,7 @@ namespace IAIWebApp.Controllers
                     string URL = "<a href='http://www.iaminterviewed.com/'>www.iaminterviewed.com </a>";
                     string candidateUniqueId = details[0].candidateid + details[0].CandidateUniqueId;
                     string InterviewURL = "<a href='http://www.iaminterviewed.com/Interview.html?username=" + candidateUniqueId + "'>Join Interview </a>";
+                    string privacyURL = "<a href='https://iaminterviewed.com/PrivacyPolicy.html'>https://iaminterviewed.com/PrivacyPolicy.html</a>";
                     string body = "Hi " + details[0].InterviewerName + ",<br /><br />Please find the new  interview scheduled for you,<br /><br />"
 
                                         + "<strong>Name:</strong>  " + details[0].CandidateName + "<br />"
@@ -116,7 +117,8 @@ namespace IAIWebApp.Controllers
                                             + "Interview Topics: " + mainTopics + "<br /><br />"
                                             + "Please login here to see details: " + URL + "<br /><br />"
                                             + callMessage + "<br /><br />"
-                                            + "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
+                                            //+ "Please Click Here to Take Interview: " + InterviewURL + ". Or you may get Phone call also.<br /><br />"
+                                            + "Please visit " + privacyURL + " to know the Privacy Policy. <br /><br />"
                                             + "Have a nice day...<br /><br />"
                                             + "Thanks,<br />"
                                             + "Team IAmInterviewed";

@@ -78,7 +78,8 @@
             ReturnUrl = { url: "app/components/Company/ScheduleInterview/ScheduleInterview.html" };
         }
         else if (key == 'RecruiterDashboard') {
-            ReturnUrl = { url: "app/components/Company/RecruiterDashboard/RecruiterDashboard.html" };
+            //ReturnUrl = { url: "app/components/Company/RecruiterDashboard/RecruiterDashboard.html" };
+            ReturnUrl = { url: "app/components/Company/AllJobPostings/AllJobPostings.html" };
         }
         else if (key == 'RequirementsDashboard') {
             ReturnUrl = { url: "app/components/Company/RequirementsDashboard/RequirementsDashboard.html" };

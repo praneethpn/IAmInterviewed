@@ -130,6 +130,11 @@
                                 <option value="Reject">Reject</option>
                             </select>
                         </div>
+                        <div class="col-md-2">
+                            <a class="export-excel" title="Export" ng-click="exportToExcel()" ng-hide="companyProfiles.length < 1">
+                                <img src="../../../../assets/InnerCSS/global/img/Export To Excel.jpg" />
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -143,8 +148,8 @@
                                     <th> Interview Date </th>
                                     <th> Rating </th>
                                     <!--<th> ScreenStatus </th>-->
-                                    <th> Status </th>
-                                    <th> Status Reason </th>
+                                    <!--<th> Status </th>-->
+                                    <th> Comments </th>
                                     <!--<th></th>-->
                                     <!--<th></th>-->
                                     <th></th>
@@ -162,20 +167,20 @@
                                     <td> {{profile.InterviewDate}} </td>
                                     <td> {{profile.TotalRating}} </td>
                                     <!--<td> {{profile.ScreenSelect}} </td>-->
-                                    <td>
-                                        {{profile.SelectStetus}}
-                                        <!--<select name="Skill" id="Skill" class="form-control" ng-model="profile.SelectStetus">
-                                        <option value="">-Select Status-</option>
-                                        <option value="Select">Select</option>-->
-                                        <!--<option value="InProgress">InProgress</option>
-                                        <option value="Joined">Joined</option>-->
-                                        <!--<option value="Reject">Reject</option>-->
-                                        <!--<option value="IAI Reject">IAI Reject</option>
-                                        <option value="Tech Reject">Tech Reject</option>
-                                        <option value="HR Reject">HR Reject</option>
-                                        <option value="Offer Reject">Offer Reject</option>-->
-                                        <!--</select>-->
-                                    </td>
+                                    <!--<td>
+                {{profile.SelectStetus}}-->
+                                    <!--<select name="Skill" id="Skill" class="form-control" ng-model="profile.SelectStetus">
+                <option value="">-Select Status-</option>
+                <option value="Select">Select</option>-->
+                                    <!--<option value="InProgress">InProgress</option>
+                <option value="Joined">Joined</option>-->
+                                    <!--<option value="Reject">Reject</option>-->
+                                    <!--<option value="IAI Reject">IAI Reject</option>
+                <option value="Tech Reject">Tech Reject</option>
+                <option value="HR Reject">HR Reject</option>
+                <option value="Offer Reject">Offer Reject</option>-->
+                                    <!--</select>-->
+                                    <!--</td>-->
                                     <td>
                                         {{profile.StatusUpdateRemarks}}
                                         <!--<input type="text" class="form-control" ng-model="profile.StatusUpdateRemarks">-->
@@ -189,9 +194,24 @@
                                     <td><a ng-click="getHistory(profile.CompanyProfileId)" title="History"><i class="fa fa-history" aria-hidden="true"></i></a></td>
                                 </tr>
                             </tbody>
+                            <tfoot>
+                            <tfoot>
+                                <tr>
+                                    <td align="center" colspan="6   ">
+
+                                        <div class="pull-right">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
+                        <pagination total-items="totalItems" ng-change="pageChanged()" items-per-page="numPerPage" direction-links="true" ng-model="currentPage" max-size="numPerPage" class="pagination"
+                                    boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                        <!--<a class="btn btn-primary">Page: {{currentPage}} / {{numPages}}</a>-->
+                        <!--<pagination total-items="totalItems" ng-change="pageChanged()" items-per-page="numPerPage" ng-model="currentPage" max-size="5" class="pagination-sm" boundary-links="true"></pagination>
                         <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
-                        </pagination>
+                        </pagination>-->
                     </div>
                 </div>
             </div>
@@ -511,6 +531,7 @@
                                 </div>-->
                                 <div class="form-group" ng-show="TimeSlot == ''">
                                     <ul class="interviewer-slots">
+                                        "i
                                         <li ng-repeat="interviewer in Interviewers">
                                             <span>{{interviewer.InterviewerName}}</span> <br />
                                             <a ng-repeat="slot in interviewer.timeSlotList" ng-click="schedulePopUp(slot, interviewer);">{{slot.TimeSlot}}</a>

@@ -5,6 +5,11 @@ using System.Web;
 
 namespace IAIWebApp.Models
 {
+    public class AddProfilesModel
+    {
+        public List<CandidateModel> companyProfiles { get; set; }
+        public int totalRecords { get; set; }
+    }
     public class CandidateModel
     {
         public int candidateid { get; set; }

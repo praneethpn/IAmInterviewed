@@ -48,6 +48,16 @@ namespace IAIWebApp.DataHelpers
                     _model.InterviewType = ds.Tables[0].Rows[i]["InterviewType"].ToString();
                     _model.CompanySchedule = ds.Tables[0].Rows[i]["CompanySchedule"].ToString();
                     _model.CandidateUniqueId = ds.Tables[0].Rows[i]["UniqueId"].ToString();
+                    _model.subSkill1 = ds.Tables[0].Rows[i]["SubSkill1"].ToString();
+                    _model.subSkill2 = ds.Tables[0].Rows[i]["SubSkill2"].ToString();
+                    _model.subSkill3 = ds.Tables[0].Rows[i]["SubSkill3"].ToString();
+                    _model.subSkill4 = ds.Tables[0].Rows[i]["SubSkill4"].ToString();
+                    _model.subSkill5 = ds.Tables[0].Rows[i]["SubSkill5"].ToString();
+                    _model.subSkill6 = ds.Tables[0].Rows[i]["SubSkill6"].ToString();
+                    _model.subSkill7 = ds.Tables[0].Rows[i]["SubSkill7"].ToString();
+                    _model.subSkill8 = ds.Tables[0].Rows[i]["SubSkill8"].ToString();
+                    _model.subSkill9 = ds.Tables[0].Rows[i]["SubSkill9"].ToString();
+                    _model.subSkill10 = ds.Tables[0].Rows[i]["SubSkill10"].ToString();
                     if (_model.IsConfirmed == "True")
                     {
                         _model.IsConfirmed = "Yes";
@@ -110,6 +120,16 @@ namespace IAIWebApp.DataHelpers
                     _model.InterviewType = ds.Tables[0].Rows[i]["InterviewType"].ToString();
                     _model.CompanySchedule = ds.Tables[0].Rows[i]["CompanySchedule"].ToString();
                     _model.CandidateUniqueId = ds.Tables[0].Rows[i]["UniqueId"].ToString();
+                    _model.subSkill1 = ds.Tables[0].Rows[i]["SubSkill1"].ToString();
+                    _model.subSkill2 = ds.Tables[0].Rows[i]["SubSkill2"].ToString();
+                    _model.subSkill3 = ds.Tables[0].Rows[i]["SubSkill3"].ToString();
+                    _model.subSkill4 = ds.Tables[0].Rows[i]["SubSkill4"].ToString();
+                    _model.subSkill5 = ds.Tables[0].Rows[i]["SubSkill5"].ToString();
+                    _model.subSkill6 = ds.Tables[0].Rows[i]["SubSkill6"].ToString();
+                    _model.subSkill7 = ds.Tables[0].Rows[i]["SubSkill7"].ToString();
+                    _model.subSkill8 = ds.Tables[0].Rows[i]["SubSkill8"].ToString();
+                    _model.subSkill9 = ds.Tables[0].Rows[i]["SubSkill9"].ToString();
+                    _model.subSkill10 = ds.Tables[0].Rows[i]["SubSkill10"].ToString();
                     if (_model.IsConfirmed == "True")
                     {
                         _model.IsConfirmed = "Yes";
@@ -167,6 +187,16 @@ namespace IAIWebApp.DataHelpers
                     _model.InterviewType = ds.Tables[0].Rows[i]["InterviewType"].ToString();
                     _model.CompanySchedule = ds.Tables[0].Rows[i]["CompanySchedule"].ToString();
                     _model.CandidateUniqueId = ds.Tables[0].Rows[i]["UniqueId"].ToString();
+                    _model.subSkill1 = ds.Tables[0].Rows[i]["SubSkill1"].ToString();
+                    _model.subSkill2 = ds.Tables[0].Rows[i]["SubSkill2"].ToString();
+                    _model.subSkill3 = ds.Tables[0].Rows[i]["SubSkill3"].ToString();
+                    _model.subSkill4 = ds.Tables[0].Rows[i]["SubSkill4"].ToString();
+                    _model.subSkill5 = ds.Tables[0].Rows[i]["SubSkill5"].ToString();
+                    _model.subSkill6 = ds.Tables[0].Rows[i]["SubSkill6"].ToString();
+                    _model.subSkill7 = ds.Tables[0].Rows[i]["SubSkill7"].ToString();
+                    _model.subSkill8 = ds.Tables[0].Rows[i]["SubSkill8"].ToString();
+                    _model.subSkill9 = ds.Tables[0].Rows[i]["SubSkill9"].ToString();
+                    _model.subSkill10 = ds.Tables[0].Rows[i]["SubSkill10"].ToString();
                     nwmd.Add(_model);
                 }
                 return nwmd;
@@ -410,6 +440,17 @@ namespace IAIWebApp.DataHelpers
                 pars.Add(GetSqlParameter("@EnglishCommunicationRemarks", SqlDbType.VarChar, _model.EnglishCommunicationRemarks));
                 pars.Add(GetSqlParameter("@AttitudeRemarks", SqlDbType.VarChar, _model.AttitudeRemarks));
                 pars.Add(GetSqlParameter("@InterpersonalSkillCommunicationRemarks", SqlDbType.VarChar, _model.InterpersonalSkillCommunicationRemarks));
+                pars.Add(GetSqlParameter("@subSkill1Rating", SqlDbType.Int, _model.subSkill1Rating));
+                pars.Add(GetSqlParameter("@subSkill2Rating", SqlDbType.Int, _model.subSkill2Rating));
+                pars.Add(GetSqlParameter("@subSkill3Rating", SqlDbType.Int, _model.subSkill3Rating));
+                pars.Add(GetSqlParameter("@subSkill4Rating", SqlDbType.Int, _model.subSkill4Rating));
+                pars.Add(GetSqlParameter("@subSkill5Rating", SqlDbType.Int, _model.subSkill5Rating));
+                pars.Add(GetSqlParameter("@subSkill6Rating", SqlDbType.Int, _model.subSkill6Rating));
+                pars.Add(GetSqlParameter("@subSkill7Rating", SqlDbType.Int, _model.subSkill7Rating));
+                pars.Add(GetSqlParameter("@subSkill8Rating", SqlDbType.Int, _model.subSkill8Rating));
+                pars.Add(GetSqlParameter("@subSkill9Rating", SqlDbType.Int, _model.subSkill9Rating));
+                pars.Add(GetSqlParameter("@subSkill10Rating", SqlDbType.Int, _model.subSkill10Rating));
+
                 SqlHelper.ExecuteNonQuery(CS, SP, "Proc_Update_Rating", pars.ToArray());
             }
             catch (Exception ex)
